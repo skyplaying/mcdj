@@ -1,0 +1,29 @@
+
+/* 需求列表模块 */
+.demand-item{
+	position: relative;
+}
+.demand-item::before{
+	content: ' ';
+	position: absolute;
+	top: 0;
+	border-top: 1px solid #e5e5e5;
+	left: 30rpx;
+	right: 0;
+}
+.demand-item:first-child::before{
+	display: none;
+}
+.demand-avatar{
+    flex: none;
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 80rpx;
+}
+.demand-item_top_mid{
+    flex: auto;
+    margin-left: 20rpx;
+}
+.demand-item_mid,.demand-item_bottom{
+    line-height: 56rpx;
+}

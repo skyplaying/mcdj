@@ -1,0 +1,34 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<form onSubmit="setFormId" report-submit="{{true}}" class="container pb30" a:if="{{isok}}">
+  <view class="comment-item bgwh fbs">
+    <image src="{{commentVo.usersVo.avatar}}" mode="aspectFill" class="comment-avatar" />
+    <view class="flex-a">
+      <view class="fbc">
+        <view class="art1 b f14">{{commentVo.usersVo.nickName}}</view>
+        <view class="g8 f10 ml10 flex-n">{{commentVo.commentTime}}</view>
+      </view>
+      <view class="stars-wrap fsc">
+        <block a:for="{{[1,2,3,4,5]}}" a:key="*this" a:for-item="sitem" a:for-index="sindex">
+          <block a:if="{{sindex+1<= commentVo.trainCompositeScore}}">
+            <image src="/images/stars1.png" class="stars-item" />
+          </block>
+          <block a:elif="{{sindex+0.5 <= commentVo.trainCompositeScore}}">
+            <image src="/images/stars2.png" class="stars-item" />
+          </block>
+          <block a:else>
+            <image src="/images/stars0.png" class="stars-item" />
+          </block>
+        </block>
+        <text class="ml15 gor f12">{{commentVo.trainCompositeScore}}分</text>
+      </view>
+      <view class="f10 g8 ptb5">寄养的宠物：{{commentVo.pets}}</view>
+      <view class="f12 mt5" a:if="{{commentVo.commentContent}}">{{commentVo.commentContent}}</view>
+      <view class="f12 mt5 g8" a:else>暂无评论</view>
+    </view>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

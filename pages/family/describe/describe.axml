@@ -1,0 +1,4 @@
+<form class="container" report-submit="{{true}}" onSubmit="setFormId">
+  <textarea onInput="inputDescribe" auto-height="{{true}}" value="{{familyDescribe}}" placeholder="描述您的家庭情况、提供的服务、家庭宠物情况、寄养须知，让宠物主人更了解您的家庭。" maxlength="1000" class="textarea" />
+  <button form-type="submit" onTap="saveAdoption" type="primary" class="w345 mc-btn2 gor auto mt20 mb50" hover-class="none" disabled="{{!familyDescribe}}">保存</button>
+</form>

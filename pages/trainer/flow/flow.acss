@@ -1,0 +1,139 @@
+
+
+.weui-select{
+    line-height: 1.5em;
+    border-right: none;
+    background-color: white;
+    padding-top: 30rpx;
+    padding-bottom: 30rpx;
+    margin-bottom: 20rpx;
+    color: #f5a623;
+    font-size: 30rpx;
+}
+.weui-select:before{
+    border-color:currentColor;
+}
+.weui-select::after{
+    border-top:none;
+}
+.perfect-state{
+    width: 96rpx;
+    line-height: 36rpx;
+    color: white;
+    border-radius: 8rpx;
+    text-align: center;
+    font-size: 24rpx;
+    background-color: #bbb;
+    margin-top: 7rpx;
+}
+.perfect{
+    background-color: #40c7a9;
+}
+
+.icon{
+    width: 90rpx;
+    height: 90rpx;
+    margin-right: 40rpx;
+    flex: none;
+}
+
+.container1 .foot-box{
+    padding: 30rpx;
+}
+.container1 .mc-btn2{
+    color: #f5a623;
+}
+
+/* 同意协议 */
+.weui-agree{
+    padding: 0;
+    margin-bottom: 20rpx;
+}
+.weui-agree .formId-btn{
+    display: inline-block;
+}
+
+.success-icon{
+    margin: 60rpx 0 30rpx;
+}
+.zhima-icon{
+    padding-left: 78rpx;
+    background: url('/images/adopter_zhima_icon.png') no-repeat 8rpx center;
+    background-size: 40rpx 40rpx;
+}
+.adopter-icon{
+    padding-left: 78rpx;
+    background: url('/images/adopter_info_icon.png') no-repeat 8rpx center;
+    background-size: 40rpx 40rpx;
+}
+.knowledge-icon{
+    padding-left: 78rpx;
+    background: url('/images/adopter_knowledge_icon.png') no-repeat 8rpx center;
+    background-size: 40rpx 40rpx;
+}
+.activate{
+    color: #05D0A9;
+}
+
+.container2 .btn-wrap{
+    position: absolute;
+    bottom: 50rpx;
+    width: 690rpx;
+}
+.container2 .btn-wrap button{
+    margin-bottom: 50rpx;
+}
+
+.weui-cell::before{
+    border-top: none;
+}
+
+
+/* 内容模块3 */
+.container3{
+    padding-bottom: 140rpx;
+}
+.welcome-wrap{
+    width: 416rpx;
+    margin-left: 10rpx;
+}
+.content3-banner{
+    display: block;
+    width: 100%;
+    height: 350rpx;
+}
+
+.wrap_hd{
+    position: relative;
+    padding-left: 20rpx;
+    line-height: 100rpx;
+    font-size: 32rpx;
+    font-weight: bold;
+    width: 150rpx;
+    color: #FF9800;
+}
+.wrap_hd::after{
+    content: ' ';
+    position: absolute;
+    left: 0;
+    top: 36rpx;
+    bottom: 36rpx;
+    border-left: 2px solid #FF9800;
+}
+.require-wrap{
+    background-color: white;
+    padding: 0 40rpx 46rpx;
+    margin-bottom: 14rpx;
+    line-height: 46rpx;
+}
+.process-wrap{
+    background-color: white;
+    padding: 0 40rpx 46rpx;
+    margin-bottom: 14rpx;
+    text-align: center;
+}
+.process-img{
+    width: 210rpx;
+    height: 392rpx;
+    margin-top: 10rpx;
+}

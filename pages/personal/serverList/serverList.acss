@@ -1,0 +1,26 @@
+
+
+.add-btn,.accept-price{
+    color: #118EEA;
+}
+.accept-price input{
+    display: inline-block;
+    width: 80rpx;
+    text-align: center;
+    border: 1px solid #e5e5e5;
+    margin-right: 10rpx;
+}
+
+
+.list-item image{
+    width: 120rpx;
+    height: 120rpx;
+}
+.list-item_mid{
+    flex: auto;
+    margin: 0 20rpx;
+}
+.list-item_right{
+    flex: none;
+    text-align: center;
+}

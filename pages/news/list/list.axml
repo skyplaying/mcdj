@@ -1,0 +1,51 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<view class="pct100">
+  <view class="" a:if="{{isShowLifestyle}}">
+    <lifestyle publicId="2017090608580548" />
+    <view class="f12 g8 bgwh bte5 pl15 lh24">关注生活号，有新的消息可以获得及时推送哦</view>
+  </view>
+  <view class="mt10 bgwh">
+    <view onTap="toNotice" class="weui-select">
+      <view class="fsc">
+        <view class="icon-wrap">
+          <image src="/images/comment.png" class="icon {{isNoticeNewMsg?'icon-new':''}}" />
+        </view>
+        <view class="lh24">
+          <view class="b">系统通知</view>
+          <view class="g8 f12">来自萌宠团队的官方消息</view>
+        </view>
+      </view>
+    </view>
+    <view class="contact-wrap weui-select">
+      <view class="fsc">
+        <image src="/images/customer_service.png" class="icon" />
+        <view class="lh24">
+          <view class="b">客服消息</view>
+          <view class="g8 f12">点击输入您需要解决的问题</view>
+        </view>
+      </view>
+      <view class="contact-cover-wrap">
+        <block a:for="{{15}}" a:key="*this">
+          <contact-button tnt-inst-id="KZSSPFCN" scene="SCE00003335" size="70"/>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="bgwh mt10">
+    <block a:for="{{newsList}}" a:key="usersVo.userId">
+      <view catchTap="toDisplay" data-index="{{index}}" class="mc-cell fbs" >
+        <view class="icon-wrap">
+          <image src="{{item.usersVo.avatar}}" class="icon {{item.isNewMsg?'icon-new':''}}" />
+        </view>
+        <view class="flex-a">
+          <view class="f14 b art1 mr10 name">{{item.usersVo.nickName}}</view>
+          <view class="f12 g8 art1 content">{{item.lastContent}}</view>
+        </view>
+        <view class="f12 g8 flex-n">{{item.lastLookTime}}</view>
+      </view>
+    </block>
+  </view>
+  <template is="list-loading" data="{{showloading,shownomore:shownomoreNews,shownoData:!(newsList && newsList.length>0)}}"></template>
+</view> 

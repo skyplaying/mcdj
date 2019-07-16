@@ -1,0 +1,59 @@
+<view class="container">
+  <!-- 氛围图 -->
+  <view class="content1" >
+    <image src="http://image.qipinke.com/catHouse/banner.jpg" mode="widthFix" />
+  </view>
+  <!-- 吸宠乐园 -->
+  <view class="content2" onTap="loginAfterNav" data-url="pages/discovery/index?from=mengchong">
+    <view class="content-hd weui-select fsc">
+      <image src="http://image.qipinke.com/catHouse/content1_hd.png" mode="aspectFill" />
+      <view class="flex-a">
+        <view class="f18 b">吸宠乐园                                
+        </view>
+        <view class="f13">吸两口网红萌宠                                
+        </view>
+      </view>
+      <view class="gblue f12">查看更多                        
+      </view>
+    </view>
+    <image src="http://image.qipinke.com/catHouse/content1_bd.jpg" mode="widthFix" class="content-bd-img" />
+  </view>
+  <!-- 优质好文 -->
+  <view class="content3" onTap="loginAfterNav" data-url="pages/life/life?from=mengchong">
+    <view class="content-hd weui-select fsc">
+      <image src="http://image.qipinke.com/catHouse/content2_hd.png" mode="aspectFill" />
+      <view class="flex-a">
+        <view class="f18 b">优质好文                                
+        </view>
+        <view class="f13">科普、游记、趣文全覆盖                                
+        </view>
+      </view>
+      <view class="gblue f12">查看更多                        
+      </view>
+    </view>
+    <swiper indicator-dots="{{false}}" autoplay="{{true}}" circular="{{true}}">
+      <block a:for="{{list}}" a:key="img">
+        <swiper-item>
+          <view class="content3-bd" hover-class="none">
+            <image src="{{item}}" mode="aspectFill" class="content-bd-img" />
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 专属宠物证 -->
+  <view class="content4" onTap="loginAfterNav" data-url="pages/register/register">
+    <view class="content-hd weui-select fsc">
+      <image src="http://image.qipinke.com/catHouse/content3_hd.png" mode="aspectFill" />
+      <view class="flex-a">
+        <view class="f18 b">专属宠物证                                
+        </view>
+        <view class="f13">做个有身份的主子                                
+        </view>
+      </view>
+      <view class="gblue f12">立即创建                        
+      </view>
+    </view>
+    <image src="http://image.qipinke.com/catHouse/content3_bd.jpg" mode="widthFix" class="content-bd-img" />
+  </view>
+</view>

@@ -1,0 +1,71 @@
+
+page,input,textarea{
+    font-size: 28rpx;
+}
+
+.hd-msg{
+  font-size: 24rpx;
+  color: #888;
+  padding: 30rpx 30rpx 0;
+}
+
+.main{
+  padding: 30rpx;
+}
+
+.examples-btn{
+    color: #0EBAEA;
+    font-size: 24rpx;
+}
+.weui-uploader__files{
+    width: 450rpx;
+    white-space: nowrap;
+    line-height: 1;
+    flex: auto;
+}
+.weui-uploader__file{
+    display: inline-block;
+    float: none;
+    margin-bottom: 0;
+}
+.weui-uploader__input-box{
+    margin: 0;
+    margin-right: 20rpx;
+    flex: none;
+}
+
+.uploading-image-wrap{
+  background-color: white;
+  padding: 30rpx;
+}
+.uploading-image_bd{ 
+    margin: 36rpx 0;
+}
+
+/* 备注说明 */
+.region-item{
+  position: relative;
+  padding-left: 60rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.region-item::before{
+  content: ' ';
+  position: absolute;
+  left: 0;
+  top: 25rpx;
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 30rpx;
+  border: 3rpx solid #e5e5e5;
+  box-sizing: border-box;
+}
+.region-item_active::before{
+  border-color: #2597EB;
+  background-color: #2597EB;
+}
+
+input{
+    padding: 4rpx 10rpx;
+    border: 1px solid #e5e5e5;
+}

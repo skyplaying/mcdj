@@ -1,0 +1,134 @@
+
+
+.container{
+    padding-bottom: 200rpx;
+    font-size: 28rpx;
+}
+.gor{
+    color: #fdb133;
+}
+
+.hd-avatar{
+    flex: none;
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 80rpx;
+} 
+.hd-top-mid{
+    flex: auto;
+    margin: 0 20rpx;
+}
+.chat-icon{
+    flex: none;
+    width: 40rpx;
+    height: 40rpx;
+}
+.hd-mid{
+    line-height: 50rpx;
+    background-color: #FAF7EE;
+}
+.hd-mid_left image{
+	width: 30rpx;
+	height: 30rpx;
+	margin-right: 20rpx;
+	flex: none;
+}
+.hd-mid_right{
+	margin-left: 20rpx;
+	flex: none;
+}
+.hd-mid_right image{
+	float: right;
+	width: 90rpx;
+	height: 90rpx;
+	border-radius: 90rpx;
+	box-sizing: border-box;
+	border: 1px solid #FF9800;
+	margin-right: -50rpx;
+}
+.hd-mid_right image:first-child{
+	margin-right: 0;
+}
+.edit{
+    padding-left: 30rpx;
+}
+
+/* 用户信息 */
+.family-item{
+	margin-top: 10rpx;
+}
+.family-item:first-child{
+	margin-top: 0;
+}
+.family-avatar{
+    flex: none;
+    width: 90rpx;
+    height: 90rpx;
+    border-radius: 90rpx;
+}
+.family-item_hid_photo .family-avatar{
+    width: 110rpx;
+    height: 110rpx;
+    border-radius: 110rpx;
+}
+.family-item_top_mid{
+    flex: auto;
+    margin-left: 20rpx;
+}
+.real-icon{
+    flex: none;
+    width: 30rpx;
+    height: 30rpx;
+    margin-left: 10rpx;
+}
+.credit-score-icon{
+    flex: none;
+    width: 40rpx;
+    padding-left: 24rpx;
+    line-height: 24rpx;
+    font-size: 16rpx;
+    background: url("/images/home_credit_score_bg.png") no-repeat left top;
+    background-size: 100%;
+    text-align: center;
+    color: #05D0A9;
+    margin-left: 10rpx;
+}
+
+.user-info-stars-wrap{
+    height: 30rpx;
+    line-height: 30rpx;
+}
+.user-info-stars-item{
+    margin: 2rpx;
+    width: 30rpx;
+    height: 30rpx;
+}
+.user-info-stars-item image{
+    width: 100%;
+    height: 100%;
+}
+
+.family-item_top_right{
+    flex: none;
+    font-size: 22rpx;
+}
+.f22{
+	font-size: 44rpx;
+}
+
+/* 没有数据 */
+.no-data-img{
+    width: 400rpx;
+    height: 400rpx;
+}
+
+/* 应答按钮 */
+.anser-btn{
+    position: fixed;
+    bottom: 60rpx;
+    left: 50%;
+    margin-left: -200rpx;
+    width: 400rpx;
+    line-height: 80rpx;
+    border-radius: 1000rpx;
+}

@@ -1,0 +1,36 @@
+
+
+
+<form class="container" report-submit="{{true}}" onSubmit="setFormId">
+  <view class="location-list">
+    <block a:for="{{commentList}}" a:key="commonAddressId">
+      <view class="bgwh mb10">
+        <view class="p10-15" onTap="select" data-index="{{index}}">
+          <text class="gor">{{defaultIndex==index?'『默认』':''}}</text> {{item.commonAddress}}
+                                        
+        </view>
+        <view class="fbc bte5" onTap="changeDefault" data-index="{{index}}">
+          <label class="weui-agree" for="weuiAgree">
+            <view class="weui-agree__text" style="{{defaultIndex==index?'color:#1478E3;':''}}">
+              <checkbox checked="{{defaultIndex==index}}" class="weui-agree__checkbox" id="weuiAgree" value="agree" />
+              <view class="weui-agree__checkbox-icon mr5">
+                <icon a:if="{{defaultIndex==index}}" class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" color=""></icon>
+              </view>
+              <button class="formId-btn" form-type="submit"> 设置为默认地址 </button>
+            </view>
+          </label>
+          <view class="pr15 gb2 f14" onTap="deteleDefault" data-index="{{index}}" a:if="{{defaultIndex!=index}}">
+            <image src="/images/remove.png" class="detele-icon" />
+            <button class="formId-btn" form-type="submit"> 删除 </button>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class="p30 g8 f14 tc" a:if="{{!commentList || commentList.length==0}}">
+      <text>您还没添加地址，赶紧</text>
+      <text class="gor plr5" onTap="addAddress">新增一个</text>
+      <text>吧</text>
+    </view>
+  </view>
+  <button class="formId-btn foot-btn" form-type="submit" onTap="addAddress" hover-class="none"> 添加新的地址 </button>
+</form>

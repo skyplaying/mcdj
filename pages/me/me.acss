@@ -1,0 +1,118 @@
+
+/* 头部 */
+page{
+    border:none;
+}
+
+.hd{
+    position: relative;
+    padding: 36rpx 30rpx;
+    background-color: white;
+}
+
+.avatar{
+    flex: none;
+    width: 130rpx;
+    height: 130rpx;
+    border-radius: 130rpx;
+    box-sizing: border-box;
+    border: 2px solid #e5e5e5;
+    margin-right: 30rpx;
+}
+
+.user-info-font{
+    flex: auto;
+    line-height: 1.5em;
+}
+.nick_name{
+    font-size: 32rpx;
+    font-weight: bold;
+    width: 360rpx;
+}
+.signature{
+    font-size: 20rpx;
+    padding-top: 8rpx;
+    color: #888;
+}
+.signature-mid{
+    padding: 0 10rpx;
+}
+
+.identity{
+    position: absolute;
+    right: 20rpx;
+    top: 20rpx;
+    width: 90rpx;
+    font-size:24rpx;
+    text-align: center;
+    color: white;
+    background-color: #bbb;
+    border-radius: 2px;
+}
+
+/* 跳转导航条 */
+.order-nav{
+    background-color: white;
+}
+.order-nav-hd{
+    line-height: 100rpx;
+    font-size:28rpx;
+}
+.order-nav-hd image{
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 20rpx;
+}
+.order-nav-bd{
+    padding: 36rpx 0;
+    font-size: 28rpx;
+    text-align: center;
+}
+.order-nav-item{
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+.order-nav-item::before{
+    content: ' ';
+    position: absolute;
+    right: 0;
+    top: 10rpx;
+    bottom: 10rpx;
+    border-right: 1px solid #e5e5e5;
+}
+.order-nav-item:last-child::before{
+    display: none;
+}
+.order-nav-item image{
+    width: 50rpx;
+    height: 50rpx;
+    margin-bottom: 6rpx;
+}
+
+/* 操作条 */
+.bd{
+    margin-top: 20rpx;
+    background-color: white;
+    font-size: 24rpx;
+}
+.bd-item{
+    padding: 30rpx 0;
+    text-align: center;
+    font-size: 28rpx;
+}
+.bd-item image{
+    width: 60rpx;
+    height: 60rpx;
+}
+
+.refresh{
+    width: 100%;
+    position: fixed;
+    top: 30%;
+    text-align: center;
+}
+
+.refresh-btn{
+    margin-top: 30rpx;
+}

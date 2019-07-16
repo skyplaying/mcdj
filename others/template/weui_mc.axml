@@ -1,0 +1,72 @@
+
+<!--加载更多-->
+<template name="list-loading">
+  <view class="page__bd">
+    <view class="weui-loadmore" a:if="{{loading}}">
+      <view class="weui-loading"></view>
+      <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+    <block a:elif="{{nomore}}">
+      <view class="weui-loadmore weui-loadmore_line" a:if="{{!list||list.length==0}}">
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{noDataContent || '暂无数据'}}</view>
+      </view>
+      <view class="weui-loadmore weui-loadmore_line" a:else>
+        <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{nomoreContent || '我也是有底线的'}}</view>
+      </view>
+    </block>
+  </view>
+</template>
+
+<!-- 家庭申请流程条 -->
+<template name="family-apply-step">
+  <view class="family-apply-step-wrap fbc">
+    <view class="family-apply-step-item {{index+1 == step?'family-apply-step-item_active':''}}" a:for="{{['基础资料','上传照片','实名认证','平台审核']}}">
+      <view class="family-apply-step-num f12">STEP {{index+1}}</view>
+      <view class="f10">{{item}}</view>
+    </view>
+  </view>
+</template>
+
+<!-- 寄养流程条 -->
+<template name="process-foster">
+  <view class="mc-process-warp">
+    <block a:for="{{process}}" a:key="*this">
+      <view class="mc-process-item">
+        <view class="mc-process-dot-warp">
+          <view class="mc-process-dot {{index<=processIndex?'bgor':'bg8'}}">
+          </view>
+        </view>
+        <text class="mc-process-font">{{item}}</text>
+      </view>
+    </block>
+  </view>
+</template>
+<!-- 悬浮输入框 -->
+<template name="suspension-input-frame">
+  <view class="suspension-wrap" a:if="{{isShow}}">
+    <view class="suspension-shadow-cover"></view>
+    <view class="suspension-input-frame">
+      <view class="suspension-input-content">
+        <view class="pb10 f17 tc">{{title || '输入框'}}</view>
+        <input type="{{type || 'text'}}" placeholder="{{placeholder || ''}}" value="{{ value || ''}}" onInput="{{suspensionInput || 'suspensionInput'}}" auto-focus />
+      </view>
+      <view class="suspension-input-btn">
+        <button type="default" onTap="{{cancelSuspensionInput || 'cancelSuspensionInput'}}" hover-class="none"> {{ cancelButtonText || '取消'}} </button>
+        <button type="primary" onTap="{{confirmSuspensionInput || 'confirmSuspensionInput'}}" hover-class="none"> {{ confirmButtonText || '确定'}} </button>
+      </view>
+    </view>
+  </view>
+</template>
+
+
+<!-- 训导师申请流程条 -->
+<template name="trainer-apply-step">
+  <view class="family-apply-step-wrap fbc">
+    <view class="family-apply-step-item {{index+1 == step?'family-apply-step-item_active':''}}" a:for="{{['资格认证','上传视频','实名认证','平台审核']}}">
+      <view class="family-apply-step-num f12">STEP {{index+1}}</view>
+      <view class="f10">{{item}}</view>
+    </view>
+  </view>
+</template>
+
+    

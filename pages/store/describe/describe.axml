@@ -1,0 +1,4 @@
+<form class="container" report-submit="{{true}}" onSubmit="setFormId">
+  <textarea onInput="inputDescribe" auto-height="{{true}}" value="{{familyDescribe}}" placeholder="请简要介绍您的门店，如品牌故事、主营业务、店铺营业时间、有哪些特色服务等，帮助顾客更好的了解门店" maxlength="1000" class="textarea" />
+  <button form-type="submit" onTap="saveAdoption" type="primary" class="w345 mc-btn2 gor auto mt20 mb50" hover-class="none" disabled="{{!familyDescribe}}">保存</button>
+</form>

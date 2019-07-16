@@ -1,0 +1,204 @@
+
+.hd{
+    line-height: 88rpx;
+    text-align: center;
+    background-color: white;
+}
+.time{
+    display: inline-block;
+    padding-left: 42rpx;
+    background: url("/images/knowledge_time.png") no-repeat left center;
+    background-size: 32rpx 32rpx;
+    font-size: 28rpx;
+    color: #118fea;
+}
+
+.bd{
+    padding: 30rpx 30rpx 100rpx;
+}
+.question .content{
+    font-weight: bold;
+}
+.option-wrap{
+    padding: 30rpx 20rpx;
+}
+.option-item{
+    position: relative;
+    margin-bottom: 50rpx;
+    padding-left: 110rpx; 
+    padding-top: 11rpx;
+}
+.option-item::before{
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: ' ';
+    width: 68rpx;
+    height: 68rpx;
+    line-height: 68rpx;
+    text-align: center;
+    border-radius: 68rpx;
+    color: #118fea;
+    background-color: white;
+    border: 1px solid #118fea;
+}
+.option0::before{
+    content: 'A';
+}
+.option1::before{
+    content: 'B';
+}
+.option2::before{
+    content: 'C';
+}
+.option3::before{
+    content: 'D';
+}
+.option-item-select::before{
+    background-color: #118fea;
+    color: white;
+}
+
+.progress-wrap{
+    font-size: 28rpx;
+    padding: 30rpx 50rpx;
+}
+
+
+/* 开始测试 */
+.suspension-knowledge-start-frame{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 610rpx;
+    height: 776rpx;
+    border-radius: 8rpx;
+    margin: -340rpx -305rpx;
+    z-index: 100;
+    background-color: white;
+    overflow: hidden;
+}
+.suspension-knowledge-start-hd{
+    position: relative;
+    width: 100%;
+    height: 110rpx;
+    background: url("/images/suspension_pet_select_bg.png") no-repeat top left;
+    background-size: 100%;
+}
+.suspension-knowledge-start-hd .clear-icon{
+    position: absolute;
+    right: 20rpx;
+    top: 20rpx;
+    width: 56rpx;
+    height: 56rpx;
+}
+.suspension-knowledge-start-bd{
+    padding: 31rpx 80rpx 50rpx;
+}
+.suspension-knowledge-start-title{
+    color: #f5a623;
+    font-size: 36rpx;
+    text-align: center;
+}
+.suspension-knowledge-start-content{
+    font-size: 28rpx;
+    padding: 20rpx 0 50rpx 50rpx;
+}
+.suspension-knowledge-start-content .content-item{
+    padding-top: 30rpx;
+}
+.suspension-knowledge-start-content .content-item text{
+    color: #f5a623;
+}
+.suspension-knowledge-start-btn{
+    line-height: 88rpx;
+    font-size: 30rpx;
+    text-align: center;
+    border-radius: 8rpx;
+    color: white;
+    background-color: #f5a623;
+    margin-bottom: 30rpx;
+}
+
+
+/* 结束测试 */
+.suspension-knowledge-end-frame{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 610rpx;
+    height: 776rpx;
+    border-radius: 8rpx;
+    margin: -340rpx -305rpx;
+    z-index: 100;
+    overflow: hidden;
+    background: url("/images/suspension_pet_select_bg.png") white no-repeat top left;
+    background-size: 610rpx 110rpx;
+}
+.suspension-knowledge-end-hd{
+    text-align: center;
+}
+.suspension-knowledge-end-hd .hd-avatar-wrap{
+    position: relative;
+    display: inline-block;
+    margin: 40rpx auto 0;;
+}
+.suspension-knowledge-end-hd .user-avatar{
+    width: 120rpx;
+    height: 120rpx;
+    line-height: 120rpx;
+    border-radius: 120rpx;
+    text-align: center;
+    padding: 18rpx;
+    background:url("/images/home_avatar_bg.png") no-repeat -1rpx -1rpx;
+    background-size: 100%;
+}
+.suspension-knowledge-end-hd .user-avatar > image{
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 120rpx;
+}
+.suspension-knowledge-end-hd .sex-icon{
+    position: absolute;
+    bottom: 16rpx;
+    right: 16rpx;
+    width: 36rpx;
+    height: 36rpx;
+    border-radius: 36rpx;
+}
+.suspension-knowledge-end-hd .score{
+    padding: 20rpx 0;
+}
+.suspension-knowledge-end-hd .score text{
+    color: #ea8722;
+}
+
+.suspension-knowledge-end-bd{
+    padding: 0 40rpx;  
+}
+.suspension-knowledge-end-content{
+    font-size: 26rpx;
+    padding: 10rpx 50rpx 60rpx;
+}
+.suspension-knowledge-end-content .content-item{
+    padding-top: 30rpx;
+}
+.suspension-knowledge-end-content .content-item text{
+    color: #f5a623;
+}
+.suspension-knowledge-end-btn1,.suspension-knowledge-end-btn2{
+    line-height: 88rpx;
+    font-size: 30rpx;
+    text-align: center;
+    border-radius: 8rpx;
+}
+.suspension-knowledge-end-btn1{
+    color: white;
+    background-color: #f0992b;
+    margin-bottom: 30rpx;
+}
+.suspension-knowledge-end-btn2{
+    color: #888;
+    background-color: #eee;
+    margin-bottom: 30rpx;
+}

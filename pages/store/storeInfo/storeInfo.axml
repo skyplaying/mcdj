@@ -1,0 +1,147 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<form class="container" report-submit="{{true}}" onSubmit="setFormId" a:if="{{isok}}">
+  <view class="found-cells mt10">
+    <!-- 门店名称 -->
+    <view class='found-cell'>
+      <view class='found-cell_hd'>门店名称</view>
+      <view class='found-cell_bd'>
+        <input placeholder="点击填写" onInput="inputHomeArea" value="{{homeArea}}" />
+      </view>
+    </view>
+    <!-- 门店地址 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>门店地址</view>
+      <navigator url="/pages/colligate/selectAddress/selectAddress" class='found-cell_bd tr'>
+        <view class='gb2' a:if="{{!addressName}}">点击选择</view>
+        <view a:else>{{addressName}}</view>
+      </navigator>
+    </label>
+    <!-- 门店类型 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>门店类型</view>
+      <view class='found-cell_bd'>
+        <picker onChange="changeLivingCondition" value="{{livingConditionIndex}}" range="{{livingConditionArr}}">
+          <view class='gb2 tr' a:if="{{!livingConditionIndex && livingConditionIndex!=0}}">点击选择</view>
+          <view class='tr' a:else>{{livingConditionArr[livingConditionIndex]}}</view>
+        </picker>
+      </view>
+    </label>
+    <!-- 门店简介 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>门店简介</view>
+      <navigator url="../describe/describe" hover-class="none" class='found-cell_bd tr'>
+        <text class="gb2" a:if="{{!storeDescribe}}">点击填写</text>
+        <text class="gor" a:else>已填写</text>
+      </navigator>
+    </label>
+  </view>
+  <view class="found-cells mt10">
+    <!-- 营业时间 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>营业时间</view>
+      <view class='found-cell_bd tr' onTap="showBuilding">
+        <view class='gb2' a:if="{{!buildingVal[0] && !buildingVal[1] && !buildingVal[2]}}">点击选择</view>
+        <block a:else>
+          <view class='building-laber'>{{buildingVal[0]}}</view>
+          <text>:</text>
+          <view class='building-laber'>{{buildingVal[1]}}</view>
+          <text>至</text>
+          <view class='building-laber'>{{buildingVal[2]}}</view>
+          <text>:</text>
+          <view class='building-laber'>{{buildingVal[2]}}</view>
+        </block>
+      </view>
+    </label>
+    <!-- 联系电话 -->
+    <view class='found-cell'>
+      <view class='found-cell_hd'>联系电话</view>
+      <view class='found-cell_bd'>
+        <input placeholder="点击填写" onInput="inputHomeArea" type="number" value="{{homeArea}}" />
+      </view>
+    </view>
+  </view>
+  <view class="found-cells mt10">
+    <!-- 上传门店头图 -->
+    <view class="uploading-image-wrap">
+      <view class="uploading-image_hd">
+        <view class="f14 b">上传门店头图</view>
+        <view class="fsc f12 mt5">
+          <text class="g8">必须能看见完整的门匾、门框。</text>
+          <text class="examples-btn" onTap="imgExamples">示例图</text>
+        </view>
+      </view>
+      <view class="uploading-image_bd weui-uploader__bd fbc">
+        <view class="weui-uploader__input-box" a:if="{{petPhoto.length!=12}}">
+          <view class="weui-uploader__input" onTap="choosePhoto"></view>
+        </view>
+        <scroll-view class="weui-uploader__files" id="uploaderFiles" scroll-x>
+          <block a:for="{{petPhoto}}" a:key="*this">
+            <view class="weui-uploader__file rel" id="{{item}}">
+              <view class="weui-icon-clear" onTap="deletePhoto" data-index="{{index}}">
+                <icon type="cancel" size="14" class="bgwh"></icon>
+              </view>
+              <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" onTap="previewPhoto" data-index="{{index}}" />
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+    <!-- 上传店内环境照片 -->
+    <view class="uploading-image-wrap mc-cell">
+      <view class="uploading-image_hd">
+        <view class="f14 b">上传店内环境照片</view>
+        <view class="fsc f12 mt5">
+          <text class="g8">需要包括寄养环境、收银台等</text>
+          <text class="examples-btn" onTap="imgExamples">示例图</text>
+        </view>
+      </view>
+      <view class="uploading-image_bd weui-uploader__bd fbc">
+        <view class="weui-uploader__input-box" a:if="{{petPhoto.length!=12}}">
+          <view class="weui-uploader__input" onTap="choosePhoto"></view>
+        </view>
+        <scroll-view class="weui-uploader__files" id="uploaderFiles" scroll-x>
+          <block a:for="{{petPhoto}}" a:key="*this">
+            <view class="weui-uploader__file rel" id="{{item}}">
+              <view class="weui-icon-clear" onTap="deletePhoto" data-index="{{index}}">
+                <icon type="cancel" size="14" class="bgwh"></icon>
+              </view>
+              <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" onTap="previewPhoto" data-index="{{index}}" />
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <button form-type="submit" onTap="save" type="primary" class="w345 mc-btn2 gor auto mt20 mb50" hover-class="none" disabled="{{!noDisabled}}">保存</button>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>
+<!-- 悬浮营业时间选择框 -->
+<view class='suspension-wrap' a:if="{{showBuilding}}">
+  <view class="suspension-shadow-cover"></view>
+  <view class='suspension-frame-building'>
+    <view class='suspension-building_hd fec'>
+      <button class="formId-btn" type='primary' onTap='confirmBuilding'>确定</button>
+    </view>
+    <picker-view class='suspension-time_bd' indicatorStyle="height: 50px;" style="width: 100%; height: 150px;" value="{{buildingVal}}" onChange="changeBuilding">
+      <picker-view-column>
+        <view a:for="{{roomArr}}" a:key="*this" style="height: 50px;line-height: 50px">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view a:for="{{hallArr}}" a:key="*this" style="height: 50px;line-height: 50px">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="g8" style="height: 50px;line-height: 50px">至</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view a:for="{{balconyArr}}" a:key="*this" style="height: 50px;line-height: 50px">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view a:for="{{balconyArr}}" a:key="*this" style="height: 50px;line-height: 50px">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>

@@ -1,0 +1,38 @@
+
+<import src="/others/template/weui_mc.axml"/>
+<form class="container" report-submit="{{true}}" onSubmit="setFormId" a:if="{{isok}}">
+    <template is="family-apply-step" data="{{step:3}}"></template>
+    <view class="main">
+        <view class="mt10 ptb20 f12 gb2">
+            <view>
+                <image src="/images/idcard.png" class="idcard-img"></image>
+            </view>
+            <view class="tc">请填写真实的身份信息,否则将无法获得平台提供的安全保障</view>
+        </view>
+        <view class="found-cells">
+            <!-- 姓名 -->
+            <view class='found-cell'>
+                <view class='found-cell_hd'>姓名</view>
+                <view class='found-cell_bd'>
+                    <input placeholder="点击填写" onInput="inputName" value="{{name}}" />
+                </view>
+            </view>
+        </view>
+        <!-- 昵称 -->
+        <view class="found-cells mt10">
+            <view class='found-cell bgwh'>
+                <view class='found-cell_hd'>身份证号码</view>
+                <view class='found-cell_bd'>
+                    <input placeholder="点击填写" onInput="inputIdcard" type="idcard" maxlength="18" value="{{idcard}}"/>
+                </view>
+            </view>
+			
+        </view>
+		
+    </view>
+    <button form-type="submit" disabled="{{!noDisabled}}" onTap="submit" type="primary" class="w345 mc-btn2 gor auto mt20 mb50" hover-class="none">支付宝认证</button>
+	<!-- <text>{{e}}</text> -->
+</form>
+<view class='container-loading' a:else>
+    <image src="/images/loading.gif" />
+</view>

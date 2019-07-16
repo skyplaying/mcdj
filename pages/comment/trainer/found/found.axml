@@ -1,0 +1,30 @@
+
+<form class="container" onSubmit="setFormId" report-submit="true" a:if="{{isok}}">
+  <!-- <view class="laber-wrap">
+    <view class="p10-15"> 为训练师评价 </view>
+    <view class="pl15">
+      <block a:for="{{laberArr}}" a:key="*this">
+        <view class="laber-item {{laberIndexs[index]?'laber-active':''}}" onTap="laberChange" data-index="{{index}}">{{item}}</view>
+      </block>
+    </view>
+  </view> -->
+  <view class="textarea-box p15 bgwh">
+    <textarea placeholder="分享您此次服务的评价和感受吧！" onInput="inputCommentContent" value="{{commentContent}}" />
+  </view>
+  <view class="mt10 bgwh">
+    <block a:for="{{array}}" a:key="*this">
+      <view class="fraction fbc">
+        <text class="mr30">{{item}}</text>
+        <view class="stars-wrap">
+          <block a:for="{{[1,2,3,4,5]}}" a:key="*this" a:for-index="sindex">
+            <image src="/images/stars{{fractionArr[index]>sindex?'1':'0'}}.png" onTap="commentFraction" data-index="{{index}}" data-sindex="{{sindex+1}}" class="stars-item" />
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view onTap="formSubmit" form-type="submit" class="w345 auto button mc-btn2 gor mt20 mb50">提交</view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

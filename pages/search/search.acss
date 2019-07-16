@@ -1,0 +1,45 @@
+
+page{
+    font-size: 28rpx;
+}
+
+.navbar{
+    border: 1rpx solid #e5e5e5;
+}
+
+.search_box{
+    background-color: white;
+    padding: 20rpx 10rpx 20rpx 30rpx;
+    margin-bottom: 20rpx;
+}
+
+.hot_search_icon{
+    width: 31rpx;
+    height: 28rpx;
+    vertical-align: middle;
+    margin: 10rpx;
+}
+
+.history_search_icon{
+    width: 32rpx;
+    height: 28rpx;
+    vertical-align: middle;
+    margin: 10rpx;
+}
+
+.search_icon{
+    width: 40rpx;
+    height: 40rpx;
+    margin: 10rpx;
+    vertical-align: middle;
+}
+
+
+.search-keyWord{
+    display: inline-block;
+    padding: 5rpx 10rpx;
+    border:1rpx solid #e5e5e5;
+    margin-right: 20rpx;
+    margin-top: 20rpx; 
+    border-radius: 10rpx;
+}

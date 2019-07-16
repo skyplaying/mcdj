@@ -1,0 +1,73 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<form onSubmit="setFormId" report-submit="true" class="container pb30" a:if="{{isok}}">
+  <!-- 家庭各项分数 -->
+  <view class="family-info-wrap tc bgwh">
+    <view class="f10 pt20">综合评价</view>
+    <view class="f30 b gor">{{trainServiceVo.serviceScore}}</view>
+    <view class="stars-wrap fcc">
+      <block a:for="{{[1,2,3,4,5]}}" a:key="*this" a:for-item="sitem" a:for-index="sindex">
+        <block a:if="{{sindex+1<= trainServiceVo.serviceScore}}">
+          <image src="/images/stars1.png" class="stars-item" />
+        </block>
+        <block a:elif="{{sindex+0.5 <= trainServiceVo.serviceScore}}">
+          <image src="/images/stars2.png" class="stars-item" />
+        </block>
+        <block a:else>
+          <image src="/images/stars0.png" class="stars-item" />
+        </block>
+      </block>
+    </view>
+    <view class="fbc p10-15 mt10">
+      <view>
+        <text class="f10">服务态度</text>
+        <text class="gor f14 ml5">{{trainServiceVo.serviceScore}}</text>
+      </view>
+      <view>
+        <text class="f10">专业度</text>
+        <text class="gor f14 ml5">{{trainServiceVo.majorScore}}</text>
+      </view>
+      <view>
+        <text class="f10">满意度</text>
+        <text class="gor f14 ml5">{{trainServiceVo.satisfiedScore}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 评论列表 -->
+  <view class="comment-list-wrap mt10">
+    <view class="comment_hd p10-15 bgwh">评论（{{total}}条）</view>
+    <view class="comment-list">
+      <view class="comment-item bgwh fbs" a:for="{{list}}" a:key="commentId">
+        <image src="{{item.usersVo.avatar}}" mode="aspectFill" class="comment-avatar" />
+        <view class="flex-a">
+          <view class="fbc">
+            <view class="art1 b f14">{{item.usersVo.nickName}}</view>
+            <view class="g8 f10 ml10 flex-n">{{item.commentTime}}</view>
+          </view>
+          <view class="stars-wrap fsc">
+            <block a:for="{{[1,2,3,4,5]}}" a:key="*this" a:for-item="sitem" a:for-index="sindex">
+              <block a:if="{{sindex+1<= item.trainCompositeScore}}">
+                <image src="/images/stars1.png" class="stars-item" />
+              </block>
+              <block a:elif="{{sindex+0.5 <= item.trainCompositeScore}}">
+                <image src="/images/stars2.png" class="stars-item" />
+              </block>
+              <block a:else>
+                <image src="/images/stars0.png" class="stars-item" />
+              </block>
+            </block>
+            <text class="ml15 gor f12">{{item.trainCompositeScore}}分</text>
+          </view>
+          <view class="f10 g8 ptb5">寄养的宠物：{{item.pets}}</view>
+          <view class="f12 mt5" a:if="{{item.commentContent}}">{{item.commentContent}}</view>
+          <view class="f12 mt5 g8" a:else>暂无评论</view>
+        </view>
+      </view>
+      <template is="list-loading" data="{{loading,nomore,list}}"></template>
+    </view>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

@@ -1,0 +1,206 @@
+
+<import src="/others/template/weui_mc.axml"/>
+<form onSubmit="setFormId" report-submit="{{true}}" class="container pb30" a:if="{{isok}}">
+  <!-- 轮播图 -->
+  <view class="swiper-wrap">
+    <!-- 头部图片 -->
+    <swiper indicator-dots="{{!isFamilySetUp}}" autoplay="{{true}}" a:if="{{petPhoto && petPhoto.length>0}}">
+      <block a:for="{{petPhoto}}" a:key="*this">
+        <swiper-item>
+          <image src="{{item}}" mode="aspectFill" class="swiper-img" onTap="previewImage" data-index="{{index}}" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="swiper-no-data" a:else>暂无图片</view>
+  </view>
+  <!-- 服务项目信息 -->
+  <view class="bgwh p15 rel">
+    <view class="f16 b fbc">
+      <view>{{trainServiceVo.itemName}}（{{trainServiceVo.dayNum}}天）</view>
+      <button class="formId-btn share-btn" open-type="share">
+        <image src="/images/personal_share.png" />
+      </button>
+    </view>
+    <view class="f20 gr b mt10">￥{{trainServiceVo.trainAmount}}</view>
+    <view class="user-info-stars-wrap fsc" a:if="{{trainServiceVo.serviceScore}}">
+      <block a:for="{{[1,2,3,4,5]}}" a:key="*this">
+        <view class="user-info-stars-item" a:if="{{index+1 <= trainServiceVo.serviceScore}}">
+          <image src="/images/stars1.png" />
+        </view>
+      </block>
+      <text class="f12 g8 ml5">{{trainServiceVo.serviceScore}}</text>
+    </view>
+    <view class="f12 g8 order-count">已售{{trainServiceVo.orderCount}}</view>
+  </view>
+  <!-- 服务接送 -->
+  <view class="p15 bgwh mt10 f14">
+    <view>
+      <text class="mr15">服务</text>
+      <text>{{trainServiceVo.serviceMode=='以上均可'?"到家驯宠/寄养驯宠":trainServiceVo.serviceMode}}</text>
+    </view>
+    <view class="mt5" a:if="{{trainServiceVo.runAboutAmount>=0}}">
+      <text class="mr15">接送</text>
+      <text class="gr" a:if="{{trainServiceVo.runAboutAmount==0}}">免费接送</text>
+      <block a:else>
+        <text class="gr">{{trainServiceVo.runAboutAmount}}元/公里</text>
+        <text class="g8">（起步价：50，包来回）</text>
+      </block>
+    </view>
+    <view class="fsc mt5 guarantee-wrap">
+      <text class="mr15">保障</text>
+      <view class="f12 g8 fsc">
+        <image src="/images/server_guarantee_icon.png" />
+        <text>未服务随时退</text>
+      </view>
+      <view class="f12 g8 fsc ml15">
+        <image src="/images/server_guarantee_icon.png" />
+        <text>过期自动退</text>
+      </view>
+      <view class="f12 g8 fsc ml15">
+        <image src="/images/server_guarantee_icon.png" />
+        <text>安全保障</text>
+      </view>
+    </view>
+  </view>
+  <!-- 服务内容 -->
+  <view class="family-info-wrap {{isShowAllDescribe?'family-info_all':''}} mt10 bgwh" a:if="{{trainServiceVo.trainerDetail}}">
+    <view class="wrap_hd plr15 fbc">
+      <text>服务内容</text>
+    </view>
+    <view class="family-info_bd p10-15 g8 f14">
+      <view class="family-info-describe">{{trainServiceVo.trainerDetail}}</view>
+      <view class="family-info-describe-select" onTap="showAllDescribe" a:if="{{trainServiceVo.trainerDetail.length>95}}"></view>
+    </view>
+  </view>
+  <!-- 用户信息 -->
+  <view class="bgwh mt10">
+    <navigator url="/pages/personal/display/display?userId={{trainServiceVo.usersVo.userId}}" class="user-info-wrap fbc">
+      <view class="user-avatar-wrap">
+        <image src="{{trainServiceVo.usersVo.avatar}}" mode="aspectFill" class="user-avatar" onTap="previewAvatar" data-url="{{trainServiceVo.usersVo.avatar}}" />
+        <!-- <image class="sex-icon" mode="aspectFill" src="/images/sex{{trainServiceVo.usersVo.gender}}.png"/> -->
+      </view>
+      <view class="user-info_mid">
+        <view class="rel fsc">
+          <view class="art1 b f16">{{trainServiceVo.usersVo.nickName}}</view>
+          <image class="real-icon" mode="aspectFill" src="/images/identity_real_icon.png"/>
+          <view class="credit-score-icon" a:if="{{userInfo.usersVo.creditScore}}">{{trainServiceVo.usersVo.creditScore}}</view>
+        </view>
+        <view class="f12 g8 mt2">{{trainServiceVo.usersVo.grades}}</view>
+        <view class="f12 g8 mt2">{{trainServiceVo.usersVo.distaceStr}}</view>
+      </view>
+      <view class="user-info_right">
+        <view class="weui-select"></view>
+      </view>
+    </navigator>
+    <view class="plr15 pb10 f12 g8 fbc">
+      <text>服务总评：{{trainServiceVo.usersVo.score||'0.0'}}</text>
+      <text>服务项目：{{trainServiceVo.usersVo.serviceNum}}</text>
+      <text>服务次数：{{trainServiceVo.usersVo.orderNum}}</text>
+    </view>
+  </view>
+  <!-- 寄养须知 -->
+  <view class="family-notes-wrap mt10 bgwh">
+    <view class="wrap_hd plr15">预定须知</view>
+    <view class="family-notes_bd plr15 f13">
+      <view class="family-notes-item ptb10 bbe5" a:if="{{trainServiceVo.isReserve || (remarks && remarks.length>0)}}">
+        <view class="gor mb5">主人提示</view>
+        <view a:if="{{trainServiceVo.isReserve}}">请提前{{trainServiceVo.advanceNum}}{{trainServiceVo.advanceUnit}}预订</view>
+        <view a:for="{{remarks}}" a:key="*this">{{item}}</view>
+      </view>
+      <view class="family-notes-item ptb10 bbe5">
+        <view class="gor mb5">平台提示</view>
+        <view>
+          <text class="gor mr5">▪</text>
+          <text>请确保宠物已注射过相关防疫疫苗及没有传染性疾病</text>
+        </view>
+        <view>
+          <text class="gor mr5">▪</text>
+          <text>切勿隐瞒宠物的性格、习惯及特殊情况</text>
+        </view>
+        <view class="fss">
+          <text class="gor mr5">▪</text>
+          <text>为保障你和宠物的权益，建议通过萌宠到家在线支付。若用其他支付方式导致纠纷，萌宠到家不承担任何责任，感谢您的理解与支持！</text>
+        </view>
+      </view>
+      <view class="family-notes-item ptb10">
+        <image src="/images/family_guarantee.png" class="family-guarantee-img" />
+        <!-- <view class="tc gor tdl">萌宠到家意外保障服务</view> -->
+      </view>
+    </view>
+  </view>
+  <!-- 评价 -->
+  <view class="evaluate-wrap mt10 bgwh" a:if="{{commentList && commentList.length>0}}">
+    <view class="wrap_hd plr15">寄养评价</view>
+    <view class="comment-list">
+      <view class="comment-item bgwh fbs" a:for="{{commentList}}" a:key="commentId">
+        <image src="{{item.usersVo.avatar}}" mode="aspectFill" class="comment-avatar" />
+        <view class="flex-a">
+          <view class="fbc">
+            <view class="art1 b f14">{{item.usersVo.nickName}}</view>
+            <view class="g8 f10 ml10 flex-n">{{item.commentTime}}</view>
+          </view>
+          <view class="stars-wrap fsc">
+            <block a:for="{{[1,2,3,4,5]}}" a:key="*this" a:for-item="sitem" a:for-index="sindex">
+              <block a:if="{{sindex+1<= item.trainCompositeScore}}">
+                <image src="/images/stars1.png" class="stars-item" />
+              </block>
+              <block a:elif="{{sindex+0.5 <= item.trainCompositeScore}}">
+                <image src="/images/stars2.png" class="stars-item" />
+              </block>
+              <block a:else>
+                <image src="/images/stars0.png" class="stars-item" />
+              </block>
+            </block>
+            <text class="ml15 gor f12">{{item.trainCompositeScore}}分</text>
+          </view>
+          <view class="f10 g8 ptb5">训练的宠物：{{item.pets}}</view>
+          <view class="f12 mt5" a:if="{{item.commentContent}}">{{item.commentContent}}</view>
+          <view class="f12 mt5 g8" a:else>暂无评论</view>
+        </view>
+      </view>
+      <button class="formId-btn" form-type="submit" onTap="toCommentList"> 查看所有评论 </button>
+    </view>
+  </view>
+  <!-- 其他服务 -->
+  <view class="server-list-wrap mt10 bgwh">
+    <view class="wrap_hd plr15 fbc">
+      <text>其他服务</text>
+      <text class="gor f12" a:if="{{!noMoreServer}}" onTap="toPersonal">查看更多</text>
+    </view>
+    <view class="server-list">
+      <view class="server-item weui-select ptb10 fsc" onTap="toServerDisplay" data-index="{{index}}" a:for="{{listServer}}" a:key="trainServiceId">
+        <image src="{{item.servicePath}}" mode="aspectFill" />
+        <view class="server-item_right">
+          <view class="f16">{{item.itemName}}</view>
+          <view class="fsc" a:if="{{item.serviceType==2}}">
+            <text class="f12 gor">￥</text>
+            <text class="gor f16">{{item.trainAmount}}</text>
+          </view>
+          <view class="g8 f12" a:elif="{{item.serviceType==1}}">
+            寄养类型：{{item.trainType}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 底部按钮 -->
+  <view class="foot-box">
+    <view class="fbc">
+      <view class="foot-btn" onTap="leaveWord">
+        <image src="/images/fosterage_phone.png" />
+        <view>留言</view>
+      </view>
+      <button form-type="submit" class="mc-btn2 gor mr15" hover-class="none" onTap="toFosterage">立即预订</button>
+    </view>
+  </view>
+</form>
+<form onSubmit="setFormId" report-submit="{{true}}" a:elif="{{isNoAuth}}" class="container bgwh">
+  <view class="refresh">
+    <image src="/images/refresh_bg.png" mode="widthFix" class="pct100"/>
+    <view class="f14">点击刷新后登录</view>
+    <button type="default" onTap="refresh" hover-class="none" class="refresh-btn formId-btn" form-type="submit" size="mini"> 刷新 </button>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

@@ -1,0 +1,19 @@
+  
+
+<import src="/others/template/weui_mc.axml"/>
+<view class="pct100">
+  <view class="list-bd">
+    <block a:for="{{detailedList}}" a:key="recordId">
+      <view class="mc-cell fbc bgwh">
+        <view class="flex-a">
+          <view class="art1 f14">{{item.linkType==1?'钱包收米':''}} {{item.linkType==0&&item.inOrOut==0?'家庭收到的酬金':''}}{{item.linkType==0&&item.inOrOut==1?'寄养支出':''}} {{item.linkType==2&&item.inOrOut==0?'打赏收入':''}}{{item.linkType==2&&item.inOrOut==1?'打赏支出':''}} {{item.linkType==3&&item.inOrOut==0?'借配收入':''}} {{item.linkType==4&&item.inOrOut==0?'邀请好友奖励':''}}{{item.linkType==5&&item.inOrOut==0?'训宠收入':''}}{{item.linkType==5&&item.inOrOut==1?'训宠支出':''}}
+            </view>
+          <view class="f12 g8 pt5">{{item.recordTime}}</view>
+        </view>
+        <view class="flex-n b {{item.inOrOut==0?'gb':''}}"> {{item.inOrOut==0?'+':'-'}}{{item.thisAmount}}
+          </view>
+      </view>
+    </block>
+    <template is="list-loading" data="{{loading:showloading,nomore:shownomoreDetailed,list:detailedList}}"></template>
+  </view>
+</view> 

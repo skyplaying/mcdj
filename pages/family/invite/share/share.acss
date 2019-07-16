@@ -1,0 +1,82 @@
+
+
+.container{
+    padding-top: 380rpx;
+    background: url(http://image.qipinke.com/icon/family_invite_friends_bg.png) #D7271F no-repeat top center;
+    background-size: 750rpx 1260rpx;
+}
+
+.rule-wrap{
+    color: white;
+    font-size: 28rpx;
+    text-align: center;
+    font-weight: bold;
+}
+
+.invite-btn{
+    margin: 480rpx auto 120rpx;
+    width: 500rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 28rpx;
+    color: #0EBAEA;
+    background-color: #FCEFCF;
+    border-radius: 1000rpx;
+}
+
+.reward-wrap{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 0 30rpx;
+    width: 100%;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 28rpx;
+    color: white;
+}
+.reward-wrap::before{
+    content: ' ';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 0.25;
+}
+
+
+
+/* 悬浮框 */
+.suspension-frame-rule-code{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 620rpx;
+  height: 680rpx;
+  background-color: white;
+  margin: -340rpx -310rpx;
+  border-radius: 10rpx;
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+.suspension-rule-code-hd{
+  font-weight: bold;
+  font-size: 32rpx;
+  text-align: center;
+}
+.suspension-rule-code-bd{
+  padding-top: 30rpx;
+  font-size: 28rpx;
+  line-height: 44rpx;
+}
+.suspension-rule-code-bd>view{
+    margin-bottom: 10rpx;
+}
+.suspension-frame-rule-code .cancel{
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+}

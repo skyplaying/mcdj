@@ -1,0 +1,105 @@
+
+
+<form onSubmit="setFormId" report-submit="{{true}}" class="container pb100" a:if="{{isok}}">
+  <navigator url="/pages/my/userInfo/userInfo" class="hd" hover-class="none">
+    <view class="user-info fsc">
+      <image mode="aspectFill" src="{{userInfo.avatar}}" class="avatar" />
+      <view class="user-info-font">
+        <view class="art1 nick_name">{{userInfo.nickName}}</view>
+        <view class="signature art1">
+          <text>{{userInfo.city}}</text>
+          <text a:if="{{userInfo.city && userInfo.occupation}}" class="signature-mid"></text>
+          <text>{{userInfo.occupation}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="identity">{{isFamily?'服务端':'用户端'}}</view>
+  </navigator>
+  <view class="order-nav mt10">
+    <view class="order-nav-bd fbc">
+      <navigator url="/pages/my/fosterage/fosterage" class="order-nav-item" hover-class="none">
+        <image src="/images/me_order.png" />
+        <view>我的订单</view>
+      </navigator>
+      <block a:if="{{isFamily}}">
+        <navigator url="/pages/personal/display/display" class="order-nav-item" hover-class="none">
+          <image src="/images/me_personal_display.png" />
+          <view>职业主页</view>
+        </navigator>
+        <navigator url="/pages/my/serverData/serverData" class="order-nav-item" hover-class="none">
+          <image src="/images/me_family_data.png" />
+          <view>服务数据</view>
+        </navigator>
+      </block>
+      <block a:else>
+        <navigator url="/pages/my/wallet/wallet" class="order-nav-item" hover-class="none">
+          <image src="/images/me_wallet.png" />
+          <view>我的钱包</view>
+        </navigator>
+        <navigator url="/pages/my/coupon/coupon" class="order-nav-item" hover-class="none">
+          <image src="/images/me_coupon.png" />
+          <view>优惠券</view>
+        </navigator>
+      </block>
+    </view> 
+    <view class="order-nav-bd bte5 fbc" a:if="{{isFamily}}">
+      <navigator url="/pages/my/wallet/wallet" class="order-nav-item" hover-class="none">
+        <image src="/images/me_wallet.png" />
+        <view>我的钱包</view>
+      </navigator>
+      <navigator url="/pages/personal/serverList/serverList" class="order-nav-item" hover-class="none">
+        <image src="/images/me_family_admin.png" />
+        <view>服务管理</view>
+      </navigator>
+      <navigator url="/pages/my/job/job" class="order-nav-item" hover-class="none">
+        <image src="/images/me_job.png" />
+        <view>职业认证</view>
+      </navigator>
+    </view>
+  </view> 
+  <view class="bd">
+    <navigator url="/pages/my/follow/follow" class="order-nav-hd weui-select fsc" a:if="{{!isFamily}}">
+      <image src="/images/me_follow.png" />
+      <view>我的关注</view>
+    </navigator>
+    <navigator url="/pages/my/pet/pet" class="order-nav-hd weui-select fsc">
+      <image src="/images/me_pet.png" />
+      <view>我的宠物</view>
+    </navigator>
+    <navigator url="/pages/my/insurance/insurance" class="order-nav-hd weui-select fsc">
+      <image src="/images/me_insurance.png" />
+      <view>我的保险</view>
+    </navigator>
+    <view class="order-nav-hd weui-select fsc" onTap="customerService">
+      <image src="/images/me_customer_service.png" />
+      <view>联系客服</view>
+    </view>
+    <navigator url="/pages/my/setUp/setUp" class="order-nav-hd weui-select fsc" hover-class="none">
+      <image src="/images/me_set_up.png" />
+      <view>设置</view>
+    </navigator>
+    <navigator url="/pages/family/invite/share/share" class="order-nav-hd weui-select fsc">
+      <image src="/images/me_invite_friends.png" />
+      <view>邀请有奖</view>
+    </navigator>
+  </view>
+  <view class="bd mt10">
+    <navigator url="/pages/my/job/job" class="bd-item" hover-class="none" a:if="{{identityStatus!=1}}">
+      <text class="gor">{{identityStatus==0?'申请开店':''}}</text>
+      <text class="gor">{{identityStatus==2?'查看申请':''}}</text>
+    </navigator>
+    <view class="bd-item" onTap="switchIdentity" a:else>
+      <view>切换为{{!isFamily?'服务端':'用户端'}}</view>
+    </view>
+  </view>
+</form>
+<form onSubmit="setFormId" report-submit="{{true}}" a:elif="{{isNoAuth}}" class="container bgwh">
+  <view class="refresh">
+    <image src="/images/refresh_bg.png" mode="widthFix" class="pct100"/>
+    <view class="f14">点击刷新后登录</view>
+    <button type="default" onTap="refresh" hover-class="none" class="refresh-btn formId-btn" form-type="submit" size="mini"> 刷新 </button>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

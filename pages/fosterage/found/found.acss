@@ -1,0 +1,136 @@
+
+page{
+    font-size: 28rpx;
+}
+
+.wrap-hd{
+    padding: 0 30rpx;
+    line-height: 80rpx;
+    font-weight: bold;
+}
+/* 日期 */
+.time-item{
+    position: relative;
+    flex: 1;
+}
+.time-item:last-child::before{
+    content: ' ';
+    position: absolute;
+    top: 20rpx;
+    bottom: 20rpx;
+    left: 0;
+    border-left: 1px solid #e5e5e5;
+}
+
+/* 宠物列表 */
+scroll-view{
+    white-space: nowrap; 
+}
+
+.add-pet .weui-uploader__input-box,.pet-avatar{
+    border-radius:80rpx;
+    width: 80rpx;
+    height: 80rpx;
+    margin-bottom: 0;
+}
+.add-pet .weui-uploader__input-box:before {
+    width: 4rpx;
+    height: 49rpx;
+}
+.add-pet .weui-uploader__input-box::after {
+    width: 49rpx;
+    height: 4rpx;
+}
+.pet-avatar{
+    display: inline-block;
+    float: left;
+    margin-right:18rpx;
+    border: 2px solid currentColor;
+}
+.pet-avatar image{
+    width: 100%;
+    height: 100%;
+    border-radius: 1000rpx;
+}
+
+.textarea{
+    min-height: 100rpx;
+}
+
+/* 同意协议 */
+.weui-agree{
+    padding: 0 30rpx;
+}
+.weui-agree .formId-btn{
+    display: inline-block;
+}
+
+
+/* 优惠券列表悬浮框 */
+.suspension-frame-coupon{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 630rpx;
+  max-height: 800rpx;
+  background-color: #FF5421;
+  margin: -400rpx -315rpx;
+  border-radius: 10rpx;
+  padding: 0 30rpx 30rpx;
+  box-sizing: border-box;
+}
+.suspension-coupon-hd{
+  font-size: 36rpx;
+  font-weight: bold;
+  line-height: 90rpx;
+  color: white;
+}
+.suspension-coupon-bd{
+  margin-top: 30rpx;
+  max-height: 680rpx;
+}
+.suspension-frame-coupon .cancel{
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+}
+
+/* 劵的模板-开始 */
+.voucher-item{
+    width: 570rpx;
+    height: 152rpx;
+    background: url('http://image.qipinke.com/icon/my_coupon_bg.png') no-repeat center;
+    background-size: 100%;
+    border-radius: 8rpx;
+    margin: 0 auto 20rpx;
+}
+.voucher-item_main{
+    padding: 16rpx 40rpx;
+    height: 112rpx;
+    box-sizing: border-box;
+}
+.voucher-item_title{
+    font-size: 30rpx;
+    font-weight: bold;
+}
+.voucher-item_amount{
+    font-size: 48rpx;
+    color: #FF9800;
+}
+.voucher-item_amount_label{
+    font-size: 24rpx;
+    vertical-align: middle;
+}
+.voucher-item_condition{
+    margin-top: -6rpx;
+    font-size: 20rpx;
+    color: #888;
+}
+.voucher-item_time{
+    position: relative;
+    padding: 0 40rpx;
+    font-size: 22rpx;
+    color: #b2b2b2;
+    line-height: 40rpx;
+}
+/* 劵的模板-结束 */

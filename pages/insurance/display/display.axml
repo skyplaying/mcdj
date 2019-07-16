@@ -1,0 +1,51 @@
+<import src="/others/template/weui_mc.axml"/>
+<view class="container bte5" a:if="{{isok}}">
+  <view class="explain-wrap f14">
+    <view class="f12 p10-15">保障信息</view>
+    <view class="p15 bgwh explain-bd">
+      <view class="fsc">
+        <view class="flex1">
+          <view>保险期限：{{insureRecordVo.insureTerm}}</view>
+          <view>生效日期：{{insureRecordVo.effectiveDate}}</view>
+        </view>
+        <view class="flex1">
+          <view>报销比例：{{insureRecordVo.ratio}}</view>
+          <view>保额总金额：{{insureRecordVo.insureAmount}}</view>
+        </view>
+      </view>
+      <view>报销病种：{{insureRecordVo.diseases}}</view>
+      <view a:if="{{insureRecordVo.insureStaus==2}}">医保卡号：{{insureRecordVo.medicareCardNo}}</view>
+      <view a:else>投保状态：                
+        <text class="gor">审核中</text>
+      </view>
+    </view>
+  </view>
+  <view class="user-wrap f14">
+    <view class="p10-15 f12 g8">投保人信息</view>
+    <view class="user-bd p15 bgwh">
+      <view>姓名：{{insureRecordVo.usersVo.userName}}</view>
+      <view>身份证：{{insureRecordVo.usersVo.idCard}}</view>
+      <view>手机号：{{insureRecordVo.usersVo.phoneNumber}}</view>
+      <view>地址：{{insureRecordVo.usersVo.address}}</view>
+    </view>
+  </view>
+  <view class="pet-wrap">
+    <view class="p10-15 f12 g8">宠物信息</view>
+    <view class="p10-15 fsc bgwh mb10">
+      <image src="{{insureRecordVo.petVo.petAvatar}}" mode="aspectFill" class="pet-avatar flex-n" />
+      <view class="ml20 flex-a">
+        <view class="art1 b f16">{{insureRecordVo.petVo.petName}}</view>
+        <view class="f12 g8 mt5">
+          <text>{{insureRecordVo.petVo.petVarietyName}}</text>
+          <text class="ml10">{{insureRecordVo.petVo.age}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="foot-box p10-15">
+    <button type="primary" plain="{{true}}" class="submit-btn" onTap="toCompensate" form-type="submit"> 在线理赔 </button>
+  </view>
+</view>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

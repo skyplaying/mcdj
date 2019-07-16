@@ -1,0 +1,15 @@
+
+.weui-select:before {
+  border-width: 4rpx 0 0 4rpx;
+}
+.weui-select.weui-select-check:before {
+  border-width: 0 4rpx 4rpx 0;
+}
+
+.agreement-guarantee .content view{
+  padding-bottom: 20rpx;
+}
+
+.platform-guarantee .content view{
+  padding-bottom: 20rpx;
+}

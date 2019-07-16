@@ -1,0 +1,235 @@
+
+@import "/others/style/weui_mc.acss";
+@import "/others/style/lib.acss";
+
+page {
+  flex: 1;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 1.5;
+  background-color: #eee;
+  color: #353535;
+  font-size: 32rpx;
+  font-family: -apple-system-font, 'Helvetica Neue', Helvetica, 'Microsoft YaHei', sans-serif;
+  font-weight: normal;
+  word-wrap:break-word;  /* 单词自动换行 */ 
+}
+
+*{
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+  outline-style:none;/*FF*/ 
+}
+  
+input{
+  border-width: 0;
+  vertical-align:middle;
+  width: 100%;
+}
+
+.textarea{
+    font-size: 28rpx;
+    min-height: 200rpx;
+  } 
+  
+/* 页面加载中样式 */
+.container-loading{
+  position: relative;
+  width: 100%;
+  background-color: white;
+  box-sizing: border-box;
+}
+.container-loading image{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 170rpx;
+  height: 170rpx;
+  margin: -170rpx -85rpx;
+}
+
+/* 格式化btn */
+.formId-btn{
+  position: static;
+  border:none;
+  text-align:inherit;
+  padding:0;
+  margin:0;
+  line-height:inherit;
+  overflow: visible;
+  background-color: transparent;
+  font-size: inherit;
+  height: auto;
+  color: inherit;
+  white-space: pre-wrap;
+  border-radius:0;
+}
+.formId-btn::after{
+  display: none;
+}
+
+.button{ 
+  display: block;
+  outline: 0 none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  padding: 0;
+  text-align: center;
+  font-size: 18px;
+  height: 47px;
+  line-height: 47px;
+  border-radius: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  white-space: nowrap;
+}
+
+/* 按钮点击时变化 */
+ .btn_hover{
+  filter: alpha(Opacity=80);
+  -moz-opacity: 0.8;
+  opacity: 0.8;
+ }
+
+/* ------------通用css------------- */
+/* 填写模板 */
+.found-cells{
+  position: relative;
+  background-color: white;
+}
+.found-cell{
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx;
+}
+.found-cell::before{
+  content: ' ';
+  position: absolute;
+  left: 30rpx;
+  right: 0;
+  top: 0;
+  border-top: 1px solid #e5e5e5;
+}
+.found-cell:first-child:before{
+  display: none;
+}
+.found-cell_hd{
+  min-width: 5.25em;
+  max-width: 8.25em;
+  flex: none;
+}
+.found-cell_bd{
+  flex: 1;
+  height: 100%;
+}
+.found-cell_bd input,.found-cell_bd picker{
+  text-align: right;
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+/* textarea */
+.found-cell_bd textarea{
+  height: 200rpx;
+}
+/* switch */
+.found-cell_switch{
+  padding: 10rpx 10rpx 10rpx 30rpx;
+}
+
+/* 头部tabs */
+.top-navbar {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;  
+  line-height: 90rpx;
+  margin: 0 auto;
+  color: #836332;
+  font-size: 28rpx;
+}
+.top-navbar__item {
+  display: block;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  text-align: center;
+ 
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+.top-navbar__item.top-bar__item_on {
+  color: #FF9800;
+  font-weight: bold;
+}
+.top-navbar__slider {
+  position: absolute;
+  content: " ";
+  left: 0;
+  bottom: 0;
+  width: 6em;
+  height: .2em;
+  background-color: #FA9D26;
+  -webkit-transition: -webkit-transform .3s;
+  transition: -webkit-transform .3s;
+  transition: transform .3s;
+}
+
+/* 家庭申请流程条 */
+.family-apply-step-wrap{
+    padding: 20rpx 30rpx;
+    background-color: #333333;
+    color: white;
+}
+.family-apply-step-item {
+  position: relative;
+  padding-left: 18rpx;
+  padding-right: 80rpx;
+  text-align: center;
+}
+.family-apply-step-item_active{
+    color: #FF9800;
+}
+.family-apply-step-item:before {
+  content: " ";
+  display: inline-block;
+  height: 12rpx;
+  width: 12rpx;
+  border-width: 4rpx 4rpx 0 0;
+  border-color: #C8C8CD;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+          transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: relative;
+  top: -2px;
+  position: absolute;
+  top: 50%;
+  right: 30rpx;
+  margin-top: -8rpx;
+}
+.family-apply-step-item:last-child{
+    padding-right: 18rpx;
+}
+.family-apply-step-item:last-child::before{
+    display: none;
+}
+.family-apply-step-num{
+    opacity: 0.6;
+}
+

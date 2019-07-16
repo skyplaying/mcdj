@@ -1,0 +1,147 @@
+
+
+/* 刷新 */
+.container-refresh{
+    width: 100%;
+}
+.refresh{
+    width: 100%;
+    position: fixed;
+    top: 30%;
+    text-align: center;
+    box-sizing: border-box;
+}
+.refresh-btn{
+    margin-top: 30rpx;
+}
+
+/* 内容 */
+.container{
+    background-color: #FFE1A4;
+    padding: 740rpx 30rpx 50rpx;
+    box-sizing: border-box;
+    background: url('http://image.qipinke.com/activity/october/bg.png') #FFE1A4 no-repeat top center;
+    background-size: 750rpx 1206rpx;
+}
+
+.main{
+    border-radius: 10rpx;
+    background-color: #F45333;
+    padding: 0 20rpx 1rpx;
+}
+.main_hd{
+    line-height: 90rpx;
+    color: white;
+    font-size: 30rpx;
+    text-align: center;
+}
+.main-ft{
+    width: 520rpx;
+    line-height: 90rpx;
+    margin: 40rpx auto;
+    background-color: #FBCC27;
+    text-align: center;
+    border-radius: 1000rpx;
+}
+
+/* 劵的模板-开始 */
+.voucher-item{
+    width: 650rpx;
+    height: 175rpx;
+    background: url('http://image.qipinke.com/activity/october/coupon_bg0.png') no-repeat center;
+    background-size: 100%;
+    border-radius: 8rpx;
+    margin: 0 auto 20rpx;
+}
+.voucher-item_active{
+    background-image: url('http://image.qipinke.com/activity/october/coupon_bg1.png');
+}
+.voucher-item_main{
+    padding: 16rpx 40rpx;
+}
+.voucher-item_title{
+    color: #FF9800;
+    font-size: 32rpx;
+}
+.voucher-item_condition{
+    font-size: 24rpx;
+    color: #888;
+}
+.voucher-item_main_right{
+    font-size: 60rpx;
+    color: #FF9800;
+}
+.voucher-item_price_label{
+    font-size: 30rpx;
+}
+.voucher-item_time{
+    position: relative;
+    padding: 10rpx 40rpx;
+    font-size: 24rpx;
+    color: #b2b2b2;
+}
+/* 劵的模板-结束 */
+
+
+
+/* 领取成功悬浮框 */
+.suspension-frame-coupon{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 630rpx;
+  height: 800rpx;
+  background-color: #FF5421;
+  margin: -400rpx -315rpx;
+  border-radius: 10rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  color: white;
+}
+.suspension-coupon-hd>*:first-child{
+  font-size: 36rpx;
+  font-weight: bold;
+  line-height: 90rpx;
+}
+.suspension-coupon-bd{
+  margin-top: 30rpx;
+}
+.suspension-frame-coupon .voucher-item{
+    width: 560rpx;
+    height: 152rpx;
+    margin-bottom: 12rpx;
+}
+.suspension-frame-coupon .voucher-item_title{
+    font-size: 28rpx;
+}
+.suspension-frame-coupon .voucher-item_condition{
+    font-size: 20rpx;
+}
+.suspension-frame-coupon .voucher-item_main_right{
+    font-size: 52rpx;
+}
+.suspension-frame-coupon .voucher-item_time{
+    padding: 4rpx 40rpx;
+}
+
+.suspension-coupon-btn{
+    width: 500rpx;
+    line-height: 80rpx;
+    margin: 40rpx auto;
+    background-color: #FBCC27;
+    text-align: center;
+    border-radius: 1000rpx;
+}
+.suspension-frame-coupon .cancel{
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+}
+
+/* 活动规则 */
+.rule-wrap{
+    padding: 0 30rpx 60rpx;
+    background-color: #DABC80;
+    margin-top: 50rpx;
+    border-radius: 10rpx;
+}

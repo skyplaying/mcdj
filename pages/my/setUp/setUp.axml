@@ -1,0 +1,18 @@
+
+
+<view class="container">
+  <view class="bgwh mt10">
+    <view class="bd3">
+      <navigator url="/pages/colligate/feedback/feedback" class="weui-select" hover-class="none" >
+        建议反馈
+      </navigator>
+      <view class="weui-select" onTap="clearStorage" >
+        <view class="fbc">
+          <view class="flex-a">清除缓存</view>
+          <view class="flex-n g8 f14">{{currentSize}}KB</view>
+        </view>
+      </view>
+      <navigator url="/pages/colligate/aboutUs/aboutUs" hover-class="none" class="weui-select" onLongTap="seeLogs" >关于我们</navigator>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,26 @@
+
+
+<view class="container">
+  <view class="p10-15">
+    <view class="pt20 tc">
+      <image src="/images/logo.png" class="logo"></image>
+      <view class="pb30">
+        <view class="f18 b">萌宠到家</view>
+        <view class="g8 pt10">v {{edition}}</view>
+      </view>
+    </view>
+    <view class="f14">
+      <view class="ptb5">
+     萌宠到家，为养宠主人以及广大爱宠人士提供基于宠物的收寄养、宠物配种、宠物转让交易、宠物社交为一体的宠物迷互动平台。让宠物在芝麻信用的介入下在陌生人之间流通起来，从而实现萌宠共享的全新理念。
+    </view>
+      <view class="pt30 pb10 tc g8">
+      了解更多信息，请关注生活号“{{lifeNum}}”</view>
+      <view class="pb5 f12 tc gb2">
+      Copyright©{{company}}</view>
+      <view class="pb5 f12 tc gb2">
+        <text>联系电话：</text>
+        <text class="gg" onTap="makePhoneCall" >0755-88823343</text>
+      </view>
+    </view>
+  </view>
+</view>

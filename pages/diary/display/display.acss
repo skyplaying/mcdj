@@ -1,0 +1,74 @@
+
+.pet-info{
+    position: relative;
+    background-color: #FA9D26;
+    padding: 70rpx 30rpx 40rpx;
+    text-align: center;
+}
+
+.foster-info-btn{
+    position: absolute;
+    top: 0rpx;
+    right: 10rpx;
+    color: white;
+    font-size: 22rpx;
+    padding: 20rpx;
+}
+
+.pet-info swiper{
+    padding-bottom: 30rpx;
+}
+
+.pet-avatar{
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 120rpx;
+    border: 6rpx solid white;
+    margin: 0 10rpx;
+}
+
+.gender{
+    position: absolute;
+    top: 100rpx;
+    left: 50%;
+    margin-left: 30rpx;
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.pet-name{
+    width: 400rpx;
+    text-align: center;
+    margin: 0 auto 30rpx;
+}
+
+.user-avatar{
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 60rpx;
+    margin-right: 20rpx;
+}
+.identity{
+    margin-left:10rpx;
+    font-size: 20rpx;
+    line-height: 1.4em;
+    padding: 0 6rpx;
+    color: #FF9D00;
+    border:1px solid currentColor;
+    border-radius: 4rpx;
+}
+
+.log-img{
+    width: 210rpx;
+    height: 200rpx;
+    margin-right: 10rpx;
+    margin-bottom: 10rpx;
+}
+
+.publish{
+    position: fixed;
+    bottom: 120rpx;
+    right: 50rpx;
+    width: 100rpx;
+    height: 100rpx;
+}

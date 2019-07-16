@@ -1,0 +1,19 @@
+
+.container{
+    padding-bottom: 140rpx;
+}
+
+.bd image{
+    width: 100%;
+    display: block;
+}
+
+video{
+    width: 690rpx;
+}
+
+.foot-box button{
+    font-size: 28rpx;
+    border-radius: 1000px;
+    width: 230rpx;
+}

@@ -1,0 +1,37 @@
+<import src="/others/template/weui_mc.axml"/>
+<form class="container" report-submit="{{true}}" onSubmit="setFormId" a:if="{{isok}}">
+  <view class="hd-msg">让我们更了解您的家庭，缩短审核时间。</view>
+  <view class="main">
+    <!-- 活动区域 -->
+    <view class="bgwh">
+      <view class="p10-15 f14">活动区域</view>
+      <view class="plr15 pb10">
+        <view class="region-item {{regionStateArr[index]?'region-item_active':''}}" onTap="changeRegion" data-index="{{index}}" a:for="{{regionArr}}" a:key="*this">{{item}}</view>
+      </view>
+    </view>
+    <!-- 技能和资质 -->
+    <view class="bgwh mt10">
+      <view class="p10-15">
+        <text class="f14">技能和资质</text>
+        <text class="f12 g8">（选填）</text>
+      </view>
+      <view class="plr15 pb10">
+        <view class="laber-item {{skillStateArr[index]?'laber-item_active':''}}" onTap="changeSkill" data-index="{{index}}" a:for="{{skillArr}}" a:key="*this">{{item}}</view>
+      </view>
+    </view>
+    <!-- 常住人口 -->
+    <view class="mt10 bgwh">
+      <view class="p10-15">
+        <text class="f14">常住人口</text>
+        <text class="f12 g8">（仅用于审核环节，不公开）</text>
+      </view>
+      <view class="plr15 pb10">
+        <view class="laber-item {{inhabitantStateArr[index]?'laber-item_active':''}}" onTap="changeInhabitant" data-index="{{index}}" a:for="{{inhabitantArr}}" a:key="*this">{{item}}</view>
+      </view>
+    </view>
+  </view>
+  <button form-type="submit" onTap="save" type="primary" class="w345 mc-btn2 gor auto mt20 mb50" hover-class="none">保存</button>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

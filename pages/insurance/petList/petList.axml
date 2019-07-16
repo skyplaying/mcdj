@@ -1,0 +1,29 @@
+<import src="/others/template/weui_mc.axml"/>
+<view class="container bte5" a:if="{{isok}}">
+  <view class="p10-15">选择投保的宠物</view>
+  <view class="bd plr15">
+    <block a:for="{{myPetList}}" a:key="petId">
+      <view class="p20 fsc bgwh mb10" data-index="{{index}}" onLongTap="detelePet" catchTap="toOrder">
+        <image src="{{item.petAvatar}}" mode="aspectFill" class="pet-avatar flex-n" />
+        <view class="ml20 flex-a">
+          <view class="art1 b f16">{{item.petName}}</view>
+          <view class="f12 g8 mt5">
+            <text>{{item.petVarietyName}}</text>
+            <text class="ml10">{{item.age}}</text>
+          </view>
+        </view>
+        <view class="flex-n f10 tr">
+          <view class="g8 p5" catchTap="editPet" data-index="{{index}}">编辑</view>
+        </view>
+      </view>
+    </block>
+    <navigator url="../../pet/found/found" class="add-pet bgwh fsc">
+      <image src="/images/add_icon.png" class="add-icon" />
+      <text class="f16 ml15">添加宠物</text>
+    </navigator>
+    <template is="list-loading" data="{{showloading:true}}" a:if="{{!myPetList}}"></template>
+  </view>
+</view>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

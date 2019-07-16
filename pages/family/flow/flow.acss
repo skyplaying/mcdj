@@ -1,0 +1,143 @@
+
+
+.weui-select{
+    line-height: 1.5em;
+    border-right: none;
+    background-color: white;
+    padding-top: 30rpx;
+    padding-bottom: 30rpx;
+    margin-bottom: 20rpx;
+    color: #f5a623;
+    font-size: 30rpx;
+}
+.weui-select:before{
+    border-color:currentColor;
+}
+.weui-select::after{
+    border-top:none;
+}
+.perfect-state{
+    width: 96rpx;
+    line-height: 36rpx;
+    color: white;
+    border-radius: 8rpx;
+    text-align: center;
+    font-size: 24rpx;
+    background-color: #bbb;
+    margin-top: 7rpx;
+}
+.perfect{
+    background-color: #40c7a9;
+}
+
+.icon{
+    width: 90rpx;
+    height: 90rpx;
+    margin-right: 40rpx;
+    flex: none;
+}
+
+.container1 .foot-box{
+    padding: 30rpx;
+}
+.container1 .mc-btn2{
+    color: #f5a623;
+}
+
+/* 同意协议 */
+.weui-agree{
+    padding: 0;
+    margin-bottom: 20rpx;
+}
+.weui-agree .formId-btn{
+    display: inline-block;
+}
+
+.success-icon{
+    margin: 60rpx 0 30rpx;
+}
+.zhima-icon{
+    padding-left: 78rpx;
+    background: url('/images/adopter_zhima_icon.png') no-repeat 8rpx center;
+    background-size: 40rpx 40rpx;
+}
+.adopter-icon{
+    padding-left: 78rpx;
+    background: url('/images/adopter_info_icon.png') no-repeat 8rpx center;
+    background-size: 40rpx 40rpx;
+}
+.knowledge-icon{
+    padding-left: 78rpx;
+    background: url('/images/adopter_knowledge_icon.png') no-repeat 8rpx center;
+    background-size: 40rpx 40rpx;
+}
+.activate{
+    color: #05D0A9;
+}
+
+.container2 .btn-wrap{
+    position: absolute;
+    bottom: 50rpx;
+    width: 690rpx;
+}
+.container2 .btn-wrap button{
+    margin-bottom: 50rpx;
+}
+
+.weui-cell::before{
+    border-top: none;
+}
+
+
+/* 内容模块3 */
+.container3{
+    padding: 90rpx 20rpx 140rpx;
+    background: url(http://image.qipinke.com/icon/family_flow_bg.png) #FCEFCF no-repeat top center;
+    background-size: 750rpx 1260rpx;
+}
+.welcome-wrap{
+    width: 416rpx;
+    margin-left: 10rpx;
+}
+.wrap_hd{
+    position: relative;
+    line-height: 100rpx;
+    font-size: 32rpx;
+    font-weight: bold;
+    width: 150rpx;
+    text-align: center;
+    margin: 0 auto;
+}
+.wrap_hd::after,.wrap_hd::before{
+    content: ' ';
+    position: absolute;
+    top: 50%;
+    width: 20rpx;
+    height: 4rpx;
+    margin-top: -2rpx;
+    background-color: #FF9800;
+}
+.wrap_hd::after{
+    right: 100%;
+}
+.wrap_hd::before{
+    left: 100%;
+}
+.require-wrap{
+    background-color: white;
+    padding: 0 40rpx 46rpx;
+    margin-bottom: 14rpx;
+    line-height: 46rpx;
+    margin-top: 626rpx;
+}
+.process-wrap{
+    background-color: white;
+    padding-bottom: 46rpx;
+    margin-bottom: 14rpx;
+    text-align: center;
+}
+.process-img{
+    width: 210rpx;
+    height: 392rpx;
+    margin-top: 10rpx;
+}

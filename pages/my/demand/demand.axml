@@ -1,0 +1,38 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<form bindsubmit="setFormId" report-submit="{{true}}" class='container' a:if="{{isok}}">
+  <view class="demand-list-wrap mt10">
+    <navigator url="/pages/demand/display/display?fosterDemandId={{list[index].fosterDemandId}}" class="demand-item p10-15 bgwh" a:for="{{list}}" a:key="userId">
+      <view class="demand-item_top fsc">
+        <image src="{{item.usersVo.avatar}}" mode="aspectFill" class="demand-avatar" />
+        <view class="demand-item_top_mid">
+          <view class="rel fsc">
+            <view class="art1 b f14">{{item.usersVo.nickName}}</view>
+            <view class="flex-n f10 ml10 g8">{{item.usersVo.occupation}}</view>
+          </view>
+          <view class="f10 g8 mt2">{{item.publishTime}}发布</view>
+        </view>
+        <view class="demand-item_top_right flex-n f10 tr">
+          <view class="gor">{{item.demandCount || '无'}}人应答</view>
+          <!-- <view class="g8">距我{{item.distance}}</view> -->
+        </view>
+      </view>
+      <view class="demand-item_mid f12 mt10">
+        <text class="g8">寄养宠物：</text>
+        <text>{{item.fosterPetTypes}}</text>
+      </view>
+      <view class="demand-item_bottom f12">
+        <text>{{item.startTime}}至{{item.endTime}}</text>
+        <text class="ml10">共{{item.fosterNum}}天</text>
+      </view>
+    </navigator>
+    <template is="list-loading" data="{{loading,list,nomore}}"></template>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>
+<!-- 寄养需求发布 -->
+<demand-publish-view show="{{showPublish}}" onHidden="showPublish" onFinish="finishDemand"></demand-publish-view>
+

@@ -1,0 +1,27 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<view class="container bte5" a:if="{{isok}}">
+  <block a:for="{{myPetList}}" a:key="petId">
+    <view class="p15 fsc bgwh bbe5" hover-class="none" data-index="{{index}}" onLongTap="detelePet" catchTap="toDisplayPet">
+      <image src="{{item.petAvatar}}" mode="aspectFill" class="pet-avatar flex-n" />
+      <view class="ml20 flex-a">
+        <view class="art1 b f16">{{item.petName}}</view>
+        <view class="f12 g8 mt5">
+          <text>{{item.petVarietyName}}</text>
+          <text class="ml10">{{item.age}}</text>
+        </view>
+      </view>
+      <view class="flex-n f10 tr">
+        <view class="g8 p5" catchTap="editPet" data-index="{{index}}">编辑</view>
+        <view class="gblue p5" catchTap="addCertificates" data-index="{{index}}">添加证件</view>
+      </view>
+    </view>
+  </block>
+  <template is="list-loading" data="{{showloading:true}}" a:if="{{!myPetList}}"></template>
+  <view class="tc g8 f14 p10-15" a:elif="{{myPetList.length==0}}">暂无宠物，赶紧去添加吧！</view>
+  <navigator url="../../pet/found/found" class="add-pet">添加宠物</navigator>
+</view>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

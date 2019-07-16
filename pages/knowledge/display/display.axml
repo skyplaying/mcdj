@@ -1,0 +1,76 @@
+
+<view class="container">
+  <view class="hd">
+    <view class="time">倒计时:{{time}}s</view>
+  </view>
+  <view class="bd">
+    <block a:for="{{questionArr}}">
+      <view class="question-wrap" a:if="{{index==showIndex}}">
+        <view class="question">{{index+1}}.<text class="content">{{item.subjectTitle}}</text></view>
+        <view class="option-wrap">
+          <block a:for="{{item.subjectItemVos}}" a:for-item="optionItem" a:for-index="optionIndex">
+            <view class="option-item option{{optionIndex}}" hover-class="option-item-select" data-index="{{optionIndex}}" onTap="selectOption">
+            {{optionItem.itemContent}}
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="foot-box">
+    <view class="progress-wrap fbc">
+      <view class="fsc">
+        <view><icon type="success" size="20" color="#40C7A9" class="vm pr10" />{{rightNum}}</view>
+        <view class="pl25"><icon type="cancel" size="20" color="#F74D61" class="vm pr10" />{{errNum}}</view>
+      </view>
+      <view>当前进度：{{showIndex+1}}/10</view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 开始测试 -->
+<view class="suspension-wrap" a:if="{{!isHiddenStart}}">
+  <view class="suspension-shadow-cover"></view>
+  <view class="suspension-knowledge-start-frame"> 
+    <view class="suspension-knowledge-start-hd">
+      <image src="/images/suspension_pet_clear_icon.png" class="clear-icon" onTap="hiddenStart" />
+    </view>
+    <view class="suspension-knowledge-start-bd">
+      <view class="suspension-knowledge-start-title">养宠知识测试</view>
+      <view class="suspension-knowledge-start-content">
+        <view class="content-item"> <text>题目数量：</text>10题 </view>
+        <view class="content-item"> <text>测试时间：</text>90秒 </view>
+        <view class="content-item"> <text>出题规则：</text>随机养宠知识 </view>
+        <view class="content-item"> <text>合格标准：</text>8分 </view>
+        <view class="content-item"> <text>测试次数：</text>每月可测试{{userInfo.currSurplusCount}}次 </view>
+      </view>
+      <view class="suspension-knowledge-start-btn" onTap="start">开始测试</view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 结束测试 -->
+<view class="suspension-wrap" a:if="{{isShowEnd}}">
+  <view class="suspension-shadow-cover"></view>
+  <view class="suspension-knowledge-end-frame">
+    <view class="suspension-knowledge-end-hd">
+      <view class="hd-avatar-wrap">
+        <view class="user-avatar">
+          <image src="{{userInfo.avatar}}"/>
+        </view>
+        <image class="sex-icon" mode="aspectFill" src="/images/sex{{userInfo.gender}}.png"/>
+      </view>
+      <view class="b">{{userInfo.nickName}}</view>
+      <view class="score">共计得分： <text>{{rightNum}}</text>分</view>
+    </view>
+    <view class="suspension-knowledge-end-bd">
+      <view class="suspension-knowledge-end-content">
+        👍养宠小能手，您的经验丰富别人会宠物交给您寄养会更放心，本月还有{{userInfo.currSurplusCount}}次测试机会
+      </view>
+      <view class="suspension-knowledge-end-btn{{userInfo.currSurplusCount?'1':'2'}}" onTap="restart" >再测一次</view>
+      <view class="suspension-knowledge-end-btn{{userInfo.currSurplusCount?'2':'1'}}" onTap="back">返回</view>
+    </view>
+  </view>
+</view>

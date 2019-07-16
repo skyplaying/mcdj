@@ -1,0 +1,10 @@
+<form onSubmit="setFormId" report-submit="{{true}}" class="container bgwh tc" a:if="{{isok}}" >
+  <image src="http://image.qipinke.com/insurance/flow/flow_hd.png" class="hd-img" mode="widthFix" />
+  <view class="pct100 tc f16 receive-btn gr" a:if="{{!isFavorite}}" catchTap="receiveCardBag" >点击领取20元优惠劵</view> 
+  <view class="bd">
+    <button type="default" onTap="toIntroduce" form-type="submit" class="mc-btn1 gor" > 申请医保 </button>
+    <button type="default" onTap="toHospital" form-type="submit" class="mt20"> 医院列表 </button>
+    <button type="default" onTap="toCompensate" form-type="submit" class="mt20"> 在线理赔 </button>
+  </view>
+  <image src="http://image.qipinke.com/insurance/flow/flow_ft.png" class="ft-img" />
+</form>

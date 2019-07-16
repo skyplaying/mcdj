@@ -1,0 +1,16 @@
+
+
+.pet-avatar{
+    width: 90rpx;
+    height: 90rpx;
+    border-radius: 90rpx;
+}
+
+.add-pet{
+    height: 174rpx;
+    padding: 0 40rpx;
+}
+.add-pet image{
+    width: 60rpx;
+    height: 60rpx;
+}

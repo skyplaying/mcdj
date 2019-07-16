@@ -1,0 +1,37 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<view class="container" a:if="{{isok}}">
+  <block a:for="{{noticeList}}" a:for-item="notice" a:key="userMsgId">
+    <view id="{{notice.userMsgId}}" class="notice-list-item" onTap="viewDetails" data-index="{{index}}">
+      <view class="notice-time">{{notice.createTime}}</view>
+      <view class="notice-content">
+        <view class='notice-info-wrap'>
+          <view class="text">
+            <view class="content">{{notice.msgContent}}</view>
+            <view class="remark" a:if="{{notice.msgType == 0}}">
+              配对宠物：{{notice.remark}}
+            </view>
+            <view class="remark" a:if="{{notice.msgType == 1}}">
+              寄养宠物：{{notice.remark}}
+            </view>
+            <view class="remark" a:if="{{notice.msgType == 2}}">
+              寄养宠物：{{notice.remark}}
+            </view>
+            <view class="remark" a:if="{{notice.msgType == 3 && notice.remark}}">
+              驳回原因：{{notice.remark}}
+            </view>
+            <view class="remark" a:if="{{notice.msgType == 4}}">
+              {{notice.remark}}
+            </view>
+          </view>
+        </view>
+        <view class="weui-select" hidden="{{notice.msgType == 4}}">查看详情</view>
+      </view>
+    </view>
+  </block>
+  <template is="list-loading" data="{{showloading,shownomore:shownomoreNotice,shownoData:!(noticeList && noticeList.length>0)}}"></template>
+</view>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view> 

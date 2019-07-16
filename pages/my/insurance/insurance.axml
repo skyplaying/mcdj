@@ -1,0 +1,31 @@
+<view class="container bte5" a:if="{{isok}}">
+  <navigator url="/pages/insurance/introduce/introduce" class="hd fbc">
+    <view class="hd_left">
+      <view class="f16 b">全病种报销·宠城医保</view>
+      <view class="f14">报销40%医疗费</view>
+    </view>
+    <view class="bgwh hd_right">
+      <button type="primary" plain="{{true}}" size="mini" onTap="defaultTap"> 查看详情 </button>
+    </view>
+  </navigator>
+  <view class="bd plr15">
+    <view class="f12 g8 ptb15">我的投保</view>
+    <block a:for="{{myInsureList}}" a:key="petId">
+      <navigator url="/pages/insurance/display/display?insureRecordId={{item.insureRecordId}}" class="p15 fbc bgwh mb20">
+        <view class="mr20 flex-a">
+          <view class="art1 b f16">宠城医保-经典版</view>
+          <view class="f14 g8 mt5">
+            <view>保额总金额：{{item.insureAmount}}元</view>
+            <view>报销比例：{{item.ratio}}</view>
+          </view>
+          <view class="f12 g8 mt15">{{item.effectiveDate}}-{{item.invalidDate}}</view>
+        </view>
+        <image src="{{item.petVo.petAvatar}}" mode="aspectFill" class="avatar flex-n" />
+      </navigator>
+    </block>
+    <view class="tc g8 f14 p10-15" a:if="{{myInsureList.length==0}}">暂无保险，赶紧去购买吧！</view>
+  </view>
+</view>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

@@ -1,0 +1,106 @@
+
+<import src="/others/template/weui_mc.axml"/>
+<form onSubmit="setFormId" report-submit="{{true}}" class="container pb30" a:if="{{isok}}">
+  <!-- 用户信息 -->
+  <view class="bgwh plr15">
+    <view class="user-info-wrap fbc">
+      <view class="user-avatar-wrap">
+        <image src="{{userVo.avatar}}" mode="aspectFill" class="user-avatar" onTap="previewAvatar" data-url="{{userVo.avatar}}" />
+        <image class="sex-icon" mode="aspectFill" src="/images/sex{{userVo.gender}}.png"/>
+      </view>
+      <view class="user-info_mid">
+        <view class="rel fsc">
+          <view class="art1 f16 b">{{userVo.nickName}}</view>
+        </view>
+        <view class="f12 mt10" a:if="{{userVo.occupation}}" >{{userVo.occupation}}</view>
+      </view>
+    </view>
+    <view class="bte5 ptb10 fsc" a:if="{{skillAptitudeArr && skillAptitudeArr.length>0}}">
+      <view class="skill-item fsc" a:for="{{skillAptitudeArr}}" a:key="*this">
+        <image src="/images/family_skill_{{item=='宠物美容'?1:''}}{{item=='兽医知识'?2:''}}{{item=='训宠经验'?3:''}}{{item=='技能证书'?4:''}}.png" />
+        <view class="f10 dib vm">{{item}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 获得认证 -->
+  <view class="authentication-wrap mt10 bgwh">
+    <view class="wrap_hd">获得认证</view>
+    <view class="authentication_bd p10-15">
+      <view class="authentication_list f12">
+        <view class="authentication-item" a:if="{{userVo.isFaceRec}}">
+          <image class="authentication-item-icon" src="/images/identity_real_icon.png" />
+          <view>实名认证</view>
+        </view>
+        <view class="authentication-item" a:if="{{userVo.creditScore}}">
+          <image class="authentication-item-icon" src="/images/adopter_zhima_icon.png" />
+          <view>芝麻信用分</view>
+        </view>
+        <view class="authentication-item" a:if="{{userVo.userCertifiedStatus==1}}">
+          <image class="authentication-item-icon" src="/images/adopter_video_icon.png" />
+          <view>视频认证</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 养宠经验 -->
+  <view class="family-experience-wrap mt10 bgwh" a:if="{{userVo.adoptionVo.keptPetList.length>0}}">
+    <view class="wrap_hd">养宠经验</view>
+    <view class="family-experience_bd f14">
+      <view class="family-experience-item mc-cell fbc" a:for="{{userVo.adoptionVo.keptPetList}}" a:key="keptPetId">
+        <view class="family-experience-name fsc">
+          <text>{{item.petType}}</text>
+          <image src="/images/pet_sex{{item.petSex}}_1.png" />
+        </view>
+        <view>{{item.spoilLong}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- Ta的家庭 -->
+  <view class="family-info-wrap mt10 bgwh">
+    <view class="wrap_hd">Ta的家庭</view>
+    <view class="family-info_bd f14">
+      <view class="mc-cell fbc">
+        <text>家庭名称</text>
+        <text>{{userVo.adoptionVo.familyName}}</text>
+      </view>
+      <view class="mc-cell fbc">
+        <text>星级家庭</text>
+        <view class="fsc">
+          <view class="stars-wrap mr5">
+            <image src="/images/stars1.png" class="stars-item" a:for="{{userVo.adoptionVo.grade}}" />
+          </view>
+          <text>{{gradeArr[userVo.adoptionVo.grade||0]}}</text>
+        </view>
+      </view>
+      <view class="mc-cell fbc">
+        <text>保证金</text>
+        <text>{{userVo.adoptionVo.marginAmount || '未缴纳'}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- Ta的宠物 -->
+  <view class="pet-wrap mt10 bgwh">
+    <view class="wrap_hd plr15">Ta的宠物</view>
+    <view class="pet-list-bd">
+      <block a:for="{{petList}}" a:key="petId">
+        <navigator url="/pages/pet/display/display?petId={{item.petId}}" hover-class="none" class="weui-select fsc">
+          <image src="{{item.petAvatar}}" mode="aspectFill" class="pet-avatar" />
+          <view>
+            <view class="fsc">
+              <view class="art1 f15 b">{{item.petName}}</view>
+              <image class="gender-icon" mode="aspectFill" src="/images/gender{{item.gender}}.png"/>
+            </view>
+            <view class="g8 f13">
+              <text class="pr10">{{item.petVarietyName}}</text>{{item.age}}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+            </view>
+          </view>
+        </navigator>
+      </block>
+      <view class="tc g8 ptb15 f14" a:if="{{!petList || petList.length==0}}">暂无宠物</view>
+    </view>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

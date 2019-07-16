@@ -1,0 +1,35 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<form class="container" report-submit="{{true}}" onSubmit="setFormId">
+  <view class="found-cells mt10">
+    <!-- 是否需要提前预订 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>是否需要提前预订</view>
+      <view class='found-cell_bd tr'>
+        <switch checked="{{isReserve}}" onChange="changeIsReserve" />
+      </view>
+    </label>
+    <!-- 提前时间 -->
+    <label class='found-cell' a:if="{{isReserve}}">
+      <view class='found-cell_hd'>提前时间（天）</view>
+      <view class='found-cell_bd'>
+        <picker onChange="changeAdvanceNum" value="{{advanceNumIndex}}" range="{{advanceNumArr}}">
+          <view class='tr'>{{advanceNumArr[advanceNumIndex]}}</view>
+        </picker>
+      </view>
+    </label>
+  </view>
+  <!-- 备注说明 -->
+  <view class="bgwh mt10">
+    <view class="p10-15 f14">备注说明</view>
+    <view class="plr15 pb10">
+      <view class="region-item {{remarkStateArr[index]?'region-item_active':''}}" onTap="changeRegion" data-index="{{index}}" a:for="{{remarkArr}}" a:key="*this">{{item}}</view>
+      <view class="p10-15 fsc">
+        <input placeholder="其他说明请输入，最多15字" maxlength="15" onInput="inputRemark" value="{{remarkText}}"  />
+        <button class="ml15" type="primary" plain="true" size="mini" onTap="submitRemark" a:if="{{remarkText}}" > 确定 </button>
+      </view>
+    </view>
+  </view>
+  <button form-type="submit" onTap="save" type="primary" class="w345  mc-btn2 gor auto mt20 mb50" hover-class="none">保存</button>
+</form>

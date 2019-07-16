@@ -1,0 +1,31 @@
+.container{
+    padding-bottom: 140rpx;
+}
+
+.explain-bd{
+    line-height: 60rpx;
+}
+
+.pet-avatar{
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 80rpx;
+}
+
+.foot-box{
+    background-color: inherit;
+}
+
+/* 同意协议 */
+.weui-agree{
+    padding: 20rpx 30rpx;
+}
+.weui-agree .formId-btn{
+    display: inline-block;
+}
+
+.foot-box .submit-btn{
+    font-size: 28rpx;
+    border-radius: 1000px;
+    width: 230rpx;
+}

@@ -1,0 +1,81 @@
+
+page,input,textarea{
+    font-size: 28rpx;
+}
+
+.main{
+    /* padding: 30rpx; */
+}
+
+/* 添加宠物 */
+.add-pet-wrap{
+    padding: 0 30rpx;
+    line-height: 100rpx;
+}
+.add-pet-wrap scroll-view{
+    flex: none;
+    white-space: nowrap; 
+    width: 350rpx;
+}
+.add-pet-wrap .weui-uploader__input-box,.pet-avatar{
+    float: none;
+    display: inline-block;
+    border-radius:70rpx;
+    width: 70rpx;
+    height: 70rpx;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+.add-pet-wrap  .weui-uploader__input-box:before {
+    width: 4rpx;
+    height: 49rpx;
+}
+.add-pet-wrap  .weui-uploader__input-box::after {
+    width: 49rpx;
+    height: 4rpx;
+}
+.add-pet-wrap .weui-uploader__input-box{
+    margin-right: 0;
+}
+.pet-avatar{
+    margin-right: 18rpx;
+}
+
+/* 养过的宠物 */
+.kept_box .weui-uploader__input-box{
+    border-radius:48rpx;
+    width: 48rpx;
+    height: 48rpx;
+    margin: 0;
+}
+.kept_box .weui-uploader__input-box:before {
+    width: 4rpx;
+    height: 25rpx;
+}
+.kept_box .weui-uploader__input-box::after {
+    width: 25rpx;
+    height: 4rpx;
+}
+.sex-wrap{
+    width: 116rpx;
+    padding: 10rpx 20rpx;
+    border-radius: 1000rpx;
+    border: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    line-height: 1;
+}
+.sex-wrap image{
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.kept_box-item_name{
+    width: 240rpx;
+    text-align: center;
+}
+.kept_box-item .picker{
+    padding: 4rpx 10rpx;
+    width: 150rpx;
+    text-align: center;
+    border: 1px solid #e5e5e5;
+}

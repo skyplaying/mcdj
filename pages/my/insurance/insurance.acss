@@ -1,0 +1,23 @@
+
+
+
+.hd{
+    background-color: #118EEA;
+    color: white;
+    padding: 30rpx;
+}
+.hd_right{
+    border-radius: 1000px;
+    flex: none;
+}
+.hd button{
+    display: block;
+    border-radius: 1000px;
+    padding: 0 20rpx;
+}
+
+.avatar{
+    width: 110rpx;
+    height: 110rpx;
+    border-radius: 110rpx;
+}

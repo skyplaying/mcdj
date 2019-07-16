@@ -1,0 +1,137 @@
+
+<import src="/others/template/weui_mc.axml"/>
+<form onSubmit="setFormId" report-submit="{{true}}" class="container pb30" a:if="{{isok}}">
+  <view class="hd bgwh">
+    <view class="hd-top p10-15 fsc">
+      <image src="{{demandVo.usersVo.avatar}}" mode="aspectFill" class="hd-avatar" />
+      <view class="hd-top-mid">
+        <view class="art1 b">{{demandVo.usersVo.nickName}}</view>
+        <view class="f10 g8">
+          <text>{{demandVo.usersVo.pointCity}}</text>
+          <text class="ml10">{{demandVo.usersVo.occupation}}</text>
+        </view>
+      </view>
+      <view class="g8" a:if="{{demandVo.demandStatus==2}}">已关闭</view>
+      <image src="/images/fosterage_chat.png" class="chat-icon" onTap="chat" a:elif="{{userInfo.userId!=demandVo.usersVo.userId}}" />
+      <view class="fsc flex-n" onTap="closeDemand" a:else>
+        <icon type="clear" size="10" color="FF9800" />
+        <text class="f10 gor ml5">关闭需求</text>
+      </view>
+    </view>
+    <view class="hd-mid p10-15 fbc">
+      <view class="hd-mid_left">
+        <view class="fsc f12">
+          <image src="/images/demand_pet_icon.png" />
+          <view>{{demandVo.fosterPetTypes}}</view>
+        </view>
+        <view class="fsc f12">
+          <image src="/images/demand_time_icon.png" />
+          <text>{{demandVo.startTime}}至{{demandVo.endTime}}</text>
+          <text class="ml10">共{{demandVo.fosterNum}}天</text>
+        </view>
+        <view class="fsc f12">
+          <image src="/images/demand_address_icon.png" />
+          <view>{{demandVo.demandAddress}}</view>
+        </view>
+      </view>
+      <view class="hd-mid_right">
+        <image src="{{item}}" mode="aspectFill" a:for="{{petAvatarList}}" a:key="*this" />
+      </view>
+    </view>
+    <view class="hd-bottom fbc p10-15 f10 g8">
+      <view>距离{{demandVo.distance}}</view>
+      <view>{{demandVo.publishTime}}发布</view>
+    </view>
+  </view>
+  <!-- 应答家庭 -->
+  <view class="bd mt10" a:if="{{answerList && answerList.length>0}}">
+    <view class="p10-15 bgwh f12 bbe5">应答家庭（{{answerTotal}}条）</view>
+    <view class="family-list">
+      <view class="family-item bgwh" a:for="{{answerList}}" a:key="userId">
+        <view class="family-item_top p10-15 fsc">
+          <image src="{{item.avatar}}" mode="aspectFill" class="family-avatar" onTap="toFamilyDisplay" data-id="{{item.userId}}" />
+          <view class="family-item_top_mid">
+            <view class="rel fsc">
+              <view class="art1 b" catchTap="toFamilyDisplay" data-id="{{item.userId}}">{{item.nickName}}</view>
+              <image class="real-icon" src="/images/identity_real_icon.png"/>
+              <view class="credit-score-icon" a:if="{{item.creditScore}}">{{item.creditScore}}</view>
+            </view>
+            <view class="fsc mt2">
+              <view class="user-info-stars-wrap fsc" a:if="{{item.adoptionVo.grade}}">
+                <block a:for="{{[1,2,3,4,5]}}" a:key="*this" a:for-index="sIndex" a:for-item="sItem">
+                  <view class="user-info-stars-item" a:if="{{sIndex+1 <= item.adoptionVo.grade}}">
+                    <image src="/images/stars1.png" />
+                  </view>
+                </block>
+              </view>
+              <view class="f10 gor ml5" a:if="{{item.adoptionVo.grade}}">{{item.adoptionVo.grade}}星级家庭</view>
+              <view class="f10 g8" a:else>普通家庭</view>
+              <view class="f10 gor ml5" a:if="{{item.keepPetVo.compositeScore}}">{{item.keepPetVo.compositeScore}}分</view>
+            </view>
+            <view class="f10 g8 mt2">
+              <text>{{item.address}}</text>
+              <text class="ml5" a:if="{{userInfo.userId==demandVo.usersVo.userId}}">  |  距我{{item.distanceStr}}</text>
+            </view>
+          </view>
+          <button class="family-item_top_right" size="mini" catchTap="toFosterageFound" data-index="{{index}}" a:if="{{userInfo.userId==demandVo.usersVo.userId}}">寄Ta家</button>
+        </view>
+        <view class="family-item_bottom mc-cell fbc f12">
+          <text>{{item.adoptionVo.petType}}</text>
+          <text class="gr">{{item.minAmount}}{{item.minAmount==item.maxAmount?'':('~'+item.minAmount)}}元</text>
+        </view>
+      </view>
+      <template is="list-loading" data="{{loading:showloading,nomore,list:answerList}}"></template>
+    </view>
+  </view>
+  <!-- 推荐家庭 -->
+  <view class="bd mt10" a:if="{{recFamilyList && recFamilyList.length>0}}">
+    <view class="p10-15 bgwh f12 bbe5">推荐家庭</view>
+    <view class="family-list">
+      <view class="family-item bgwh" a:for="{{recFamilyList}}" a:key="userId">
+        <view class="family-item_top p10-15 fsc">
+          <image src="{{item.avatar}}" mode="aspectFill" class="family-avatar" onTap="toFamilyDisplay" data-id="{{item.userId}}" />
+          <view class="family-item_top_mid">
+            <view class="rel fsc">
+              <view class="art1 b" catchTap="toFamilyDisplay" data-id="{{item.userId}}">{{item.nickName}}</view>
+              <image class="real-icon" src="/images/identity_real_icon.png"/>
+              <view class="credit-score-icon" a:if="{{item.creditScore}}">{{item.creditScore}}</view>
+            </view>
+            <view class="fsc mt2">
+              <view class="user-info-stars-wrap fsc" a:if="{{item.adoptionVo.grade}}">
+                <block a:for="{{[1,2,3,4,5]}}" a:key="*this" a:for-index="sIndex" a:for-item="sItem">
+                  <view class="user-info-stars-item" a:if="{{sIndex+1 <= item.adoptionVo.grade}}">
+                    <image src="/images/stars1.png" />
+                  </view>
+                </block>
+              </view>
+              <view class="f10 gor ml5" a:if="{{item.adoptionVo.grade}}">{{item.adoptionVo.grade}}星级家庭</view>
+              <view class="f10 g8" a:else>普通家庭</view>
+              <view class="f10 gor ml5" a:if="{{item.keepPetVo.compositeScore}}">{{item.keepPetVo.compositeScore}}分</view>
+            </view>
+            <view class="f10 g8 mt2">
+              <text>{{item.address}}</text>
+              <text class="ml5" a:if="{{userInfo.userId==demandVo.usersVo.userId}}">  |  距我{{item.distanceStr}}</text>
+            </view>
+          </view>
+          <button class="family-item_top_right" size="mini" catchTap="toFamilyDisplay" data-id="{{item.userId}}" a:if="{{userInfo.userId==demandVo.usersVo.userId}}">去看看</button>
+        </view>
+        <view class="family-item_bottom mc-cell fbc f12">
+          <text>{{item.adoptionVo.petType}}</text>
+          <text class="gr">{{item.minAmount}}{{item.minAmount==item.maxAmount?'':('~'+item.minAmount)}}元</text>
+        </view>
+      </view>
+      <template is="list-loading" data="{{loading:showloading,nomore,list:answerList}}"></template>
+    </view>
+  </view>
+  <view class="bgwh tc mt10" a:if="{{(!answerList|| answerList.length==0) && (!recFamilyList|| recFamilyList.length==0)}}">
+    <image src="/images/demand_list_no_data.png" class="no-data-img" />
+  </view>
+  <!-- 应答按钮 -->
+  <block a:if="{{userInfo.userId!=demandVo.usersVo.userId && demandVo.demandStatus==1}}">
+    <button class="mc-btn2 anser-btn gor" onTap="demandAnser" a:if="{{!isAnswer}}"> 邀请寄我家 </button>
+    <button class="mc-btn2 anser-btn gb2" a:else > 已邀请 </button>
+  </block>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

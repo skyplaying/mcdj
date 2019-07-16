@@ -1,0 +1,48 @@
+.container{
+    padding: 0 30rpx 50rpx;
+    background-color: white;
+}
+
+.notice-list-item{
+    text-align: center;
+}
+
+.notice-time{
+    font-size: 24rpx;
+    line-height: 24rpx;
+    color: #fff;
+    background: #cecece;
+    border-radius: 8rpx;
+    display: inline-block;
+    padding: 8rpx 15rpx;
+    margin: 30rpx 0;
+}
+
+.notice-content{
+    border:1px solid #e5e5e5;
+    border-radius: 10rpx;
+}
+
+.notice-info-wrap{
+    background-color: white;
+    padding: 30rpx;
+    text-align: left;
+}
+
+.remark{
+    color: #888;
+    font-size: 24rpx;
+    margin-top: 30rpx;
+}
+
+.weui-select{
+    background-color: white;
+    text-align: left;
+    color: #888;
+    font-size: 24rpx;
+    border-right: none;
+}
+.weui-select::after{
+    left: 30rpx;
+    right: 30rpx;
+}

@@ -1,0 +1,87 @@
+
+
+<form onSubmit="setFormId" report-submit="true" class="container" a:if="{{isok}}">
+  <!-- 已有提交时间并且状态为未提交说明是重新提交审核 -->
+  <!-- <view class="container1" a:if="{{userInfo.userCertifiedStatus>0 || (userInfo.subReviewTime && !userInfo.userCertifiedStatus  && userInfo.userCertifiedStatus!=0) || isShowPlow}}"> -->
+  <view class="container1" a:if="{{false}}">
+    <view class="hd">
+      <view class="f28 b">入驻萌宠到家</view>
+      <view class="f13 mt10">- 宠物服务专属平台 -</view>
+    </view>
+    <view class="p15">
+      <!-- 入驻流程 -->
+      <view class="process-wrap ptb10">
+        <view class="content_hd">入驻流程</view>
+        <view class="process-list">
+          <view class="process-item {{noDisabled1?'process-item_active':''}}">
+            <view class="f16 b">填写店铺信息</view>
+            <view class="f14 g8">填写店铺的基本资料</view>
+          </view>
+          <view class="process-item {{noDisabled2?'process-item_active':''}}">
+            <view class="f16 b">提交资质信息</view>
+            <view class="f14 g8">营业执照、许可证、身份证等</view>
+          </view>
+          <view class="process-item {{noDisabled3?'process-item_active':''}}">
+            <view class="f16 b">审核资质，开通门店</view>
+            <view class="f14 g8">
+              <text>申请提交后，审核结果将在</text>
+              <text class="gor">2~5个工作日</text>
+              <text>内通知您</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 收费说明 -->
+      <view class="explain-wrap">
+        <view class="content_hd">收费说明</view>
+        <view class="f14 g8 mt15">
+          <view>1、商户入驻萌宠到家，不收取任何费用。</view>
+          <view>2、成交订单时，萌宠到家会收的每笔订单10%的平台服务费。</view>
+        </view>
+      </view>
+    </view>
+    <view class="foot-box">
+      <button class="mc-btn2 gor" hover-class="btn_hover" formType="submit" onTap="toStoreInfo"> 免费入驻 </button>
+    </view>
+  </view>
+  <view class="container2 bgwh" a:elif="{{true}}">
+    <view class="hd">
+      <!-- 入驻流程 -->
+      <view class="process-wrap fbc f12">
+        <view class="process-item">门店审核</view>
+        <view class="process-item">开通服务 </view>
+        <view class="process-item">开店营业 </view>
+      </view>
+    </view>
+    <block a:if="{{false}}">
+      <view class="bd tc">
+        <view class="f16 b">审核中，请耐心等待</view>
+        <image src="/images/family_flow_process.png" />
+        <view class="f14 g8">
+          <text>申请资料已提交，门店审核结果将在</text>
+          <text class="gor">2-3个工作日</text>
+          <text>内通知您，敬请留意。</text>
+        </view>
+      </view>
+      <view class="ft" a:if="{{isShowLifestyle}}">
+        <view class="tc g8 f10 bbe5 p5">关注生活号，可以获得及时推送新的消息哦。</view>
+        <lifestyle publicId="2017090608580548" />
+      </view>
+    </block>
+    <view class="bd-success tc" a:elif="{{false}}">
+      <view class="f16 b">店铺申请通过</view>
+      <icon type="success" size="80" color="#09bb07" />
+      <view class="f14 g8">开通服务项目就能开店营业了</view>
+      <button class="open-service-btn mc-btn1 gor" hover-class="btn_hover" onTap="defaultTap"> 开通服务 </button>
+    </view>
+    <view class="bd-fail tc" a:else>
+      <view class="f16 b">店铺申请未通过</view>
+      <icon type="cancel" size="80" color="#e64340" />
+      <view class="f14 g8">您的申请未通过平台审核，请点击下方按钮查看</view>
+      <button class="open-service-btn mc-btn1 gor" hover-class="btn_hover" onTap="toStoreInfo"> 查看详情 </button>
+    </view>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

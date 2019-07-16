@@ -1,0 +1,41 @@
+
+.container .preload{
+  opacity: 0;
+  position: fixed;
+  z-index: -1;
+}
+
+.container> scroll-view{
+  z-index: 99;
+}
+
+.img_item {
+  width: 47%;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 1;
+}
+
+.img_item1 {
+  margin: 1.5% 1% 1.5% 2%;
+}
+.img_item2 {
+  margin: 1.5% 2% 1.5% 1%;
+}
+
+.img_item > navigator{
+  line-height: 1;
+  margin-bottom: 15rpx; 
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.img_item image{
+  display: block;
+}
+
+.pet-info-box{
+  background-color: white;
+  padding: 10rpx;
+  line-height: 1.5;
+}

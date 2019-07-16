@@ -1,0 +1,13 @@
+
+page,input{
+    font-size: 28rpx;
+}
+
+.wrap-hd{
+    padding: 0 30rpx;
+    line-height: 80rpx;
+    font-weight: bold;
+}
+.textarea{
+    min-height: 100rpx;
+}

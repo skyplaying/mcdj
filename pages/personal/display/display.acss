@@ -1,0 +1,232 @@
+
+
+.container{
+    padding-bottom: 200rpx;
+    font-size: 28rpx;
+}
+
+.refresh{
+    width: 100%;
+    position: fixed;
+    top: 30%;
+    text-align: center;
+}
+
+.refresh-btn{
+    margin-top: 30rpx;
+}
+
+.gor{
+    color: #fdb133;
+}
+
+.wrap_hd{
+    line-height: 70rpx;
+    font-size: 24rpx;
+    font-weight: bold;
+    border-bottom: 1px solid #e5e5e5;
+}
+.wrap_hd .weui-select{
+    border-right: 0;
+}
+.wrap_hd .weui-select::after{
+    display: none;
+}
+
+/* 用户信息 */
+.user-info-wrap{
+    padding: 20rpx 30rpx;
+}
+.user-avatar-wrap{
+    flex: none;
+    position: relative;
+    width: 130rpx;
+    height: 130rpx;
+    line-height: 130rpx;
+    border-radius: 130rpx;
+    text-align: center;
+    background:url("/images/home_avatar_bg.png") no-repeat -1rpx -1rpx;
+    background-size: 100%;
+}
+.user-avatar{
+    width: 100%;
+    height: 100%;
+    border-radius: 10rpx;
+}
+.sex-icon{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 36rpx;
+    height: 36rpx;
+    border-radius: 36rpx;
+}
+
+.user-info_mid{
+    flex: auto;
+    margin-left: 30rpx;
+}
+.real-icon{
+    flex: none;
+    width: 30rpx;
+    height: 30rpx;
+    margin-left: 10rpx;
+}
+.explain-zhima-icon,.explain-video-icon,.explain-real-icon{
+    flex: none;
+    width: 36rpx;
+    height: 36rpx;
+    margin-left: 10rpx;
+}
+.credit-score-icon{
+    flex: none;
+    width: 40rpx;
+    padding-left: 24rpx;
+    line-height: 24rpx;
+    font-size: 16rpx;
+    background: url("/images/home_credit_score_bg.png") no-repeat left top;
+    background-size: 100%;
+    text-align: center;
+    color: #05D0A9;
+    margin-left: 10rpx;
+}
+
+.user-info-stars-wrap{
+    height: 30rpx;
+    line-height: 30rpx;
+}
+.user-info-stars-item{
+    margin: 2rpx;
+    width: 30rpx;
+    height: 30rpx;
+}
+.user-info-stars-item image{
+    width: 100%;
+    height: 100%;
+}
+.bail-icon{
+    width: 70rpx;
+    text-align: center;
+    color: #FF9800;
+    border: 1px solid currentColor;
+    border-radius: 4rpx;
+    font-size: 16rpx;
+    margin-left: 10rpx;
+}
+
+.user-info_right{ 
+    flex: none;
+    margin-left: 20rpx;
+    height: 80rpx;
+}
+.follow-btn,.share-btn{
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 1000px;
+    background-color: #f1f1f1;
+}
+.follow-btn image,.share-btn image{
+    width: 100%;
+    height: 100%;
+}
+
+/* 地址导航 */
+.address-nav-icon{
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 20rpx;
+    flex: none;
+}
+
+/*标题导航栏*/
+.tabs{
+  position: relative;
+  width: 100%;
+  line-height: 90rpx;
+  z-index: 100;
+  background-color: white;
+  margin-bottom: 10rpx;
+}
+
+.top-navbar{
+  width: 750rpx;
+}
+
+/* 服务列表 */
+.server-img{
+    width: 150rpx;
+    height: 150rpx;
+    margin-right: 20rpx;
+    flex: none;
+}
+
+/* 评论列表 */
+.comment-list-tab{
+    display: inline-block;
+    padding: 0 30rpx;
+    line-height: 44rpx;
+    font-size: 20rpx;
+    border-radius: 1000rpx;
+    border: 1px solid #e5e5e5;
+    margin-right: 40rpx;
+}
+.comment-list-tab_active{
+    background-color: #FF9800;
+    color: white;
+    border-color: #FF9800;
+}
+.stars-wrap{
+    line-height: 1;
+}
+.stars-item{
+    margin: 2rpx;
+    width: 30rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+}
+
+.comment-list{
+    padding-bottom: 30rpx;
+}
+.comment-list .comment-item{
+    padding: 30rpx 40rpx;
+    border-top: 1px solid #e5e5e5;
+}
+.comment-avatar{
+    flex: none;
+    width: 70rpx;
+    height: 70rpx;
+    border-radius: 70rpx;
+    margin-right: 20rpx;
+}
+.comment-list .formId-btn{
+    color: #FF9800;
+    font-size: 24rpx;
+    line-height: 60rpx;
+    width: 190rpx;
+    text-align: center;
+    margin: 20rpx auto 0;
+}
+
+/* 个人资料 */
+.bte5-ml15{
+    position: relative;
+}
+.bte5-ml15::before{
+    content: ' ';
+    position: absolute;
+    left: 30rpx;
+    right: 0;
+    top: 0;
+    border-top: 1px solid #e5e5e5;
+}
+.pet-sex{
+    width: 24rpx;
+    height: 24rpx;
+    margin-left: 20rpx;
+}
+.pet-avatar{
+    width: 90rpx;
+    height: 90rpx;
+    border-radius: 90rpx;
+}

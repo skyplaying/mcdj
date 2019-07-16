@@ -1,0 +1,43 @@
+
+page,input,textarea{
+    font-size: 28rpx;
+}
+
+.hd-msg{
+  font-size: 24rpx;
+  color: #888;
+  padding: 30rpx 30rpx 0;
+}
+
+.main{
+  padding: 30rpx;
+}
+
+.examples-btn{
+    color: #0EBAEA;
+    font-size: 24rpx;
+}
+.weui-uploader__files{
+    width: 450rpx;
+    white-space: nowrap;
+    line-height: 1;
+    flex: auto;
+}
+.weui-uploader__file{
+    display: inline-block;
+    float: none;
+    margin-bottom: 0;
+}
+.weui-uploader__input-box{
+    margin: 0;
+    margin-right: 20rpx;
+    flex: none;
+}
+
+.uploading-image-wrap{
+  background-color: white;
+  padding: 30rpx;
+}
+.uploading-image_bd{ 
+    margin: 36rpx 0;
+}

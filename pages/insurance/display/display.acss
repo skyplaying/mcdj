@@ -1,0 +1,19 @@
+.container{
+    padding-bottom: 140rpx;
+}
+
+.explain-bd,.user-bd{
+    line-height: 60rpx;
+}
+
+.pet-avatar{
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 80rpx;
+}
+
+.foot-box .submit-btn{
+    font-size: 28rpx;
+    border-radius: 10px;
+    width: 230rpx;
+}

@@ -1,0 +1,46 @@
+<!-- 寄养需求发布 -->
+<view class="{{isNoFixed?'suspension-wrap_no':'suspension-wrap'}}" hidden="{{!show}}">
+  <view class="suspension-shadow-cover" onTap="_hidden" a:if="{{!isNoFixed}}"></view>
+  <view class="demand-publish-view-wrap">
+    <view class="clear-icon" onTap="_hidden">
+      <icon type="clear" size="17" color="#FF9800" />
+    </view>
+    <view class="demand-publish-view_hd">春节寄养需求</view>
+    <view class="demand-publish-view_bd" onTap="_toDemandDisplay" >
+      <view class="demand-publish-view_pet-type-wrap fsc">
+        <text class="demand-publish-view-label">寄养</text>
+        <view a:if="{{isEdit && isNoFixed}}">{{demandVo.fosterPetTypes}}</view>
+        <block a:else>
+          <view class="demand-publish-view_pet-type-item fsc" catchTap="_petTypeChange" data-index="{{index}}" a:for="{{petTypeList}}" a:key="*this">
+            <view class="demand-publish-view-radio {{petTypeStates[index]?'demand-publish-view-radio-active':''}}"></view>
+            <text>{{item}}</text>
+          </view>
+        </block>
+      </view>
+      <view class="demand-publish-view_time-wrap fsc">
+        <text class="demand-publish-view-label">时间</text>
+        <view a:if="{{isEdit && isNoFixed}}">{{demandVo.startTime}} 至 {{demandVo.endTime}}</view>
+        <block a:else>
+          <button form-type="submit" class="formId-btn demand-publish-view_time" catchTap="_selectSTime">{{startTime||"点击选择"}}</button>
+          <view class="plr10">——</view>
+          <button form-type="submit" class="formId-btn demand-publish-view_time" catchTap="_selectETime">{{endTime||"点击选择"}}</button>
+        </block>
+      </view>
+      <view class="demand-publish-view_address-wrap fsc">
+        <text class="demand-publish-view-label">地址</text>
+        <view class="formId-btn demand-publish-view_address" a:if="{{isEdit && isNoFixed}}">{{demandVo.demandAddress}}</view>
+        <button form-type="submit" class="formId-btn demand-publish-view_address" catchTap="_chooseLocation" a:else >{{address||'点击选择'}}</button>
+      </view>
+    </view>
+    <view class="demand-publish-view_ft fbc">
+      <block a:if="{{isEdit && isNoFixed}}">
+        <button form-type="submit" class="formId-btn demand-publish-view-btn1" onTap="_closeDemand"> 关闭需求 </button>
+        <button form-type="submit" class="formId-btn demand-publish-view-btn2" onTap="_toDemandDisplay"> 应答情况 </button>
+      </block>
+      <block a:else>
+        <button form-type="submit" class="formId-btn demand-publish-view-btn1" onTap="_publishDemand" > {{isEdit?'确认修改':'发布需求'}} </button>
+        <button form-type="submit" class="formId-btn demand-publish-view-btn2" onTap="_toDemandList" a:if="{{isNoFixed}}" > 附近需求 </button>
+      </block>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,51 @@
+  
+
+<import src="/others/template/weui_mc.axml"/>
+<form bindsubmit="setFormId" report-submit="{{true}}" class='container' a:if="{{isok}}">
+  <!-- 顶部tabs -->
+  <view class='hd'>
+    <view class="top-navbar">
+      <block a:for="{{tabs}}" a:key="text">
+        <view id="{{index}}" class="top-navbar__item {{activeIndex == index ? 'top-bar__item_on' : ''}}" onTap="tabClick">
+          {{item.text}}
+        </view>
+      </block>
+      <view class="top-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);width:{{sliderWidth}}rpx;"></view>
+    </view>
+  </view>
+  <!-- 列表 -->
+  <view class='bd'>
+    <block a:for="{{list}}" a:key="fosterOrderId">
+      <template is="list-order-wrap_item" data="{{item,index}}"></template>
+    </block>
+    <template is="list-loading" data="{{loading,list,nomore}}"></template>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" mode='widthFix' />
+</view>
+<!-- 订单 -->
+<template name="list-order-wrap_item"> 
+  <view class='list-order-wrap_item' catchTap="toDisplay" data-index="{{index}}">
+    <view class="list-order-item_hd fbc">
+      <view class="weui-select fsc" catchTap="toUser" data-id="{{item.usersVo.userId}}">
+        <image src="{{item.usersVo.avatar}}" mode="aspectFill" class="list-order-user-avatar" />
+        <text>{{item.usersVo.nickName}}</text>
+      </view>
+      <view class="list-order-item_state gor" a:if="{{item.orderType==1}}"> {{item.orderStatus==1?'待付款':''}}{{item.orderStatus==2?'待确认':''}}{{item.orderStatus==3?'待上门':''}} {{item.orderStatus==4?'寄养中':''}}{{item.orderStatus==5&&tabs[activeIndex].state==3?'待评价':''}} {{item.orderStatus==5&&tabs[activeIndex].state==4?'已完成':''}}{{item.orderStatus==-1?'已关闭':''}}
+      </view>
+      <view class="list-order-item_state gor" a:elif="{{item.orderType==2}}"> {{item.orderStatus==1?'待付款':''}}{{item.orderStatus==2?'待上门':''}}{{item.orderStatus==3?'训练中':''}} {{item.orderStatus==4?'待评价':''}}{{item.orderStatus==5?'已完成':''}}{{item.orderStatus==-1?'已关闭':''}}
+      </view>
+    </view>
+    <view class="list-order-item_bd fss weui-select ptb10">
+      <image src="{{item.receivePetPicture}}" mode="aspectFill" />
+      <view class="list-order-item_bd_right">
+        <view class="f14">{{item.itemName}}</view>
+        <view class="f12 g8">宠物数量：{{item.petCount}}只</view>
+        <view class="f12 g8" a:if="{{item.startTime && item.endTime}}" >寄养时间：{{item.startTime}}至{{item.endTime}}</view>
+        <view class="f12 g8">金额：￥{{item.orderAmount}}</view>
+      </view>
+    </view>
+    <view class="list-order-item_ft bte5 g8 f12">下单时间：{{item.orderTime}}</view>
+  </view>
+</template>

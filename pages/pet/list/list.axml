@@ -1,0 +1,45 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+
+
+<view class="container">
+  <!-- 搜索条-开始 -->
+  <!-- <view class="navbar bgwh">
+    <view class="navbar-search">
+      <view class="navbar-search-input navbar-search-input-onblur">
+        <input placeholder="搜索宠物/地区/关键词等" placeholder-class="f14" onInput="inputTyping" value="{{inputval}}" onConfirm="searchconfirm" />
+        <view class="weui-icon-clear" a:if="{{inputval.length > 0}}" onTap="clearInput">
+          <icon type="cancel" size="14"></icon>
+        </view>
+      </view>
+    </view>
+    <view class="navbar-search-btn" onTap="searchconfirm">搜索</view>
+  </view> -->
+  <!-- 搜索条-结束 -->
+  <!-- 条件选择-开始 -->
+  <view class="fbc list-pet-laber-wrap">
+    <view class="list-pet-laber {{!orderType&&orderType!=0?'laber-active':''}}" onTap="changeOrderType">综合</view>
+    <view class="list-pet-laber {{orderType==0?'laber-active':''}}" onTap="changeOrderType" data-index="0">距离近</view>
+    <view class="list-pet-laber {{orderType==1?'laber-active':''}}" onTap="changeOrderType" data-index="1">最新</view>
+    <view class="list-pet-laber {{orderType==2?'laber-active':''}}" onTap="changeOrderType" data-index="2">热门</view>
+    <picker onChange="categoryChange" value="{{categoryIndex}}" range="{{category}}" range-key="categoryName">
+      <view class="row">
+        <view class="row-extra" a:if="{{!categoryIndex&&categoryIndex!=0}}">宠物类型</view>
+        <view class="row-extra" a:else>{{category[categoryIndex].categoryName}}</view>
+      </view>
+    </picker>
+  </view>
+  <!-- 条件选择-结束 -->
+  <view class="" a:if="{{isShowLifestyle}}">
+    <lifestyle publicId="2017090608580548" />
+  </view>
+  <!-- 悬浮按钮-开始 -->
+  <view class="float-btn-wrap">
+    <view class="float-btn-item"><image src="/images/pet_top.png" onTap="toTop" /></view>
+    <navigator url="/pages/pet/found/found" hover-class="none" class="float-btn-item"><image src="/images/pet_add.png" /></navigator>
+  </view>
+  <!-- 悬浮按钮-结束 -->
+  <!-- 列表内容 -->
+  <include src="/pages/pet/petModule/petModule.axml"/>
+</view>

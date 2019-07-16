@@ -1,0 +1,169 @@
+
+
+.container{
+    padding-bottom: 200rpx;
+    font-size: 28rpx;
+}
+.gor{
+    color: #fdb133;
+}
+
+.wrap_hd{
+    padding: 0 30rpx;
+    line-height: 80rpx;
+    font-size: 28rpx;
+    color: #888;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.mc-cell:first-child::before{
+    display: none;
+}
+
+/* 用户信息 */
+.user-info-wrap{
+    padding: 26rpx 0;
+}
+.user-avatar-wrap{
+    flex: none;
+    position: relative;
+    width: 120rpx;
+    height: 120rpx;
+    line-height: 120rpx;
+    border-radius: 120rpx;
+    text-align: center;
+    background:url("/images/home_avatar_bg.png") no-repeat -1rpx -1rpx;
+    background-size: 100%;
+}
+.user-avatar{
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 120rpx;
+}
+.sex-icon{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 36rpx;
+    height: 36rpx;
+    border-radius: 36rpx;
+}
+.user-info_mid{
+    flex: auto;
+    margin-left: 30rpx;
+}
+
+/* 技能 */
+.skill-item{
+    margin-left: 62rpx;
+}
+.skill-item:first-child{
+    margin-left: 0;
+}
+.skill-item image{
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 10rpx;
+}
+
+/* 获得认证 */
+.authentication_list{
+    width: 100%;
+    box-sizing: border-box;
+    overflow:hidden; 
+    white-space: nowrap;
+}
+.authentication-item{
+    display: inline-block;
+    width: 120rpx;
+    margin-left: 70rpx;
+    text-align: center;
+    padding: 16rpx 0;
+}
+.authentication-item:first-child{
+    margin-left: 0;
+}
+.authentication-item-icon{
+    width: 36rpx;
+    height: 36rpx;
+}
+
+/* 经验 */
+.family-experience-name{
+    position: relative;
+    padding-right: 30rpx;
+}
+.family-experience-name image{
+    width: 30rpx;
+    height: 30rpx;
+    margin-left: 10rpx;
+}
+
+/* 提供物品 */
+.provide_list{
+    width: 100%;
+    box-sizing: border-box;
+    overflow:hidden; 
+    white-space: nowrap;
+}
+.provide-item{
+    display: inline-block;
+    width: 100rpx;
+    margin-left: 29rpx;
+    text-align: center;
+}
+.provide-item-icon{
+    width: 40rpx;
+    height: 40rpx;
+}
+/* tips */
+.tips-item{
+    line-height: 44rpx;
+}
+
+/* 须知 */
+.family-guarantee-img{
+    width: 690rpx;
+    height: 280rpx;
+}
+
+/* 地址导航 */
+.address-nav-icon{
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 20rpx;
+    flex: none;
+}
+
+/* ta的宠物 */
+.pet-list-bd .weui-select{
+    padding-left: 40rpx;
+    padding-top: 20rpx; 
+    padding-bottom: 20rpx; 
+    line-height: 1.5em;
+}
+.pet-avatar{
+    width: 84rpx;
+    height: 84rpx;
+    border-radius: 84rpx;
+    margin-right: 30rpx;
+    flex: none;
+}
+.gender-icon{
+    width: 32rpx;
+    height: 32rpx;
+    vertical-align: middle;
+    margin-left: 8rpx;
+    flex: none;
+}
+
+/* 评分 */
+.stars-wrap{
+    line-height: 1;
+}
+.stars-item{
+    margin: 2rpx;
+    width: 30rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+}

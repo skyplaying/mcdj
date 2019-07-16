@@ -1,0 +1,140 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<form class="container" report-submit="{{true}}" onSubmit="setFormId" a:if="{{isok}}">
+  <template is="family-apply-step" data="{{step:1}}" a:if="{{userVo.userCertifiedStatus!=1}}"></template>
+  <view class="main">
+    <view class="found-cells">
+      <!-- 家庭名称 -->
+      <view class='found-cell'>
+        <view class='found-cell_hd'>家庭名称</view>
+        <view class='found-cell_bd'>
+          <input placeholder="点击填写" onInput="inputFamilyName" onBlur="blurFamilyName" value="{{familyName}}" />
+        </view>
+      </view>
+    </view>
+    <view class="found-cells mt10">
+      <!-- 家庭信息 -->
+      <label class='found-cell' a:if="{{userVo.userCertifiedStatus!=1}}">
+        <view class='found-cell_hd'>家庭信息</view>
+        <navigator url="../familyInfo/familyInfo" hover-class="none" class='found-cell_bd tr'>
+          <text class="gb2" a:if="{{!isFamilyInfo}}">待完善</text>
+          <text class="gor" a:else>已完善</text>
+        </navigator>
+      </label>
+      <!-- 家庭描述 -->
+      <label class='found-cell'>
+        <view class='found-cell_hd'>家庭描述</view>
+        <navigator url="../describe/describe" hover-class="none" class='found-cell_bd tr'>
+          <text class="gb2" a:if="{{!familyDescribe}}">待完善</text>
+          <text class="gor" a:else>已完善</text>
+        </navigator>
+      </label>
+    </view>
+    <view class="found-cells mt10">
+      <!--最多可寄养-->
+      <label class='found-cell'>
+        <view class='found-cell_hd'>最多可寄养</view>
+        <view class='found-cell_bd fec' onTap="showMaxPet">
+          <view class='gb2 tr' a:if="{{!petNumVal[0] && !petNumVal[1]}}">待完善</view>
+          <view class='max-pet-laber' a:if="{{petNumVal[0]}}">猫{{petNumVal[0]}}只</view>
+          <view class='max-pet-laber' a:if="{{petNumVal[1]}}">狗{{petNumVal[1]}}只</view>
+        </view>
+      </label>
+      <!-- 寄养价格 -->
+      <label class='found-cell found-cell-laber'>
+        <view class='found-cell_hd'>寄养价格</view>
+        <view class='found-cell_bd tr' catchTap='showFoundPrice'>
+          <view class='g8' a:if="{{(!priceList[0].price || !priceList[0].checked) && (!priceList[1].price || !priceList[1].checked) &&(!priceList[2].price || !priceList[2].checked) &&(!priceList[3].price || !priceList[3].checked)}}">待完善</view>
+          <view a:else>
+            <block a:for="{{priceList}}" a:key="*this">
+              <view class='dayCare-price-laber' hidden='{{!item.price || !item.checked}}'>{{item.name+item.price+'元'}}</view>
+            </block>
+          </view>
+        </view>
+      </label>
+      <!-- 提供物品 -->
+      <label class='found-cell'>
+        <view class='found-cell_hd'>提供物品</view>
+        <navigator url="../provide/provide" hover-class="none" class='found-cell_bd tr'>
+          <text class="gb2" a:if="{{!isProvide}}">待完善</text>
+          <text class="gor" a:else>已完善</text>
+        </navigator>
+      </label>
+      <!-- 其他资料 -->
+      <label class='found-cell'>
+        <view class='found-cell_hd'>其他资料</view>
+        <navigator url="../others/others" hover-class="none" class='found-cell_bd tr'>
+          <text class="gb2" a:if="{{!isOther}}">待完善</text>
+          <text class="gor" a:else>已完善</text>
+        </navigator>
+      </label>
+    </view>
+    <view class="found-cells mt10">
+      <!-- 个人资料 -->
+      <label class='found-cell'>
+        <view class='found-cell_hd'>个人资料</view>
+        <navigator url="../../my/userInfo/userInfo" hover-class="none" class='found-cell_bd tr'>
+          <text class="gb2" a:if="{{!isUserInfo}}">待完善</text>
+          <text class="gor" a:else>已完善</text>
+        </navigator>
+      </label>
+    </view>
+    <view class="found-cells mt10">
+      <!-- 宠物信息 -->
+      <label class='found-cell'>
+        <view class='found-cell_hd'>宠物信息</view>
+        <navigator url="../experience/experience" hover-class="none" class='found-cell_bd tr'>
+          <text class="gb2" a:if="{{!isExperience}}">待完善</text>
+          <text class="gor" a:else>已完善</text>
+        </navigator>
+      </label>
+    </view>
+  </view>
+  <button form-type="submit" onTap="next" type="primary" class="w345 mc-btn2 gor auto mt20 mb50" hover-class="none" disabled="{{!noDisabled}}">下一步</button>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>
+<!-- 悬浮最多可寄养选择框 -->
+<view class='suspension-wrap' a:if="{{showMaxPet}}">
+  <view class="suspension-shadow-cover"></view>
+  <view class='suspension-frame-max-pet'>
+    <view class='suspension-max-pet_hd fec'>
+      <button class="formId-btn" type='primary' onTap='confirmMaxPet'>确定</button>
+    </view>
+    <picker-view class='suspension-time_bd' indicatorStyle="height: 50px;" style="width: 100%; height: 150px;" value="{{petNumVal}}" onChange="petNumChange">
+      <picker-view-column>
+        <view a:for="{{catNumArr}}" a:key="*this" style="height: 50px;line-height: 50px">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view a:for="{{dogNumArr}}" a:key="*this" style="height: 50px;line-height: 50px">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>
+<!-- 悬浮价格填写框 -->
+<view class='suspension-wrap' hidden="{{!showFoundPrice}}">
+  <view class="suspension-shadow-cover"></view>
+  <view class='suspension-frame-price'>
+    <view class='suspension-price_hd'>寄养价格（元/天）</view>
+    <view class='suspension-price_bd'>
+      <view class='suspension-price-item bte5 fbc' a:for="{{suspensionPriceList}}" a:key="name">
+        <view class='suspension-price-item_left fsc' catchTap='priceChange' data-index="{{index}}">
+          <view class='suspension-price-icon-wrap {{item.checked?"suspension-price-icon-wrap_activate":""}}'>
+            <icon type='success' size="17" a:if='{{item.checked}}'></icon>
+          </view>
+          <view>{{item.name}}</view>
+        </view>
+        <view class='suspension-price-item_right fsc' hidden='{{!item.checked}}'>
+          <view class='suspension-price-rmb'>￥</view>
+          <input placeholder='点击填写' onInput='inputDayCarePrice' data-index="{{index}}" value='{{item.price}}' type='number' selection-end="400" />
+        </view>
+      </view>
+    </view>
+    <view class='suspension-price_ft fbc'>
+      <button onTap='cancelFoundPrice'>取消</button>
+      <button type='primary' onTap='confirmFoundPrice'>确定</button>
+    </view>
+  </view>
+</view>

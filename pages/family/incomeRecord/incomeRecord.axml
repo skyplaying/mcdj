@@ -1,0 +1,23 @@
+
+<import src="/others/template/weui_mc.axml"/>
+<view class="pct100">
+  <view class="hd fbc f14 p15">
+    <view class="month-select-wrap" onTap="selectMonth">
+      <text>{{year}}年{{month}}月</text>
+      <text class="ml5 f10 vm">▼</text>
+    </view>
+    <view class="g8">收入￥{{invAmount}}</view>
+  </view>
+  <view class="list-bd">
+    <block a:for="{{list}}" a:key="recordId">
+      <view class="mc-cell fbc bgwh">
+        <view class="flex-a">
+          <view class="art1 f14">{{item.petType}}</view>
+          <view class="f12 g8 pt5">{{item.recordTime}}</view>
+        </view>
+        <view class="flex-n b {{item.petType=='狗狗寄养'?'':'gb'}}"> +{{item.thisAmount}} </view>
+      </view>
+    </block>
+    <template is="list-loading" data="{{loading,nomore,list}}"></template>
+  </view>
+</view> 

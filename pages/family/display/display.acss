@@ -1,0 +1,423 @@
+
+
+.container{
+    padding-bottom: 200rpx;
+    font-size: 28rpx;
+}
+
+.refresh{
+    width: 100%;
+    position: fixed;
+    top: 30%;
+    text-align: center;
+}
+
+.refresh-btn{
+    margin-top: 30rpx;
+}
+
+.gor{
+    color: #fdb133;
+}
+
+.wrap_hd{
+    line-height: 70rpx;
+    font-size: 24rpx;
+    font-weight: bold;
+    border-bottom: 1px solid #e5e5e5;
+}
+.wrap_hd .weui-select{
+    border-right: 0;
+}
+.wrap_hd .weui-select::after{
+    display: none;
+}
+
+/* 头部图片 */
+.swiper-wrap{
+    position: relative;
+    width: 100%;
+    height: 620rpx;
+}
+.swiper{
+    height: 100%;
+}
+.swiper-img{
+    display: block;
+    width: 100%;
+    height: 620rpx;
+}
+.swiper-no-data{
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    margin-top: -50rpx;
+    text-align: center;
+    color: #888;
+}
+.upload-img-wrap{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    line-height: 56rpx;
+    height: 56rpx;
+    color: white;
+    text-align: center;
+    font-size: 24rpx;
+}
+.upload-img-wrap::before{
+    content: ' ';
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.5;
+}
+.family_add_icon{
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 10rpx;
+}
+.hd-btn-wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20rpx 30rpx;
+}
+.leave-word,.follow-btn{
+    position: relative;
+    z-index: 10;
+    flex: none;
+    width: 72rpx;
+    height: 72rpx;
+    box-sizing: border-box;
+    padding: 6rpx;
+    text-align: center;
+    color: #888;
+}
+.follow-btn::before,.leave-word::before{
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    border-radius: 1000px;
+    opacity: 0.5;
+    z-index: -1;
+}
+.leave-word-icon,.follow-icon{
+    width: 60rpx;
+    height: 60rpx;
+}
+
+/* 用户信息 */
+.user-info-wrap{
+    padding: 20rpx 0 20rpx 30rpx;
+}
+.user-avatar-wrap{
+    flex: none;
+    position: relative;
+    width: 120rpx;
+    height: 120rpx;
+    line-height: 120rpx;
+    border-radius: 120rpx;
+    text-align: center;
+    padding: 18rpx;
+    background:url("/images/home_avatar_bg.png") no-repeat -1rpx -1rpx;
+    background-size: 100%;
+}
+.user-avatar{
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 120rpx;
+}
+.sex-icon{
+    position: absolute;
+    bottom: 10rpx;
+    right: 10rpx;
+    width: 36rpx;
+    height: 36rpx;
+    border-radius: 36rpx;
+}
+
+.user-info_mid{
+    flex: auto;
+    margin-left: 20rpx;
+}
+.real-icon{
+    flex: none;
+    width: 30rpx;
+    height: 30rpx;
+    margin-left: 10rpx;
+}
+.explain-zhima-icon,.explain-video-icon,.explain-real-icon{
+    flex: none;
+    width: 36rpx;
+    height: 36rpx;
+    margin-left: 10rpx;
+}
+.credit-score-icon{
+    flex: none;
+    width: 40rpx;
+    padding-left: 24rpx;
+    line-height: 24rpx;
+    font-size: 16rpx;
+    background: url("/images/home_credit_score_bg.png") no-repeat left top;
+    background-size: 100%;
+    text-align: center;
+    color: #05D0A9;
+    margin-left: 10rpx;
+}
+
+.user-info-stars-wrap{
+    height: 30rpx;
+    line-height: 30rpx;
+}
+.user-info-stars-item{
+    margin: 2rpx;
+    width: 30rpx;
+    height: 30rpx;
+}
+.user-info-stars-item image{
+    width: 100%;
+    height: 100%;
+}
+.bail-icon{
+    width: 70rpx;
+    text-align: center;
+    color: #FF9800;
+    border: 1px solid currentColor;
+    border-radius: 4rpx;
+    font-size: 16rpx;
+    margin-left: 10rpx;
+}
+
+.user-info_right{
+    flex: none;
+    margin-left: 20rpx;
+    height: 120rpx;
+}
+.user-info_right .weui-select{
+    border-right: 0;
+    padding-left: 0;
+    margin-top: -20rpx;
+    font-size: 24rpx;
+}
+
+/* 价格 */
+.price-item-right{
+    width: 120rpx;
+    text-align: center;
+}
+.price-day-num{
+    padding: 2rpx 20rpx;
+    border: 1px solid #e5e5e5;
+    border-radius: 1000rpx;
+    font-size: 24rpx;
+}
+
+/* 家庭描述 */
+.family-info-describe{
+    line-height: 42rpx;
+    max-height: 168rpx;
+    overflow: hidden;
+}
+.family-info_all .family-info-describe{
+    max-height: inherit;
+}
+.family-info-describe-select {
+  position: relative;
+  height: 2.58823529em; 
+}
+.family-info-describe-select:before,.family-info-describe-select:after {
+  content: " ";
+  display: inline-block;
+  height: 12rpx;
+  width: 12rpx;
+  border-width: 0 4rpx 4rpx  0;
+  border-color: #fdb133;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+          transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  right: 50%;
+  margin: -8rpx;
+}
+.family-info-describe-select:before {
+  top: 40%;
+}
+.family-info-describe-select:after {
+  top: 60%;
+}
+.family-info_all .family-info-describe-select:before,.family-info_all .family-info-describe-select:after{
+  border-width: 4rpx 0 0 4rpx;
+}
+
+/* 环境 */
+.environment_list{
+    width: 100%;
+    box-sizing: border-box;
+    overflow:hidden; 
+    white-space: nowrap;
+}
+.environment-item{
+    display: inline-block;
+    width: 138rpx;
+    text-align: center;
+}
+.environment-item-icon{
+    width: 60rpx;
+    height: 60rpx;
+}
+
+/* 提供物品 */
+.provide_list{
+    width: 100%;
+    box-sizing: border-box;
+    overflow:hidden; 
+    white-space: nowrap;
+}
+.provide-item{
+    display: inline-block;
+    width: 100rpx;
+    margin-left: 29rpx;
+    text-align: center;
+}
+.provide-item-icon{
+    width: 40rpx;
+    height: 40rpx;
+}
+/* tips */
+.tips-item{
+    line-height: 44rpx;
+}
+
+/* 须知 */
+.family-guarantee-img{
+    width: 690rpx;
+    height: 280rpx;
+}
+
+/* 地址导航 */
+.address-nav-icon{
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 20rpx;
+    flex: none;
+}
+
+/* ta的宠物 */
+.pet-list-bd .weui-select{
+    padding-left: 40rpx;
+    padding-top: 20rpx; 
+    padding-bottom: 20rpx; 
+    line-height: 1.5em;
+}
+.pet-avatar{
+    width: 84rpx;
+    height: 84rpx;
+    border-radius: 84rpx;
+    margin-right: 30rpx;
+    flex: none;
+}
+.gender-icon{
+    width: 32rpx;
+    height: 32rpx;
+    vertical-align: middle;
+    margin-left: 8rpx;
+    flex: none;
+}
+
+/* 底部按钮 */
+
+.edit-btn{
+    width: 100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    text-align: center;
+    background-color: #0EBAEA;
+    color: white;
+}
+
+
+/* 评分 */
+.stars-wrap{
+    line-height: 1;
+}
+.stars-item{
+    margin: 2rpx;
+    width: 30rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+}
+
+/* 评价 */
+.comment-list{
+    padding-bottom: 30rpx;
+}
+.comment-list .comment-item{
+    padding: 30rpx 40rpx;
+}
+.comment-avatar{
+    flex: none;
+    width: 70rpx;
+    height: 70rpx;
+    border-radius: 70rpx;
+    margin-right: 20rpx;
+}
+.comment-list .formId-btn{
+    color: #FF9800;
+    font-size: 24rpx;
+    line-height: 60rpx;
+    width: 190rpx;
+    text-align: center;
+    margin: 20rpx auto 0;
+}
+
+
+
+/* 悬浮说明框 */
+.suspension-environment-frame{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: white;
+    overflow: auto;
+}
+
+.suspension-environment-ft{
+    width: 30px;
+    height: 30px;
+    padding: 30px;
+    text-align: center;
+    line-height: 1;
+    margin: 80rpx auto 20rpx;
+}
+.suspension-environment-content{
+    padding: 20rpx 30rpx;
+}
+.suspension-environment-title{
+    font-size: 28rpx;
+    font-weight: bold;
+    padding: 20rpx 0;
+}
+.suspension-environment-list{
+    margin-top: 20rpx;
+}
+.suspension-environment-list .environment-item{
+    width: 172.5rpx;
+}

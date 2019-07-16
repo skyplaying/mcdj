@@ -1,0 +1,46 @@
+
+<form onSubmit="submit" class="container">
+  <view class="bgwh">
+    <view class="textarea-box">
+      <textarea value="{{initialValue}}" placeholder="{{placeholder}}" maxlength="{{maxlength || 140}}" onInput="input" placeholder-class="gb2" auto-height="true"/>
+      <view class="weui-uploader">
+        <view class="weui-uploader__bd pt15">
+          <view class="weui-uploader__files" id="uploaderFiles">
+            <block a:for="{{picturesPath}}" a:key="*this">
+              <view class="weui-uploader__file rel" id="{{item}}" style="margin-top:0;">
+                <view class="weui-icon-clear" onTap="deleteFosterageImg" data-index="{{index}}">
+                  <icon type="cancel" size="14" class="bgwh"></icon>
+                </view>
+                <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" onTap="previewFosterageImg" data-index="{{index}}" />
+              </view>
+            </block>
+          </view>
+          <view class="weui-uploader__input-box" a:if="{{picturesPath.length!=4}}">
+            <view class="weui-uploader__input" onTap="chooseFosterageImg"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="bte5">
+      <picker onChange="typeChange" value="{{typeIndex}}" range="{{typeArray}}" range-key="name">
+        <view class="weui-select fbc">
+          <view class="mc-cell-laber">发布到</view>
+          <view class="gor art1">{{typeArray[typeIndex || 0]}}</view>
+        </view>
+      </picker>
+      <view class="mc-cell fbc">
+        <view class="mc-cell-laber">关于宠物</view>
+        <scroll-view scroll-x>
+          <!-- <block a:for="{{petList}}" a:key="petId"> -->
+            <image onTap="selectPet" data-id="{{item.petId}}" class="pet-avatar {{isSelects[item.petId]?'gor':'gf'}}" mode="aspectFill" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511161252093&di=1b6c477961672cea65c7aae24f76a96f&imgtype=0&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F902397dda144ad34936e284dd9a20cf430ad8523.jpg"/>
+            <image onTap="selectPet" data-id="{{item.petId}}" class="pet-avatar {{isSelects[item.petId]?'gor':'gf'}}" mode="aspectFill" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511161252093&di=1b6c477961672cea65c7aae24f76a96f&imgtype=0&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F902397dda144ad34936e284dd9a20cf430ad8523.jpg"/>
+            <image onTap="selectPet" data-id="{{item.petId}}" class="pet-avatar {{isSelects[item.petId]?'gor':'gf'}}" mode="aspectFill" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511161252093&di=1b6c477961672cea65c7aae24f76a96f&imgtype=0&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F902397dda144ad34936e284dd9a20cf430ad8523.jpg"/>
+          <!-- </block> -->
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <view class="foot-box">
+    <button type="primary" form-type="submit"class="mc-btn2 gor" hover-class="none">确定</button>
+  </view>
+</form>

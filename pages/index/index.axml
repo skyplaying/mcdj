@@ -1,0 +1,234 @@
+
+<import src="/others/template/weui_mc.axml"/>
+<form onSubmit="setFormId" report-submit="{{true}}" class="container {{isFamily?'':'bgwh'}}" a:if="{{isok}}">
+  <!-- <favorite a:if="{{canIUseFavorite}}">收藏小程序，下次使用更方便</favorite> -->
+  <!-- 头部导航-开始 -->
+  <view class="hd">
+    <view class="banner">
+      <swiper class="banner" indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}">
+        <block a:for="{{bannerList}}" a:key="img">
+          <swiper-item>
+            <view catchTap="swiperNav" data-index="{{index}}" hover-class="none">
+              <image src="{{item.bannerPath}}" mode="aspectFill" class="banner-img" />
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="navbar {{isChangeNavbar?'navbar-white':''}}">
+        <view class="dropdown" onTap="chooseCity">
+          <view class="dropdown-toggle" style="color:black;">
+            <view class="dropdown-toggle-font">{{city}}</view>
+            <text class="caret"></text>
+          </view>
+        </view>
+        <!-- <navigator url="/pages/colligate/search/search" class="navbar-search"><view class="navbar-search-input navbar-search-input-onblur"><icon type="search" size="12"></icon><text>搜索宠物/地区/关键词等</text></view></navigator> -->
+      </view>
+    </view>
+  </view>
+  <!-- 寄养需求发布 -->
+  <block a:if="{{!isFamily}}">
+    <!-- <demand-publish-view a:if="{{!hidDemandPublish}}" show="{{!hidDemandPublish}}" isNoFixed="{{true}}" onHidden="hidDemandPublish" id="{{userInfo.fosterDemandId || null}}" onAnewLogin="demandLogin" onFinish="finishDemand"></demand-publish-view> -->
+    <view class="demand-wrap" a:if="{{!hidDemandPublish}}">
+      <!-- <view class="clear-icon" onTap="hidDemandPublish"><icon type="clear" size="17" color="#FF9800" /></view> -->
+      <view class="fsc">
+        <image src="/images/demand_index_icon.png" class="demand-img" />
+        <view>
+          <view class="f17 b">宠物寄养</view>
+          <view class="f13 mt10">家庭式宠物寄养，给你的宠物无微不至的照顾</view>
+        </view>
+      </view>
+      <view class="demand-btn-wrap">
+        <button type="primary" onTap="toDemandDisplay" a:if="{{userInfo.fosterDemandId}}"> 查看预约 </button>
+        <button class="mc-btn2 gor" onTap="toDemandFound" a:else> 预约寄养 </button>
+        <button class="mc-btn1" onTap="toDemandList"> 附近需求 </button>
+      </view>
+    </view>
+    <view class="p10-15 bgwh fbc f14" a:else>
+      <block a:if="{{userInfo.fosterDemandId}}">
+        <text>您有一条正在进行中的需求...</text>
+        <button class="mc-btn2 gor" size="mini" onTap="hidDemandPublish"> 查看预约 </button>
+      </block>
+      <block a:else>
+        <text>有寄养需求？那赶紧发布吧...</text>
+        <button class="mc-btn2 gor" size="mini" onTap="hidDemandPublish"> 预约寄养 </button>
+      </block>
+    </view>
+  </block>
+  <!-- 列表 -->
+  <view class="bd">
+    <!-- 宠物主人端 -->
+    <block a:if="{{!isFamily}}">
+      <view class="p15 server-btn-wrap fac tc">
+        <view onTap="loginAfterNav" data-url="../personal/list/list?gradesIndex=0" class="service-btn-list-item">
+          <image src="/images/index_foster_icon.png" />
+          <view>宠物寄养</view>
+        </view>
+        <view onTap="loginAfterNav" data-url="../personal/list/list?gradesIndex=1" class="service-btn-list-item">
+          <image src="/images/index_train_icon.png" />
+          <view>狗狗训练</view>
+        </view>
+        <view onTap="loginAfterNav" data-url="../insurance/flow/flow" class="service-btn-list-item">
+          <image src="/images/index_insurance_icon.png" />
+          <view>宠物保险</view>
+        </view>
+        <view onTap="toDistinguish" class="service-btn-list-item">
+          <image src="/images/index_distinguish_icon.png" />
+          <view>AR识宠</view>
+        </view>
+      </view>
+      <view class="plr15 service-process mt10 pb60">
+        <view class="service-process_hd fsc f14 b">
+          <image src="/images/index_foster_process_icon.png" />
+          <text>寄养流程服务</text>
+        </view>
+        <view class="service-process-list fbc tc mt10">
+          <image src="/images/index_foster_process.png" />
+        </view>
+      </view>
+      <view class="contact-wrap">
+        <view class="contact-btn-wrap">
+          <view>联系客服</view>
+          <view class="contact-btn-cover-wrap">
+            <block a:for="{{8}}" a:key="*this">
+              <contact-button tnt-inst-id="KZSSPFCN" scene="SCE00003335" size="70"/>
+            </block>
+          </view>
+        </view>
+        <view class="tc f10 g8 mt10">周一至周五 09:30-20:30</view>
+      </view>
+    </block>
+    <!-- 家庭端 -->
+    <block a:else>
+      <!-- 顶部tabs -->
+      <view class="top-navbar bgwh">
+        <block a:for="{{tabs}}" a:key="*this">
+          <view id="{{index}}" class="top-navbar__item {{activeIndex == index ? 'top-bar__item_on' : ''}}" onTap="tabClick">
+          {{item}}
+        </view>
+        </block>
+        <view class="top-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);width:{{sliderWidth}}rpx;"></view>
+      </view>
+      <!-- 订单列表 -->
+      <view class="order-list-wrap" hidden="{{activeIndex!=0}}">
+        <view class="order-list_hd f12 fbc p10-15">
+          <text class="g8">服务订单：{{total}}</text>
+          <view class="fsc">
+            <text class="mr10">{{userInfo.adoptionVo.isOrderTaking?'接单中':'休息中'}}</text>
+            <switch checked="{{userInfo.adoptionVo.isOrderTaking}}" onChange="receiptChange" />
+          </view>
+        </view>
+        <view class="order-list_bd">
+          <template is="list-order-wrap_item" data="{{item,index}}" a:for="{{orderList}}" a:key="fosterOrderId"></template>
+        </view>
+        <template is="list-loading" data="{{loading:showloading,nomore:nomoreOrder,list:orderList}}"></template>
+      </view>
+      <!-- 需求列表 -->
+      <view class='demand-list-wrap' hidden="{{activeIndex!=1}}">
+        <view class="demand-list-hd">
+          <view class="condition-picker-wrap fsc">
+            <view class="condition-picker">
+              <picker onChange="changeDemandSort" value="{{demandSortIndex}}" range="{{demandSortList}}">
+                <view>
+                  <text class="{{!demandSortIndex?'':'gor'}}">{{demandSortIndex?demandSortList[demandSortIndex]:'默认排序'}}</text>
+                  <text class="ml5 f10">▼</text>
+                </view>
+              </picker>
+            </view>
+            <view class="condition-picker">
+              <picker onChange="changeDemandPetType" value="{{demandPetTypeIndex}}" range="{{demandPetTypeList}}">
+                <view>
+                  <text class="{{!demandPetTypeIndex?'':'gor'}}">{{demandPetTypeIndex?demandPetTypeList[demandPetTypeIndex]:'宠物类型'}}</text>
+                  <text class="ml5 f10">▼</text>
+                </view>
+              </picker>
+            </view>
+          </view>
+        </view>
+        <view class="demand-list-bd">
+          <navigator url="/pages/demand/display/display?fosterDemandId={{item.fosterDemandId}}" class="demand-item bgwh" a:for="{{demandList}}" a:key="userId">
+            <view class="demand-item_hd p10-15 bbe5 fsc">
+              <image src="{{item.usersVo.avatar}}" mode="aspectFill" class="demand-avatar" />
+              <view class="demand-item_hd_mid">
+                <view class="rel fsc">
+                  <view class="art1 b f14">{{item.usersVo.nickName}}</view>
+                  <view class="flex-n f10 ml10 g8">{{item.usersVo.occupation}}</view>
+                </view>
+                <view class="f10 g8 mt2">{{item.publishTime}}发布</view>
+              </view>
+              <view class="demand-item_hd_right flex-n f10 tr">
+                <view class="g8">距我{{item.distance}}</view>
+                <view class="gor mt5">{{item.demandCount || '无'}}人应答</view>
+              </view>
+            </view>
+            <view class="demand-item_bd p10-15 fbc">
+              <view class="demand-item_bd_left">
+                <view class="fsc f12">
+                  <image src="/images/demand_pet_icon.png" />
+                  <view>{{item.fosterPetTypes}}</view>
+                </view>
+                <view class="fsc f12">
+                  <image src="/images/demand_time_icon.png" />
+                  <text>{{item.startTime}}至{{item.endTime}}</text>
+                  <text class="ml10">共{{item.fosterNum}}天</text>
+                </view>
+                <view class="fsc f12">
+                  <image src="/images/demand_address_icon.png" />
+                  <view>{{item.demandAddress}}</view>
+                </view>
+              </view>
+              <view class="demand-item_bd_right">
+                <block a:for="{{item.petAvatarList}}" a:key="*this">
+                  <image src="{{item}}" mode="aspectFill" />
+                </block>
+              </view>
+            </view>
+          </navigator>
+        </view>
+        <template is="list-loading" data="{{loading:showloading,nomore:nomoreDemand,list:demandList}}"></template>
+      </view>
+    </block>
+  </view>
+  <!-- 悬浮卡包卡劵领取 -->
+  <image src="/images/index_card_bag_receive.png" mode="widthFix" class="card-bag-receive" onTap="receiveCardBag" />
+</form>
+<view class='container-loading-index' a:else>
+  <image src="/images/index_loading.png" mode='widthFix' />
+</view>
+<!-- 订单 -->
+<template name="list-order-wrap_item">
+  <view class='list-order-wrap_item' catchTap="toOrderDisplay" data-index="{{index}}">
+    <view class="list-order-item_hd fbc">
+      <view class="weui-select fsc" catchTap="toUser" data-id="{{item.usersVo.userId}}">
+        <image src="{{item.usersVo.avatar}}" mode="aspectFill" class="list-order-user-avatar" />
+        <text>{{item.usersVo.nickName}}</text>
+      </view>
+      <view class="list-order-item_state gor" a:if="{{item.orderType==1}}"> {{item.orderStatus==1?'待付款':''}}{{item.orderStatus==2?'待确认':''}}{{item.orderStatus==3?'待上门':''}} {{item.orderStatus==4?'寄养中':''}}{{item.orderStatus==5&&tabs[activeIndex].state==3?'待评价':''}} {{item.orderStatus==5&&tabs[activeIndex].state==4?'已完成':''}}{{item.orderStatus==-1?'已关闭':''}}
+      </view>
+      <view class="list-order-item_state gor" a:elif="{{item.orderType==2}}"> {{item.orderStatus==1?'待付款':''}}{{item.orderStatus==2?'待上门':''}}{{item.orderStatus==3?'训练中':''}} {{item.orderStatus==4?'待评价':''}}{{item.orderStatus==5?'已完成':''}}{{item.orderStatus==-1?'已关闭':''}}
+      </view>
+    </view>
+    <view class="list-order-item_bd fss weui-select ptb10">
+      <image src="{{item.receivePetPicture}}" mode="aspectFill" />
+      <view class="list-order-item_bd_right">
+        <view class="f14">{{item.itemName}}</view>
+        <view class="f12 g8">宠物数量：{{item.petCount}}只</view>
+        <view class="f12 g8" a:if="{{item.startTime && item.endTime}}">寄养时间：{{item.startTime}}至{{item.endTime}}</view>
+        <view class="f12 g8">金额：￥{{item.orderAmount}}</view>
+      </view>
+    </view>
+    <view class="list-order-item_ft bte5 g8 f12">下单时间：{{item.orderTime}}</view>
+  </view>
+</template>
+<!-- 悬浮框 -->
+<view class="suspension-wrap" a:if="{{!isFavorite && isok}}">
+  <view class="suspension-shadow-cover"></view>
+  <view class="suspension-collection-frame">
+    <image src="/images/index_float_collection_bg.png" class="pct100" mode="widthFix" />
+    <view class="btn-wrap" catchTap="receiveCardBag" hover-class="btn-wrap_hover">
+      <image src="/images/index_float_collection_btn.png" class="pct100" mode="widthFix" />
+    </view>
+    <view class="clear-wrap" catchTap="hidFavorite">
+      <icon type="clear" size="36" color="white"/>
+    </view>
+  </view>
+</view>

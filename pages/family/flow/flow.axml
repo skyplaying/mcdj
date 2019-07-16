@@ -1,0 +1,97 @@
+<form onSubmit="setFormId" report-submit="true" class="container" a:if="{{isok}}">
+	<!-- 已有提交时间并且状态为未提交说明是重新提交审核 -->
+	<view class="container1" a:if="{{userInfo.userCertifiedStatus>0 || (userInfo.subReviewTime && !userInfo.userCertifiedStatus  && userInfo.userCertifiedStatus!=0) || isShowPlow}}">
+		<view class="p15">
+			<view class="f12 g8 mb15">完成以下三个步骤，点击同意协议，即可提交审核</view>
+			<navigator url="../base/base" class="weui-select" hover-class="none">
+				<view class="fsc">
+					<image src="/images/adopter_authentication3.png" class="icon" />
+					<view>
+						<view>基础资料</view>
+						<view class="perfect-state {{noDisabled1?'perfect':''}}">{{noDisabled1?'已完成':'待完善'}}</view>
+					</view>
+				</view>
+			</navigator>
+			<navigator url="../upload/upload" class="weui-select" hover-class="none">
+				<view class="fsc">
+					<image src="/images/adopter_authentication2.png" class="icon" />
+					<view>
+						<view>上传照片</view>
+						<view class="perfect-state {{noDisabled2?'perfect':''}}">{{noDisabled2?'已完成':'待完善'}}</view>
+					</view>
+				</view>
+			</navigator>
+			<view class="weui-select" onTap="toAuthentication">
+				<view class="fsc">
+					<image src="/images/adopter_authentication4.png" class="icon" />
+					<view>
+						<view>实名认证</view>
+						<view class="perfect-state {{isface?'perfect':''}}">{{isface?'已完成':'待完善'}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="foot-box" a:if="{{userInfo.userCertifiedStatus!=1}}">
+			<!-- 阅读并同意 -->
+			<label class="weui-agree">
+				<view class="weui-agree__text" catchTap="changeAgree">
+					<view class="weui-agree__checkbox-icon mr5">
+						<icon a:if="{{isAgree}}" class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" color=""></icon>
+					</view>
+					<button class="formId-btn" hover-class="none" form-type="submit"> 阅读并同意 </button>
+					<view class="weui-agree__link gr" catchTap="toGuarantee">《平台保障协议》</view>
+				</view>
+			</label>
+			<button onTap="complete" formType="submit" hover-class="none" class="mc-btn2" disabled="{{!noDisabled}}"> 提交审核
+			</button>
+		</view>
+	</view>
+	<view class="container2 bgwh" a:elif="{{userInfo.userCertifiedStatus==0}}">
+		<view class="p10-15">
+			<view class="tc">
+				<icon type="success" size="60" color="#09bb07" class="success-icon" />
+			</view>
+			<view class="tc b f18">已提交，等待审核</view>
+			<view class="f14 g8 ptb20">
+				<view>您的申请资料已经提交，系统将在3个工作日内审核完成。审核期间会有专员联系您核对信息，请注意接听。</view>
+				<view class="mt10">
+					<text>PS:如需快速审核，请加审核员手机</text>
+					<text class="gor ml5" onTap="handleCopy">13410633367</text>
+				</view>
+			</view>
+			<!-- <view class="f14"><view class="f12">完成下列任务可提高通过率：</view><view class="fbc knowledge-icon p10-15 mt10" onTap="toAdopterKnowledge"><text class="b">养宠知识答题认证</text><text class="{{userInfo.isExamResult==1?'g8':'activate'}}">{{userInfo.isExamResult==1?'已通过':'去认证'}}</text></view></view> -->
+			<button type="default" class="w345 auto mt30" onTap="toIndex"> 返回首页 </button>
+		</view>
+	</view>
+	<view class="container3" a:else>
+		<view class="welcome-wrap">
+			<view class="f22 b">
+				<text>欢迎您加入</text>
+				<text class="gor">寄养</text>
+				<text>家庭</text>
+			</view>
+			<view class="f13 mt20"> 利用闲余时间帮忙照顾宠物赚取收入开启陪伴萌宠的爱心之旅 </view>
+		</view>
+		<view class="require-wrap f12">
+			<view class="wrap_hd">基本要求</view>
+			<view>1、年满18岁宠物爱好者，现在拥有或之前拥有宠物；</view>
+			<view>2、家庭环境干净、卫生，并允许养宠物；</view>
+			<view>3、家庭宠物能与其他宠物友好相处；</view>
+			<view>4、养宠经验半年以上；</view>
+			<view>5、家中不得有烈性犬。</view>
+			<view class="f10 gor mt5">家里有婴儿、高龄老人的请在能确保家庭成员安全的情况下再申请</view>
+		</view>
+		<view class="process-wrap">
+			<view class="wrap_hd">申请流程</view>
+			<image src="/images/family_flow_process.png" class="process-img" />
+		</view>
+		<view class="foot-box">
+			<view class="p10-15">
+				<button class="mc-btn2 gor" onTap="intoFlow"> 申请成为寄养家庭 </button>
+			</view>
+		</view>
+	</view>
+</form>
+<view class='container-loading' a:else>
+	<image src="/images/loading.gif" />
+</view>

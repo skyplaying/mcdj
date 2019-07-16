@@ -1,0 +1,60 @@
+
+/* 寄养列表项 */
+
+.weui-select{
+	padding: 20rpx 30rpx;
+	font-size: 28rpx;
+}
+
+.mc-cell:first-child::before{
+	border-bottom: none;
+}
+
+.icon-wrap{
+	position: relative;
+	flex: none;
+	line-height: 1;
+}
+.icon{
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 100rpx;
+	margin-right: 20rpx;
+	vertical-align: middle;
+}
+.icon-new::before{
+	content: ' ';
+	position: absolute;
+	top: 0;
+	right: 20rpx;
+	width: 20rpx;
+	height: 20rpx;
+	border-radius: 20rpx;
+	background-color: #F74D61;
+}
+
+
+/* 客服 */
+.contact-wrap{
+	position: relative;
+}
+.contact-cover-wrap{
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 750rpx;
+	height: 140rpx;
+	line-height: 140rpx;
+	overflow: hidden;
+}
+
+.name{
+	height: 60rpx;
+	line-height: 60rpx;
+}
+
+.content{
+	height: 40rpx;
+	line-height: 40rpx;
+}

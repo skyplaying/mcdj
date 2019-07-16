@@ -1,0 +1,21 @@
+
+.formId-btn{
+  display: inline-block;
+}
+
+.foot-btn{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  background-color: #FA9D26;
+  line-height: 90rpx;
+}
+  
+.detele-icon{
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: text-bottom;
+  margin-right: 10rpx;
+}

@@ -1,0 +1,42 @@
+
+
+
+.weui-select::after{
+    border-top:none;
+}
+
+/* 内容模块1 */
+.banner{
+    display: block;
+    width: 100%;
+    height: 200rpx;
+}
+.job-item{
+    padding: 30rpx;
+    line-height: 1.8em;
+}
+.job-item image{
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 30rpx;
+    flex: none;
+}
+.gbl{
+    color: #009FE8;
+}
+
+/* 内容模块3 */
+.container3{
+    padding: 30rpx;
+}
+.entry-personal,.entry-business{
+    padding: 90rpx 60rpx;
+    background-color: white;
+    margin-bottom: 30rpx;
+    text-align: center;
+}
+.container3 image{
+    width: 130rpx;
+    height: 130rpx;
+    border-radius: 1000rpx;
+}

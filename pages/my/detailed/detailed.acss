@@ -1,0 +1,9 @@
+
+
+.mc-cell:first-child:before{
+    display: none;
+}
+
+.gb{
+    color: #2a95f7;
+}

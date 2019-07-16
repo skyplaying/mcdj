@@ -1,0 +1,20 @@
+
+page,input{
+  font-size: 30rpx;
+}
+
+.textarea-box{
+  margin-left: 30rpx;
+  padding: 20rpx 30rpx 20rpx 0;
+  border-top:1px solid #e5e5e5;
+}
+
+.textarea-box textarea{
+  width: 100%;
+  height: auto; 
+  min-height: 100rpx;
+}
+
+button{
+    width: 240rpx;
+}

@@ -1,0 +1,23 @@
+
+.container{
+    font-size: 28rpx;
+    background-color: white;
+}
+
+.hd{
+    color: #888;
+    line-height: 80rpx;
+    padding: 0 30rpx;
+}
+.bd{
+    padding-bottom: 100rpx;
+}
+.bd .mc-cell:first-child:before{
+    display: none;
+}
+.mc-btn2{
+    border-radius: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

@@ -1,0 +1,450 @@
+
+<import src="/others/template/weui_mc.axml"/>
+<form onSubmit="setFormId" report-submit="{{true}}" class="container pb30" a:if="{{isok}}">
+  <!-- 轮播图 -->
+  <view class="swiper-wrap">
+    <!-- 头部图片 -->
+    <swiper indicator-dots="{{!isFamilySetUp}}" autoplay="{{true}}" a:if="{{swiperPicturesPath && swiperPicturesPath.length>0}}">
+      <block a:for="{{swiperPicturesPath}}" a:key="*this">
+        <swiper-item>
+          <image src="{{item}}" mode="aspectFill" class="swiper-img" onTap="previewImage" data-index="{{index}}" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="swiper-no-data" a:else>暂无图片</view>
+    <navigator url="../upload/upload" class="upload-img-wrap" a:if="{{isFamilySetUp}}">
+      <image src="/images/family_add_img.png" class="family_add_icon vm" />
+      <text>上传照片</text>
+    </navigator>
+    <view class="hd-btn-wrap fec" a:elif="{{userInfo.userId!=userVo.userId}}">
+      <view class="leave-word mr5" onTap="leaveWord">
+        <image src="/images/family_message.png" class="leave-word-icon" />
+      </view>
+      <button class="leave-word formId-btn" hover-class="none" open-type="share">
+        <image src="/images/family_share.png" class="leave-word-icon" />
+      </button>
+      <!-- <view class="follow-btn ml5" onTap="familyFollow">
+        <image src="/images/follow{{userVo.isFollow || 0}}.png" class="follow-icon" />
+      </view> -->
+    </view>
+  </view>
+  <!-- 用户信息 -->
+  <view class="bgwh">
+    <view class="user-info-wrap fbc">
+      <view class="user-avatar-wrap">
+        <image src="{{userVo.avatar}}" mode="aspectFill" class="user-avatar" onTap="previewAvatar" data-url="{{userVo.avatar}}" />
+        <image class="sex-icon" mode="aspectFill" src="/images/sex{{userVo.gender}}.png"/>
+      </view>
+      <view class="user-info_mid">
+        <view class="rel fsc">
+          <view class="art1 b">{{userVo.adoptionVo.familyName ||  userVo.nickName}}</view>
+          <image class="real-icon" mode="aspectFill" src="/images/identity_real_icon.png"/>
+          <view class="credit-score-icon" a:if="{{userInfo.creditScore}}">{{userVo.creditScore}}</view>
+        </view>
+        <view class="fsc mt2">
+          <view class="user-info-stars-wrap fsc" a:if="{{userVo.adoptionVo.grade}}">
+            <block a:for="{{[1,2,3,4,5]}}" a:key="*this">
+              <view class="user-info-stars-item" a:if="{{index+1 <= userVo.adoptionVo.grade}}">
+                <image src="/images/stars1.png" />
+              </view>
+            </block>
+          </view>
+          <view class="f12 gor ml5" a:if="{{userVo.adoptionVo.grade}}">{{userVo.adoptionVo.grade}}星级家庭</view>
+          <view class="f12 g8" a:else>
+            <text>普通家庭</text>
+            <!-- <text class="gr ml5 f10" onTap="upgrade">▲ 升星级</text> -->
+          </view>
+          <view class="bail-icon" a:if="{{userVo.adoptionVo.marginAmount}}">保证金</view>
+        </view>
+        <view class="f12 g8 mt2">
+          <text a:if="{{userVo.keepPetVo.compositeScore}}">{{userVo.keepPetVo.compositeScore}}分</text>
+          <text a:else>暂无评分</text>
+          <text class="ml20">{{commentTotal}}条评价</text>
+        </view>
+      </view>
+      <view class="user-info_right">
+        <navigator class="weui-select" url="../master/master?userId={{userVo.userId}}">个人资料</navigator>
+      </view>
+    </view>
+    <view class="weui-select fsc" onTap="openLocation">
+      <image src="/images/address_icon.png" class="address-nav-icon" />
+      <view class="art1 w300">{{addressName}}</view>
+    </view>
+  </view>
+  <!-- 下单模块 -->
+  <view class="price-wrap mt10 bgwh plr15">
+    <view class="price_hd p10-15 fbc">
+      <view class="price_date-wrap tc">
+        <view class="g8 mb5">入住</view>
+        <view class="gor fsc" onTap="selectSTime">
+          <text class="f16 b">{{startDate}}</text>
+          <text class="f12 plr10">{{startStr}}</text>
+          <text class="f10">▼</text>
+        </view>
+      </view>
+      <view class="price_hd-mid tc">
+        <view class="price-day-num">共{{countDay}}晚</view>
+        <text class="gb2">|</text>
+      </view>
+      <view class="price_date-wrap tc">
+        <view class="g8 mb5">离开</view>
+        <view class="gor fsc" onTap="selectSTime">
+          <text class="f16 b">{{endDate}}</text>
+          <text class="f12 plr10">{{endStr}}</text>
+          <text class="f10">▼</text>
+        </view>
+      </view>
+    </view>
+    <view class="price_bd">
+      <view class="price-item ptb10 fbc" a:if="{{userVo.adoptionVo.petsNumberCat && catPrice}}">
+        <view class="price-item-left">
+          <view class="f16">猫咪寄养</view>
+          <view>
+            <text class="f12 f8">猫咪</text>
+            <text class="gr ml5">
+              <text class="f12">￥</text>
+              <text class="f16">{{catPrice}}</text>
+            </text>
+          </view>
+        </view>
+        <view class="price-item-right">
+          <view class="gor f12" a:if="{{maxFosterCat && maxFosterCat<=2}}">仅可寄{{maxFosterCat}}只
+                                                                                                    
+          </view>
+          <text a:if="{{userVo.userCertifiedStatus!=1}}" class="gb">待激活</text>
+          <block a:elif="{{userVo.adoptionVo.isOrderTaking}}">
+            <button class="mc-btn2 gor" hover-class="btn_hover" size="mini" onTap="toFosterage" data-category="0" data-num="{{maxFosterCat}}" a:if="{{maxFosterCat}}"> 预订 </button>
+            <button class="mc-btn2 gb2" hover-class="none" size="mini" a:else > 已订满 </button>
+          </block>
+          <text a:else class="g8">休息中</text>
+        </view>
+      </view>
+      <view class="price-item ptb10 fbc" a:if="{{userVo.adoptionVo.petsNumber && dogPriceArr && dogPriceArr.length>0}}">
+        <view class="price-item-left">
+          <view class="f16">狗狗寄养</view>
+          <view class="fsc">
+            <view class="mr10" a:for="{{dogPriceArr}}" a:key="petType">
+              <text class="f12 f8">{{item.petType==0?'小型':''}}{{item.petType==1?'中型':''}}{{item.petType==2?'大型':''}}</text>
+              <text class="gr ml5">
+                <text class="f12">￥</text>
+                <text class="f16">{{item.fosterAmount}}</text>
+              </text>
+            </view>
+          </view>
+        </view>
+        <view class="price-item-right">
+          <text a:if="{{userVo.userCertifiedStatus!=1}}" class="gb">待激活</text>
+          <block a:elif="{{userVo.adoptionVo.isOrderTaking}}">
+            <view class="gor f12" a:if="{{maxFosterDog && maxFosterDog<=2}}">仅可寄{{maxFosterDog}}只
+                                                                                                                              
+            </view>
+            <button class="mc-btn2 gor" hover-class="btn_hover" size="mini" onTap="toFosterage" data-category="1" data-num="{{maxFosterDog}}" a:if="{{maxFosterDog}}"> 预订 </button>
+            <button class="mc-btn2 gb2" hover-class="none" size="mini" a:else > 已订满 </button>
+          </block>
+          <text a:else class="g8">休息中</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 寄养环境 -->
+  <view class="environment-wrap mt10 bgwh">
+    <view class="wrap_hd weui-select fbc">
+      <text>家庭环境</text>
+      <text class="f12 g8 n" onTap="environmentChange">全部</text>
+    </view>
+    <view class="environment_bd p10-15">
+      <view class="environment_list">
+        <view class="environment-item" a:if="{{userVo.adoptionVo.livingCondition}}">
+          <image class="environment-item-icon" src="/images/family_living{{userVo.adoptionVo.livingCondition=='住宅'?'1':''}}{{userVo.adoptionVo.livingCondition=='公寓'?'2':''}}{{userVo.adoptionVo.livingCondition=='别墅'?'3':''}}.png" />
+          <view class="g8 f12">{{userVo.adoptionVo.livingCondition}}</view>
+        </view>
+        <view class="environment-item" a:if="{{userVo.adoptionVo.houseType}}">
+          <image class="environment-item-icon" src="/images/family_huxing.png" />
+          <view class="g8 f12">{{userVo.adoptionVo.houseType}}</view>
+        </view>
+        <view class="environment-item" a:if="{{userVo.adoptionVo.homeArea}}">
+          <image class="environment-item-icon" src="/images/family_acreage.png" />
+          <view class="g8 f12">{{userVo.adoptionVo.homeArea}}m²</view>
+        </view>
+        <view class="environment-item" a:if="{{isElevator}}">
+          <image class="environment-item-icon" src="/images/family_elevator.png" />
+          <view class="g8 f12">电梯</view>
+        </view>
+        <view class="environment-item" a:if="{{isAirConditioner}}">
+          <image class="environment-item-icon" src="/images/family_air_conditioner.png" />
+          <view class="g8 f12">空调环境</view>
+        </view>
+        <view class="environment-item" a:if="{{isBalcony}}">
+          <image class="environment-item-icon" src="/images/family_balcony.png" />
+          <view class="g8 f12">封闭阳台</view>
+        </view>
+        <view class="environment-item" a:if="{{isPrivateGarden}}">
+          <image class="environment-item-icon" src="/images/family_private_garden.png" />
+          <view class="g8 f12">私人花园</view>
+        </view>
+        <view class="environment-item" a:if="{{isCommunityGarden}}">
+          <image class="environment-item-icon" src="/images/family_community_garden.png" />
+          <view class="g8 f12">小区花园</view>
+        </view>
+        <view class="environment-item" a:if="{{isPark}}">
+          <image class="environment-item-icon" src="/images/family_park.png" />
+          <view class="g8 f12">附近公园</view>
+        </view>
+        <view class="environment-item" a:if="{{isSquare}}">
+          <image class="environment-item-icon" src="/images/family_square.png" />
+          <view class="g8 f12">广场</view>
+        </view>
+        <view class="environment-item" a:if="{{isTraffic}}">
+          <image class="environment-item-icon" src="/images/family_traffic.png" />
+          <view class="g8 f12">交通便利</view>
+        </view>
+        <!-- <view class="environment-item"><image class="environment-item-icon" src="/images/family_nearby{{userVo.adoptionVo.nearbyEnvironment=='附近公园'?'1':''}}{{userVo.adoptionVo.nearbyEnvironment=='小区花园'?'2':''}}{{userVo.adoptionVo.nearbyEnvironment=='私人花园'?'3':''}}.png" /><view class="g8 f12">{{userVo.adoptionVo.nearbyEnvironment}}</view></view> -->
+      </view>
+    </view>
+  </view>
+  <!-- 家庭描述 -->
+  <view class="family-info-wrap {{isShowAllDescribe?'family-info_all':''}} mt10 bgwh" a:if="{{userVo.adoptionVo.familyDescribe}}">
+    <view class="wrap_hd plr15 fbc">
+      <text>家庭描述</text>
+      <text class="gor n" onTap="leaveWord">联系家庭</text>
+    </view>
+    <view class="family-info_bd p10-15 g8 f14">
+      <view class="family-info-describe">{{userVo.adoptionVo.familyDescribe}}</view>
+      <view class="family-info-describe-select" onTap="showAllDescribe"></view>
+    </view>
+  </view>
+  <!-- 寄养评价 -->
+  <view class="evaluate-wrap mt10 bgwh" a:if="{{commentList && commentList.length>0}}">
+    <view class="wrap_hd plr15">寄养评价</view>
+    <view class="comment-list">
+      <view class="comment-item bgwh fbs" a:for="{{commentList}}" a:key="commentId">
+        <image src="{{item.usersVo.avatar}}" mode="aspectFill" class="comment-avatar" />
+        <view class="flex-a">
+          <view class="fbc">
+            <view class="art1 b f14">{{item.usersVo.nickName}}</view>
+            <view class="g8 f10 ml10 flex-n">{{item.commentTime}}</view>
+          </view>
+          <view class="stars-wrap fsc">
+            <block a:for="{{[1,2,3,4,5]}}" a:key="*this" a:for-item="sitem" a:for-index="sindex">
+              <block a:if="{{sindex+1<= item.compositeScore}}">
+                <image src="/images/stars1.png" class="stars-item" />
+              </block>
+              <block a:elif="{{sindex+0.5 <= item.compositeScore}}">
+                <image src="/images/stars2.png" class="stars-item" />
+              </block>
+              <block a:else>
+                <image src="/images/stars0.png" class="stars-item" />
+              </block>
+            </block>
+            <text class="ml15 gor f12">{{item.compositeScore}}分</text>
+          </view>
+          <view class="f10 g8 ptb5">寄养的宠物：{{item.petInfo}}</view>
+          <view class="f12 mt5" a:if="{{item.commentContent}}">{{item.commentContent}}</view>
+          <view class="f12 mt5 g8" a:else>暂无评论</view>
+        </view>
+      </view>
+      <button class="formId-btn" form-type="submit" onTap="toCommentList"> 查看所有评论 </button>
+    </view>
+  </view>
+  <!-- 提供物品 -->
+  <view class="provide-wrap mt10 bgwh" a:if="{{userVo.adoptionVo.catGoods || userVo.adoptionVo.dogGoods}}">
+    <view class="wrap_hd plr15">提供物品</view>
+    <view class="provide_bd plr15">
+      <view class="provide_list ptb10 bbe5" a:if="{{userVo.adoptionVo.catGoods}}">
+        <view class="b dib vt">猫</view>
+        <view class="provide-item" a:if="{{isCatTableware}}">
+          <image class="provide-item-icon" src="/images/family_tableware.png" />
+          <view class="g8 f12">食具</view>
+        </view>
+        <view class="provide-item" a:if="{{isCatNest}}">
+          <image class="provide-item-icon" src="/images/family_nest.png" />
+          <view class="g8 f12">窝</view>
+        </view>
+        <view class="provide-item" a:if="{{isCatLitter}}">
+          <image class="provide-item-icon" src="/images/family_cat_litter.png" />
+          <view class="g8 f12">猫砂</view>
+        </view>
+        <view class="provide-item" a:if="{{isCatToy}}">
+          <image class="provide-item-icon" src="/images/family_cat_toy.png" />
+          <view class="g8 f12">玩具</view>
+        </view>
+        <view class="provide-item" a:if="{{isCatWater}}">
+          <image class="provide-item-icon" src="/images/family_water.png" />
+          <view class="g8 f12">饮用水</view>
+        </view>
+      </view>
+      <view class="provide_list ptb10 bbe5" a:if="{{userVo.adoptionVo.dogGoods}}">
+        <view class="dib b vt">狗</view>
+        <view class="provide-item" a:if="{{isDogTableware}}">
+          <image class="provide-item-icon" src="/images/family_tableware.png" />
+          <view class="g8 f12">食具</view>
+        </view>
+        <view class="provide-item" a:if="{{isDogNest}}">
+          <image class="provide-item-icon" src="/images/family_nest.png" />
+          <view class="g8 f12">窝</view>
+        </view>
+        <view class="provide-item" a:if="{{isDogTractionRope}}">
+          <image class="provide-item-icon" src="/images/family_traction_rope.png" />
+          <view class="g8 f12">牵引绳</view>
+        </view>
+        <view class="provide-item" a:if="{{isDogToy}}">
+          <image class="provide-item-icon" src="/images/family_dog_toy.png" />
+          <view class="g8 f12">玩具</view>
+        </view>
+        <view class="provide-item" a:if="{{isDogWater}}">
+          <image class="provide-item-icon" src="/images/family_water.png" />
+          <view class="g8 f12">饮用水</view>
+        </view>
+      </view>
+      <view class="ptb10 f13" a:if="{{activityArea && activityArea.length>0}}">
+        <view class="b mb5">Tips</view>
+        <view class="tips-item" a:for="{{activityArea}}" a:key="*this">▪ {{item}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 家庭宠物 -->
+  <view class="pet-wrap mt10 bgwh">
+    <view class="wrap_hd plr15">家庭宠物</view>
+    <view class="pet-list-bd">
+      <block a:for="{{petList}}" a:key="petId">
+        <navigator url="/pages/pet/display/display?petId={{item.petId}}" hover-class="none" class="weui-select fsc">
+          <image src="{{item.petAvatar}}" mode="aspectFill" class="pet-avatar" />
+          <view>
+            <view class="fsc">
+              <view class="art1 f15 b">{{item.petName}}</view>
+              <image class="gender-icon" mode="aspectFill" src="/images/gender{{item.gender}}.png"/>
+            </view>
+            <view class="g8 f13">
+              <text class="pr10">{{item.petVarietyName}}</text>{{item.age}}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+            </view>
+          </view>
+        </navigator>
+      </block>
+      <view class="tc g8 ptb15 f14" a:if="{{!petList || petList.length==0}}">暂无宠物</view>
+    </view>
+  </view>
+  <!-- 寄养须知 -->
+  <view class="family-notes-wrap mt10 bgwh">
+    <view class="wrap_hd plr15">寄养须知</view>
+    <view class="family-notes_bd plr15 f13">
+      <view class="family-notes-item ptb10 bbe5">
+        <view class="gor">入离时间</view>
+        <view>寄养入住时间：14：00后</view>
+        <view>寄养结束时间：次日14：00前</view>
+        <view class="g8 f10">如需提前入住或延时结束，请咨询家庭</view>
+      </view>
+      <view class="family-notes-item ptb10 bbe5">
+        <view class="gor">其他说明</view>
+        <view>
+          <text class="gor mr5">▪</text>
+          <text>请准备好家庭未提供的宠物用品</text>
+        </view>
+        <view>
+          <text class="gor mr5">▪</text>
+          <text>切勿隐瞒宠物的性格、习惯及特殊情况</text>
+        </view>
+        <view>
+          <text class="gor mr5">▪</text>
+          <text>请准时接送宠物入住和回家</text>
+        </view>
+      </view>
+      <view class="family-notes-item ptb10">
+        <image src="/images/family_guarantee.png" class="family-guarantee-img" />
+        <!-- <view class="tc gor tdl">萌宠到家意外保障服务</view> -->
+      </view>
+    </view>
+  </view>
+  <!-- 底部按钮 -->
+  <view class="foot-box"> 
+    <!-- <view class="edit-btn" onTap="edit" a:if="{{isFamilySetUp}}">修改资料</view> -->
+    <!-- <view class="fsc"><text class="mr10 {{userVo.adoptionVo.isOrderTaking?'':'g8'}}">{{userVo.adoptionVo.isOrderTaking?'接单':'休息中'}}</text><switch checked="{{userVo.adoptionVo.isOrderTaking?true:false}}" onChange="receiptChange" /></view> -->
+    <!-- <view class="fbc" a:else><view class="leave-word" onTap="leaveWord"><image src="/images/family_message.png" class="leave-word-icon" /><view>留言</view></view><view class="follow-btn" onTap="familyFollow"><image src="/images/follow{{userVo.isFollow || 0}}.png" class="follow-icon" /><view>{{userVo.isFollow?"已关注":"关注"}}</view></view><button form-type="submit" class="mc-btn2 foot-btn2 gb" hover-class="none" a:if="{{userVo.userCertifiedStatus!=1}}">待激活</button><button form-type="submit" class="mc-btn2 foot-btn2 gor" hover-class="none" onTap="toFosterage" a:elif="{{userVo.adoptionVo.isOrderTaking}}">下单</button><button form-type="submit" class="mc-btn2 foot-btn2 gb" hover-class="none" a:else>休息中</button></view> -->
+  </view>
+</form>
+<form onSubmit="setFormId" report-submit="{{true}}" a:elif="{{isNoAuth}}" class="container bgwh">
+  <view class="refresh">
+    <image src="/images/refresh_bg.png" mode="widthFix" class="pct100"/>
+    <view class="f14">点击刷新后登录</view>
+    <button type="default" onTap="refresh" hover-class="none" class="refresh-btn formId-btn" form-type="submit" size="mini"> 刷新 </button>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>
+<!-- 全部环境悬浮框 -->
+<view class="suspension-wrap" a:if="{{isShowEnvironment}}">
+  <view class="suspension-shadow-cover"></view>
+  <view class="suspension-environment-frame">
+    <view class="suspension-environment-content">
+      <view class="suspension-environment-title">家庭情况</view>
+      <view class="suspension-environment-list">
+        <view class="environment-item" a:if="{{userVo.adoptionVo.livingCondition}}">
+          <image class="environment-item-icon" src="/images/family_living{{userVo.adoptionVo.livingCondition=='住宅'?'1':''}}{{userVo.adoptionVo.livingCondition=='公寓'?'2':''}}{{userVo.adoptionVo.livingCondition=='别墅'?'3':''}}.png" />
+          <view class="g8 f12">{{userVo.adoptionVo.livingCondition}}</view>
+        </view>
+        <view class="environment-item" a:if="{{userVo.adoptionVo.houseType}}">
+          <image class="environment-item-icon" src="/images/family_huxing.png" />
+          <view class="g8 f12">{{userVo.adoptionVo.houseType}}</view>
+        </view>
+        <view class="environment-item" a:if="{{userVo.adoptionVo.homeArea}}">
+          <image class="environment-item-icon" src="/images/family_acreage.png" />
+          <view class="g8 f12">{{userVo.adoptionVo.homeArea}}m²</view>
+        </view>
+      </view>
+    </view>
+    <view class="suspension-environment-content" a:if="{{isElevator || isAirConditioner || isBalcony || isPrivateGarden || isCommunityGarden || isPark || isSquare || isTraffic}}">
+      <view class="suspension-environment-title">配套和周边</view>
+      <view class="suspension-environment-list">
+        <view class="environment-item" a:if="{{isElevator}}">
+          <image class="environment-item-icon" src="/images/family_elevator.png" />
+          <view class="g8 f12">电梯</view>
+        </view>
+        <view class="environment-item" a:if="{{isAirConditioner}}">
+          <image class="environment-item-icon" src="/images/family_air_conditioner.png" />
+          <view class="g8 f12">空调环境</view>
+        </view>
+        <view class="environment-item" a:if="{{isBalcony}}">
+          <image class="environment-item-icon" src="/images/family_balcony.png" />
+          <view class="g8 f12">封闭阳台</view>
+        </view>
+        <view class="environment-item" a:if="{{isPrivateGarden}}">
+          <image class="environment-item-icon" src="/images/family_private_garden.png" />
+          <view class="g8 f12">私人花园</view>
+        </view>
+        <view class="environment-item" a:if="{{isCommunityGarden}}">
+          <image class="environment-item-icon" src="/images/family_community_garden.png" />
+          <view class="g8 f12">小区花园</view>
+        </view>
+        <view class="environment-item" a:if="{{isPark}}">
+          <image class="environment-item-icon" src="/images/family_park.png" />
+          <view class="g8 f12">附近公园</view>
+        </view>
+        <view class="environment-item" a:if="{{isSquare}}">
+          <image class="environment-item-icon" src="/images/family_square.png" />
+          <view class="g8 f12">广场</view>
+        </view>
+        <view class="environment-item" a:if="{{isTraffic}}">
+          <image class="environment-item-icon" src="/images/family_traffic.png" />
+          <view class="g8 f12">交通便利</view>
+        </view>
+      </view>
+    </view>
+    <view class="suspension-environment-content">
+      <view class="suspension-environment-title">可寄养宠物</view>
+      <view class="suspension-environment-list">
+        <view class="environment-item" a:if="{{userVo.adoptionVo.petsNumber}}">
+          <image class="environment-item-icon" src="/images/family_dog_max.png" />
+          <view class="g8 f12">{{userVo.adoptionVo.petsNumber}}只</view>
+        </view>
+        <view class="environment-item" a:if="{{userVo.adoptionVo.petsNumberCat}}">
+          <image class="environment-item-icon" src="/images/family_cat_max.png" />
+          <view class="g8 f12">{{userVo.adoptionVo.petsNumberCat}}只</view>
+        </view>
+      </view>
+    </view>
+    <view class="suspension-environment-ft" onTap="environmentChange">
+      <icon type="clear" size="30" color="black" />
+    </view>
+  </view>
+</view>

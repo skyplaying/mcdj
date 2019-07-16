@@ -1,0 +1,24 @@
+<view class='wrap'>
+	<view>
+		<view class='date-show'>
+			<view class='lt-arrow' onTap='lastMonth'>
+				<image src='../images/nextMonth.png' mode='aspectFit'></image>
+			</view>
+			{{year}}年{{month}}月
+			<view class='rt-arrow' onTap='nextMonth'>
+				<image src='../images/nextMonth.png' mode='aspectFit'></image>
+			</view>
+		</view>
+	</view>
+	<view class='header'>
+		<view a:for='{{date}}' a:key="*this" class='{{(index == todayIndex) && isTodayWeek ? "weekMark" : ""}}'>{{item}}<view></view></view>
+	</view>
+	<view class='date-box'>
+		<view a:for='{{dateArr}}' a:key="isToday" class='{{isToday == item.isToday ? "nowDay" : ""}}' data-date='{{item.isToday}}'>			
+			<view class='date-head'>
+				<view>{{item.dateNum}}</view>
+			</view>
+			<!-- <view class='date-weight'>{{item.weight}}</view> -->
+		</view>
+	</view>
+</view>

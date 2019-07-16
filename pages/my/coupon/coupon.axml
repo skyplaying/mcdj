@@ -1,0 +1,27 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<form bindsubmit="setFormId" report-submit="{{true}}" class='container' a:if="{{isok}}">
+  <view class="family-list-wrap mt10">
+    <view class="voucher-item" a:for="{{list}}" a:key="couponConsumeId">
+      <view class="voucher-item_main fbc">
+        <view class="voucher-item_main_left">
+          <view class="voucher-item_title">{{item.couponVo.couponTitle}}</view>
+          <view class="f12 g8 mt5">满减劵</view>
+        </view>
+        <view class="voucher-item_main_right tr">
+          <view class="voucher-item_amount">
+            <text class="voucher-item_amount_label">￥</text>
+            <text>{{item.couponVo.couponAmount}}</text>
+          </view>
+          <view class="voucher-item_condition">满{{item.couponVo.fullSubtractionAmount}}元可用</view>
+        </view>
+      </view>
+      <view class="voucher-item_time">有效期：{{item.couponVo.startTime}}~{{item.couponVo.endTime}}</view>
+    </view>
+    <template is="list-loading" data="{{loading,list,nomore}}"></template>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

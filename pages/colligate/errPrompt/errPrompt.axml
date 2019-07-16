@@ -1,0 +1,10 @@
+
+
+
+<view class="container">
+  <view class="content">
+
+
+    <button type="default" size="defaultSize" onTap="defaultTap" hover-class="defaultTap"> Button </button>
+  </view>
+</view>

@@ -1,0 +1,59 @@
+
+
+.container{
+    padding: 0 30rpx;
+    background-color: white;
+}
+
+.hd{
+    padding: 60rpx 0;
+}
+.wrap_hd{
+    position: relative;
+    font-size: 28rpx;
+    font-weight: bold;
+    padding-left: 26rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+.wrap_hd::before{
+    content: ' ';
+    position: absolute;
+    top: 20rpx;
+    bottom: 20rpx;
+    left: 0;
+    border-left: 4px solid #FF9800;
+}
+.user-avatar{ 
+    width: 160rpx;
+    height: 160rpx;
+    box-sizing: border-box;
+    border: 1px solid #FF9800;
+    border-radius: 1000px;
+    margin-right: 30rpx;
+}
+
+.pet-list{
+    padding: 0 20rpx;
+}
+.pet-item{
+    padding: 30rpx 20rpx;
+    border-bottom: 1px solid #e5e5e5;
+}
+.pet-item:first-child{
+    border-top: 1px solid #e5e5e5;
+}
+.pet-avatar{
+    width: 110rpx;
+    height: 110rpx;
+    border-radius: 110rpx;
+    margin-right: 20rpx;
+    flex: none;
+}
+.pet-gender{
+    flex: none;
+    margin-left: 20rpx;
+    width: 40rpx;
+    height: 40rpx;
+    flex: none;
+}

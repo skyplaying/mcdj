@@ -1,0 +1,123 @@
+
+<form class="container" report-submit="{{true}}" onSubmit="setFormId" a:if="{{isok}}">
+  <view class="bgwh fsc weui-select ptb10">
+    <image class="server-img" mode="aspectFill" src="{{serverImg}}" />
+    <text class="f16">{{trainServiceVo.itemName}}</text>
+  </view>
+  <view class="bgwh mt10">
+    <view class="wrap-hd">
+      <text>选择要训练的宠物</text>
+    </view>
+    <view class="mc-cell add-pet">
+      <scroll-view scroll-x>
+        <block a:for="{{petList}}" a:key="petId">
+          <view class="pet-avatar {{item.check?'gor':'gf'}}">
+            <image onTap="selectPet" data-index="{{index}}" mode="aspectFill" src="{{item.petAvatar}}" />
+          </view>
+        </block>
+        <navigator class="weui-uploader__input-box" url="/pages/pet/found/found">
+          <view class="weui-uploader__input"></view>
+        </navigator>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="found-cells mt10">
+    <!-- 服务方式 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>服务方式</view>
+      <view class='found-cell_bd'>
+        <picker onChange="changeMode" value="{{modeIndex}}" range="{{modeArr}}">
+          <view class='gb2 tr' a:if="{{!modeIndex && modeIndex!=0}}">点击选择</view>
+          <view class='tr' a:else>{{modeArr[modeIndex]}}</view>
+        </picker>
+      </view>
+    </label>
+    <!-- 上门接送 -->
+    <label class='found-cell found-cell_hd-long' a:if="{{trainServiceVo.runAboutAmount>=0}}">
+      <view class='found-cell_hd'>
+        <text>上门接送</text>
+        <text class="g8" a:if="{{trainServiceVo.runAboutAmount}}" >（{{trainServiceVo.runAboutAmount}}元/公里）</text>
+        <text class="g8" a:else >（免费）</text>
+      </view>
+      <view class='found-cell_bd tr'>
+        <switch checked="{{isShuttle}}" onChange="changeIsShuttle" />
+      </view>
+    </label>
+    <!-- 接宠地址 -->
+    <label class='found-cell' a:if="{{isShuttle}}" >
+      <view class='found-cell_hd'>接宠地址</view>
+      <navigator url="/pages/colligate/selectAddress/selectAddress" class='found-cell_bd tr'>
+        <view class='gb2' a:if="{{!addressName}}">点击选择</view>
+        <view a:else>{{addressName}}</view>
+      </navigator>
+    </label>
+    <!-- 接送费 -->
+    <label class='found-cell found-cell_hd-long' a:if="{{addressName}}">
+      <view class='found-cell_hd'>接送费（元，包来回）</view>
+      <view class='found-cell_bd tr g8'>
+        <text>{{cost}}</text>
+      </view>
+    </label>
+  </view>
+  <!--优惠券-->
+  <view class="bgwh mt10">
+    <view class="weui-select ptb5 fbc">
+      <text>优惠券</text>
+      <text class="gb2 f12" a:if="{{!couponList || couponList.length==0}}">无可用优惠券</text>
+      <text class="gor f12" onTap="showCoupon" a:elif="{{!couponIndex}}">{{couponList.length}}张优惠券可用</text>
+      <text class="gor f12" onTap="showCoupon" a:else >{{couponList[couponIndex].couponVo.couponAmount}}元满减劵</text>
+    </view>
+  </view>
+  <!-- 添加备注 -->
+  <view class="bgwh mt10">
+    <view class="wrap-hd">添加备注</view>
+    <view onTap="navTextarea" class="mc-cell {{remark?'':'g8'}}">
+      <textarea class="textarea" onInput="inputRemark" value="{{remark}}" placeholder="狗狗的一些特征，习惯之类的" />
+    </view>
+  </view>
+  <!-- 阅读并同意 -->
+  <label class="weui-agree mt5">
+    <view class="weui-agree__text" onTap="changeAgree">
+      <view class="weui-agree__checkbox-icon mr5">
+        <icon a:if="{{isAgree}}" class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" color=""></icon>
+      </view>
+      <button class="formId-btn" hover-class="none" form-type="submit"> 阅读并同意 </button>
+      <view class="weui-agree__link gr" catchTap="toGuarantee">《宠物寄养协议》</view>
+    </view>
+  </label>
+  <view class="total-price tc gor f24 b mt20">￥{{totalPrice || '0.00'}}</view>
+  <button onTap="formSubmit" form-type="submit" type="primary" class="w345 auto button mc-btn2 gor mt20 mb50" hover-class="none" disabled="{{!isAgree}}">提交</button>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>
+<!-- 兑换虚拟码成功悬浮框 -->
+<view class='suspension-wrap' hidden="{{!showCoupon}}">
+  <view class="suspension-shadow-cover" onTap='showCoupon'></view>
+  <view class='suspension-frame-coupon'>
+    <view class='suspension-coupon-hd tc'>
+      <view>优惠券</view>
+    </view>
+    <view class='suspension-coupon-bd'>
+      <view class="voucher-item" a:for="{{couponList}}" a:key="couponConsumeId" onTap="couponChange" data-index="{{index}}">
+        <view class="voucher-item_main fbc">
+          <view class="voucher-item_main_left">
+            <view class="voucher-item_title">{{item.couponVo.couponTitle}}</view>
+            <view class="f12 g8 mt5">满减劵</view>
+          </view>
+          <view class="voucher-item_main_right tr">
+            <view class="voucher-item_amount">
+              <text class="voucher-item_amount_label">￥</text>
+              <text>{{item.couponVo.couponAmount}}</text>
+            </view>
+            <view class="voucher-item_condition">满{{item.couponVo.fullSubtractionAmount}}元可用</view>
+          </view>
+        </view>
+        <view class="voucher-item_time">有效期：{{item.couponVo.startTime}}~{{item.couponVo.endTime}}</view>
+      </view>
+    </view>
+    <view class="cancel" onTap='showCoupon'>
+      <icon type='cancel' color='#fff' size='22'></icon>
+    </view>
+  </view>
+</view>

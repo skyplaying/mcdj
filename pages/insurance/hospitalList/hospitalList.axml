@@ -1,0 +1,43 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<view class="container" a:if="{{isok}}">
+  <view class="p10-15 bgwh fbc">
+    <view class="fsc" onTap="chooseCity">
+      <view>{{city}}</view>
+      <view class="ml10">▼</view>
+    </view>
+  </view>
+  <view class="bd mt10">
+    <block a:for="{{list}}" a:key="petId">
+      <view class="p15 fsc bgwh bbe5">
+        <image src="{{item.store_pic}}" mode="aspectFill" class="avatar flex-n" />
+        <view class="ml15 flex-a">
+          <view class="fbc">
+            <view class="art1 b f16">{{item.store_name}}</view>
+            <!-- <view class="f12"><text>报销</text><text class="gor">12</text><text>单</text></view> -->
+          </view>
+          <view class="fsc f10 g8 mt5">
+            <text>综合评分：</text>
+            <view class="user-info-stars-wrap fsc" a:if="{{item.level}}">
+              <block a:for="{{[1,2,3,4,5]}}" a:key="*this" a:for-index="sIndex" a:for-item="sItem">
+                <view class="user-info-stars-item" a:if="{{sIndex+1 <= item.level}}">
+                  <image src="/images/stars1.png" />
+                </view>
+              </block>
+            </view>
+          </view>
+          <view class="f10 g8">商家编号：{{item.id}}</view>
+          <view class="fsc mt5 f12 g8">
+            <image src="/images/address_icon.png" class="address-icon" />
+            <view class="atr1 address">{{item.address}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <template is="list-loading" data="{{loading,list,nomore}}"></template>
+  </view>
+</view>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

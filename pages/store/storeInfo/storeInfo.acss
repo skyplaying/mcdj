@@ -1,0 +1,91 @@
+
+page,input,textarea{
+    font-size: 28rpx;
+}
+
+.hd-msg{
+  font-size: 24rpx;
+  color: #888;
+  padding: 30rpx 30rpx 0;
+}
+
+.main{
+  padding: 30rpx;
+}
+
+.facilities-item{
+  display: inline-block;
+  line-height: 56rpx;
+  font-size: 24rpx;
+  color: #888;
+  border: 1px solid #e5e5e5;
+  border-radius: 6rpx;
+  padding: 0 26rpx;
+  margin: 20rpx 20rpx 0 0;
+}
+.facilities-item_active{
+  color: white;
+  border: 1px solid #FF9800;
+  background-color: #FF9800;
+}
+
+/* 房屋类型 */
+.building-laber{
+  display: inline;
+}
+/* 悬浮最多可寄养选择框 */
+.suspension-frame-building{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 860rpx;
+  background-color: white;
+  box-sizing: border-box;
+  font-size: 32rpx;
+  line-height: 100rpx;
+}
+.suspension-building_hd{
+  padding: 20rpx 30rpx;
+  font-size: 28rpx;
+  line-height: 46rpx;
+}
+.suspension-building_hd button{
+  color: #17C4FB;
+}
+.suspension-building_bd{
+  padding: 100rpx 0;
+}
+.suspension-building-item .picker{
+  margin-right: 20rpx;
+}
+
+/* 图片上传 */
+.examples-btn{
+    color: #0EBAEA;
+    font-size: 24rpx;
+}
+.weui-uploader__files{
+    width: 450rpx;
+    white-space: nowrap;
+    line-height: 1;
+    flex: auto;
+}
+.weui-uploader__file{
+    display: inline-block;
+    float: none;
+    margin-bottom: 0;
+}
+.weui-uploader__input-box{
+    margin: 0;
+    margin-right: 20rpx;
+    flex: none;
+}
+
+
+.uploading-image-wrap{
+    padding: 30rpx;
+}
+.uploading-image_bd{ 
+    margin-top: 30rpx;
+}

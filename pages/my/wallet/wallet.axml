@@ -1,0 +1,37 @@
+
+
+<form onSubmit="setFormId" report-submit="{{true}}" class="container" a:if="{{isok}}">
+  <view class="wallet-wrap">
+    <view class="wallet-balance-wrap">
+      <view class="fbc">
+        <view>钱包余额</view>
+        <navigator url="../detailed/detailed" hover-class="none" class="detailed-btn">明细</navigator>
+      </view>
+      <view class="gor pt10"><text class="amount">{{balance}}</text>元</view>
+    </view>
+    <!-- <view class="today-reward bte5">
+      <view>今日赏金</view>
+      <block a:for="{{todayRewardList}}" a:key="petId">
+        <view class="g8">{{item.petName}} 赚取了 <text class="gor plr5">{{item.rewardAmount}}元</text> 赏金</view>
+      </block>
+      <view class="tc g8" a:if="{{todayRewardList && todayRewardList.length==0}}">今日暂无打赏</view>
+    </view> -->
+    <view class="withdrawals-wrap bte5">
+      <view>余额收米</view>
+      <view class="pt15 fbc">
+        <view class="flex-a plr5">
+          <input type="number" placeholder="请输入收米的金额" class="pct100" onInput="inputAmount" />
+        </view>
+        <button class="withdrawals-btn formId-btn" form-type="submit" onTap="isWithdrawals"> 收米 </button>
+      </view>
+    </view>
+    <view class="ptb20 bte5">
+      <view>温馨提示</view>
+      <view class="g8 pt10">
+        <view>1、钱包余额可以用于支付报酬</view>
+        <view>2、余额可通过收米转存到支付宝账号上</view>
+        <view>3、单次收米最低1元，单日最多收米2万元</view>
+      </view>
+    </view>
+  </view>
+</form>

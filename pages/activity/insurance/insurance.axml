@@ -1,0 +1,30 @@
+<!-- 18年五一活动 -->
+<view class="container" a:if="{{isok}}">
+  <view class="hd"></view>
+  <view class="btn-wrap">
+    <button class="btn1 formId-btn" onTap="receive" a:if="{{info.isReceive<=1}}"> 领取保险     
+    </button>
+    <button class="btn1 formId-btn" onTap="showFictitiousCode" a:elif="{{info.isReceive==3}}"> 查看兑换码 </button>
+    <button class="btn1-end formId-btn" a:elif="{{info.isReceive==2}}"> 已结束 </button>
+    <button class="btn2 formId-btn" onTap="toIndex"> 回首页 </button>
+  </view>
+  <image src="http://image.qipinke.com/activity/insurance/img1.png" mode="widthFix" />
+  <image src="http://image.qipinke.com/activity/insurance/img2.png" mode="widthFix" />
+</view>
+<!-- 兑换虚拟码成功悬浮框 -->
+<view class='suspension-wrap' hidden="{{!isShowFictitiousCode}}">
+  <view class="suspension-shadow-cover" onTap='showFictitiousCode'></view>
+  <view class='suspension-frame-fictitious-code'>
+    <view class='suspension-fictitious-code-hd'>兑换成功</view>
+    <view class='suspension-fictitious-code-bd'>
+      <view class='suspension-fictitious-code-wrap'>兑换码：{{info.redeemCode}}                
+        <text onTap='setClipboardCode'>复制</text>
+      </view>
+      <view>打开微信-底部发现入口-小程序列表-搜索“众安宠物保险"，进入小程序输入兑换码并填写资料完成兑换。</view>
+    </view>
+    <view class="cancel" onTap='showFictitiousCode'>
+      <icon type='cancel' color='#fff' size='25'></icon>
+    </view>
+    <!-- <view class='suspension-fictitious-code-btn' onTap='navigateToMiniProgram'>前往领取</view> -->
+  </view>
+</view>

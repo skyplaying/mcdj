@@ -1,0 +1,25 @@
+
+<form class="container" report-submit="{{true}}" onSubmit="setFormId">
+  <view class='found-cells mt10'>
+    <!-- 手机号 -->
+    <view class='found-cell'>
+      <view class='found-cell_hd'>手机号</view>
+      <view class='found-cell_bd'>
+        <input placeholder="请输入手机号" onInput="inputPhoneNum" type="number" maxlength="11" />
+      </view>
+    </view>
+    <!-- 验证码 -->
+    <view class='found-cell'>
+      <view class='found-cell_hd'>验证码</view>
+      <view class='found-cell_bd fbc'>
+        <input class="w150" placeholder="请输入验证码" onInput="inputProvingNum" type="number" maxlength="4"/>
+        <button size="mini" disabled="{{!isCanSend}}" onTap="queryCode">{{!btnfont?"获取验证码":btnfont+'秒重发'}}</button>
+      </view>
+    </view>
+  </view>
+  <button form-type="submit" onTap="submit" type="primary" class="w345 mc-btn2 gor auto mt20" hover-class="none" disabled="{{!noDisabled}}">保存</button>
+  <label class="f12 pt10 p10-15" for="weuiAgree">
+    <text>点击注册，即表示已阅读并同意</text>
+    <navigator url="/pages/colligate/guarantee/guarantee?index=3" class="gr dib">《宠物寄养协议》</navigator>
+  </label>
+</form>

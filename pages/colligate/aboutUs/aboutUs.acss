@@ -1,0 +1,9 @@
+
+page{
+    background-color: white;
+}
+
+.logo{
+     width: 200rpx;
+     height: 200rpx;
+}

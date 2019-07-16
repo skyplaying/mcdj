@@ -1,0 +1,105 @@
+
+
+.container{
+    padding-bottom: 200rpx;
+    font-size: 28rpx;
+}
+
+.swiper{
+    height: 640rpx;
+}
+.swiper-img{
+    display: block;
+    width: 100%;
+    height: 640rpx;
+}
+
+.pet-info-wrap{
+    background-color: white;
+    padding: 30rpx;
+}
+
+.pet-name{
+    font-size: 36rpx;
+    font-weight: bold;
+    max-width: 500rpx;
+}
+.pet-gender{
+    flex: none;
+    margin-left: 20rpx;
+    width: 40rpx;
+    height: 40rpx;
+}
+.pet-info_top_right{
+    flex: none;
+    font-size: 26rpx;
+}
+.report{
+    color: #576595;
+}
+
+
+/* 宠物相关 */
+.pet-about-wrap{
+  padding: 0 30rpx;
+  background-color: white;
+  margin-top: 20rpx;
+}
+.pet-about_hd{
+  line-break: 80rpx;
+  line-height: 80rpx;
+}
+.pet-about_bd{
+  padding: 20rpx 0;
+}
+.pet-about_bd > view{
+  display: inline-block;
+  padding: 0 30rpx;
+  text-align: center;
+  vertical-align: middle;
+  margin-right: 40rpx;
+  padding-top: 50rpx;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 44rpx 44rpx;
+}
+.pet-about_deworming{
+  background-image: url(https://wangka-1255900704.file.myqcloud.com/icon/pet_deworming_icon.png);
+}
+.pet-about_mixedVaccine{
+  background-image: url(https://wangka-1255900704.file.myqcloud.com/icon/pet_mixed_vaccine_icon.png);
+}
+.pet-about_sterilization{
+  background-image: url(https://wangka-1255900704.file.myqcloud.com/icon/pet_sterilization_icon.png);
+}
+.pet-about_rabiesVaccine{
+  background-image: url(https://wangka-1255900704.file.myqcloud.com/icon/pet_rabies_vaccine_icon.png);
+}
+
+
+/* 主人导航条 */
+.weui-select{
+    line-height: 1.5;
+}
+.weui-select::after{
+    display: none;
+}
+.user-avatar{
+    border-radius:90rpx;
+    width: 90rpx;
+    height: 90rpx;
+    margin-right: 30rpx;
+}
+
+.user-name{
+    line-height: 1;
+    font-size: 30rpx;
+    font-weight: bold;
+    max-width: 400rpx;
+}
+.user-sex{
+    width: 28rpx;
+    height: 28rpx;
+    margin-left: 10rpx;
+    flex: none;
+}

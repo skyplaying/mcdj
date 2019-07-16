@@ -1,0 +1,19 @@
+<form onSubmit="setFormId" report-submit="{{true}}" class="container bgwh">
+  <view class="bd">
+    <image src="http://image.qipinke.com/insurance/introduce/introduce_hd.png" mode="widthFix" /> 
+    <view class="p10-15">
+      <video src="XNDAwNjEyOTM2NA==" enableNative="{{true}}" onError="error" />
+    </view>
+    <image src="http://image.qipinke.com/insurance/introduce/introduce{{item}}.png" mode="widthFix" a:for="{{10}}" a:key="*this" />
+  </view>
+  <view class="foot-box fbc p10-15">
+    <view class="fsc">
+      <view class="gor">
+        <text class="f16">￥</text>
+        <text class="f24 b">365</text>
+      </view>
+      <!-- <view class="f12 g8 ml10 tdt">￥365</view> -->
+    </view>
+    <button type="primary" onTap="toPetList" form-type="submit" > 立即投保 </button>
+  </view>
+</form>

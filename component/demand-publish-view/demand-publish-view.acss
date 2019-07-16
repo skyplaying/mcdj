@@ -1,0 +1,120 @@
+
+/* 需求发布框 */
+.demand-publish-view-wrap{
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	margin: 0 -345rpx;
+	z-index: 20rpx;
+	width: 690rpx;
+	box-sizing: border-box;
+	padding: 40rpx;
+	background-color: white;
+	border-radius: 10rpx;
+	box-shadow: 0 2rpx 4rpx #bbb;
+}
+.clear-icon{
+	display: inline-block;
+	position: absolute;
+	right: 20rpx;
+	top: 20rpx;
+}
+.demand-publish-view_hd{
+    font-size: 28rpx;
+    margin-bottom: 40rpx;
+    text-align: center;
+}
+.demand-publish-view_pet-type-wrap,.demand-publish-view_time-wrap,.demand-publish-view_address-wrap{
+	background-color: #FAF7EE;
+	color: #E2BF76;
+	font-size: 24rpx;
+	line-height: 60rpx;
+	margin-top: 10rpx;
+}
+.demand-publish-view-label{
+	width: 100rpx;
+	text-align: center;
+}
+.demand-publish-view_pet-type-item{
+	width: 120rpx;
+}
+.demand-publish-view-radio{
+	width: 20rpx;
+	height: 20rpx;
+	border-radius: 20rpx;
+	box-sizing: border-box;
+	border: 1px solid #e5e5e5;
+	background-color: white;
+	margin-right: 10rpx;
+}
+.demand-publish-view-radio-active{
+	border: none;
+	background-color: #FF9800;
+}
+.demand-publish-view_time{
+	width: 160rpx;
+	text-align: center;
+}
+.demand-publish-view_address{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  word-wrap: break-word;
+  word-break:break-all; /* 允许在单词内换行。 */
+}
+.demand-publish-view_ft{
+    margin-top: 40rpx;
+}
+.demand-publish-view-btn1{
+	width: 100%;
+	line-height: 80rpx;
+	font-size: 28rpx;
+	text-align: center;
+	border-radius: 1000rpx;
+	color: white;
+	background-color: #FF9800;
+}
+
+/* 不要悬浮的css */
+.suspension-wrap_no{
+	position: relative;
+	width: 100%;
+	margin: -40rpx auto 30rpx;
+}
+.suspension-wrap_no .demand-publish-view-wrap{
+	position: relative;
+	top: 0;
+	padding: 20rpx 40rpx;
+}
+.suspension-wrap_no .demand-publish-view_hd{
+	font-size: 24rpx;
+	text-align: left;
+	margin-bottom: 20rpx;
+}
+.suspension-wrap_no .demand-publish-view_ft{
+	margin-top: 30rpx;
+}
+.suspension-wrap_no .demand-publish-view-btn1{
+	width: 200rpx;
+	line-height: 50rpx;
+	font-size: 24rpx;
+}
+.suspension-wrap_no .demand-publish-view-btn2{
+	position: relative;
+	width: 140rpx;
+	line-height: 50rpx;
+	font-size: 24rpx;
+	color: #AAAAAA;
+}
+.suspension-wrap_no .demand-publish-view-btn2::before{
+	content: '▶';
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 30rpx;
+	height: 30rpx;
+	font-size: 30rpx;
+	color: #FF9800;
+}

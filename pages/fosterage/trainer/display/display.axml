@@ -1,0 +1,180 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<form onSubmit="setFormId" report-submit="{{true}}" class="container pb30" a:if="{{isok}}">
+  <view class="msg-wrap f14">
+    <!-- 给主人的提示 -->
+    <block a:if="{{userInfo.userId==trainOrderVo.userId}}">
+      <view a:if="{{trainOrderVo.orderStatus==-1}}">订单已关闭</view>
+      <view a:elif="{{trainOrderVo.orderStatus==1}}">订单状态：请在10分钟内进行付款。过期后订单失效。</view>
+      <view a:elif="{{trainOrderVo.orderStatus==2}}">订单状态：您已下单成功，请等待训导师的回复。</view>
+      <view a:elif="{{trainOrderVo.orderStatus==3}}">
+        <view>订单状态：宠物正在训练中</view>
+        <view class="gor">宠物训练完成后，训导师联系您接回宠物。</view>
+      </view>
+      <view a:elif="{{trainOrderVo.orderStatus>=4}}">
+        <view>服务已完成</view>
+        <view class="gor" a:if="{{trainOrderVo.orderStatus==4}}">您的宠物已完成训练，宠物训练成果如何。快去评价吧！</view>
+      </view>
+    </block>
+    <!-- 给训练师的提示 -->
+    <block a:elif="{{userInfo.userId==trainOrderVo.trainerUserId}}">
+      <view a:if="{{trainOrderVo.orderStatus==-1}}">订单已关闭</view>
+      <view a:elif="{{trainOrderVo.orderStatus==1}}">订单状态：正在等待对方支付</view>
+      <view a:elif="{{trainOrderVo.orderStatus==2}}">
+        <view>订单状态：您收到新的训练订单，请联系对方进行协商时间</view>
+        <view class="gor">注意：接到宠物时，记得和对方索要服务码</view>
+      </view>
+      <view a:elif="{{trainOrderVo.orderStatus==3}}">
+        <view>订单状态：训练中，待训练结束时请提醒主人接走宠物，并</view>
+        <view class="gor">要求宠物主人点击完成训练。</view>
+      </view>
+      <view a:elif="{{trainOrderVo.orderStatus>=4}}">订单已完成</view>
+    </block>
+  </view>
+  <!-- 服务详情 -->
+  <view class="bgwh server-info">
+    <view class="wrap_hd">服务详情</view>
+    <view class="weui-select ptb10 fsc">
+      <image src="{{trainOrderVo.trainServiceVo.servicePath}}" mode="aspectFill" class="server-img" />
+      <view>
+        <view class="f16">{{trainOrderVo.trainServiceVo.itemName}}</view>
+        <view class="f14 g8">￥{{trainOrderVo.trainServiceVo.trainAmount}}</view>
+      </view>
+    </view>
+    <view class="mc-cell fbc f13">
+      <view>
+        <view>
+          <text class="g8">服务方式：</text>
+          <text>{{trainOrderVo.serviceMode}}</text>
+        </view>
+        <view class="mt5">
+          <text class="g8">服务留言：</text>
+          <text>{{trainOrderVo.remark || '无'}}</text>
+        </view>
+        <view class="mt5 fss">
+          <text class="g8">服务宠物：</text>
+          <view class="pet-item mr5" a:for="{{trainOrderVo.petList}}" a:key="petId">
+            <image src="{{item.petAvatar}}" mode="aspectFill" onTap="toPet" data-id="{{item.petId}}" />
+          </view>
+        </view>
+      </view>
+      <button class="f12 felx-n ml15" form-type="submit" size="mini" onTap="cancelOrder" a:if="{{(userInfo.userId==trainOrderVo.trainerUserId || trainOrderVo.userId==trainOrderVo.userId)&&(trainOrderVo.orderStatus==1||trainOrderVo.orderStatus==2)}}">
+        取消寄养
+      </button>
+    </view>
+  </view>
+  <!-- 对方信息 -->
+  <view class="bgwh mt10">
+    <view class="wrap_hd">对方信息</view>
+    <view class="fsc p10-15 user-nav">
+      <image src="{{trainOrderVo.usersVo.avatar}}" mode="aspectFill" class="user-avatar" />
+      <view class="master-info-wrap fsc" a:if="{{userInfo.userId==trainOrderVo.trainerUserId}}">
+        <view class="master-info_left">
+          <view class="fsc">
+            <view class="art1">{{trainOrderVo.usersVo.nickName}}</view>
+            <view class="identity-icon">主人</view>
+          </view>
+        </view>
+      </view>
+      <view class="family-info-wrap" a:else>
+        <view class="fsc">
+          <view class="f15 b art1">{{trainOrderVo.usersVo.nickName}}</view>
+          <image class="real-icon" mode="aspectFill" src="/images/identity_real_icon.png"/>
+          <image class="zhima-icon" mode="aspectFill" src="/images/adopter_zhima_icon.png"/>
+        </view>
+      </view>
+    </view>
+    <view class="weui-select fsc" onTap="openLocation" a:if="{{trainOrderVo.usersVo.address && userInfo.userId==trainOrderVo.userId}}">
+      <image src="/images/address_icon.png" class="address-nav-icon" />
+      <view class="art1 w300">{{trainOrderVo.usersVo.address}}</view>
+    </view>
+  </view>
+  <!-- 订单费用 -->
+  <view class="bgwh mt10 f12">
+    <view class="wrap_hd">订单费用</view>
+    <view class="p10-15 f12">
+      <view class="fbc gb">
+        <text>服务项目</text>
+        <text>数量</text>
+        <text>费用</text>
+      </view>
+      <view class="fbc mt10">
+        <text>{{trainOrderVo.trainServiceVo.itemName}}</text>
+        <text>{{trainOrderVo.trainServiceVo.itemName}}</text>
+        <text>{{trainOrderVo.trainServiceVo.trainAmount}}</text>
+      </view>
+      <view class="fbc mt10" a:if="{{trainOrderVo.runAboutAmount}}">
+        <text>接送费</text>
+        <text>{{trainOrderVo.runAboutAmount}}</text>
+      </view>
+    </view>
+    <view class="mc-cell">
+      <view class="fbc">
+        <text>订单金额</text>
+        <text>￥{{trainOrderVo.totalAmount}}</text>
+      </view>
+      <view class="fbc mt10">
+        <text>优惠金额</text>
+        <text class="g8">-￥{{trainOrderVo.discountAmount || '0.00'}}</text>
+      </view>
+      <view class="fbc mt10">
+        <text>实付金额</text>
+        <text class="gor">￥{{trainOrderVo.payableAmount || trainOrderVo.totalAmount}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 订单信息 -->
+  <view class="bgwh mt10">
+    <view class="wrap_hd">订单信息</view>
+    <view class="p10-15">
+      <view>订单编号：{{trainOrderVo.orderNumber}}</view>
+      <view>订单时间：{{trainOrderVo.createTime}}</view>
+    </view>
+  </view>
+  <!-- 底部按钮 -->
+  <view class="foot-box fbc">
+    <view class="foot_left fsc">
+      <view class="ft-chat-btn fcc" onTap="leaveWord">
+        <image src="/images/fosterage_chat.png" mode="aspectFill" class="chat-icon" />
+        <view>联系家庭</view>
+      </view>
+      <view class="ft-phone-btn fcc" onTap="dialing" a:if="{{trainOrderVo.orderStatus >= 2}}">
+        <image src="/images/fosterage_phone.png" mode="aspectFill" class="phone-icon" />
+        <view>拨打电话</view>
+      </view>
+    </view>
+    <view class="foot_right">
+      <button class="mc-btn" form-type="submit" size="mini" onTap="toCommentDisplay" a:if="{{trainOrderVo.orderStatus==5}}"> 查看评价 </button>
+      <!-- 主人按钮组 -->
+      <block a:elif="{{userInfo.userId==trainOrderVo.trainerUserId}}">
+        <button class="mc-btn2 gor" form-type="submit" size="mini" onTap="showPassword" a:if="{{trainOrderVo.orderStatus==2}}"> 已接到宠物 </button>
+      </block>
+      <!-- 训练师按钮组 -->
+      <block a:elif="{{userInfo.userId==trainOrderVo.userId}}">
+        <button class="mc-btn2 gor" form-type="submit" size="mini" onTap="pay" a:if="{{trainOrderVo.orderStatus==1}}"> 付款 </button>
+        <button class="formId-btn mc-btn" form-type="submit" a:elif="{{trainOrderVo.orderStatus==2}}"> 服务码：{{trainOrderVo.serviceCode}} </button>
+        <button class="mc-btn2 gor" form-type="submit" size="mini" onTap="finishTrainOrder" a:if="{{trainOrderVo.orderStatus==3}}"> 接宠回家 </button>
+        <button class="mc-btn2 gor" form-type="submit" size="mini" onTap="toCommentFound" a:elif="{{trainOrderVo.orderStatus==4}}"> 评价 </button>
+      </block>
+    </view>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>
+<!-- 口令输入悬浮框 -->
+<form onSubmit="setFormId" report-submit="{{true}}" class="suspension-wrap" a:if="{{showPassword}}">
+  <view class="suspension-shadow-cover"></view>
+  <view class="suspension-password-frame">
+    <view class="suspension-password_hd b f16 tc">输入服务码</view>
+    <view class="suspension-password_bd tc">
+      <input type="number" value="{{serviceCode}}" onInput="inputPassword" auto-focus="{{true}}" />
+      <view class="f12 g8 mt15">服务码由宠物主人给出</view>
+    </view>
+    <view class="suspension-password_ft fbc">
+      <button class="suspension-password_cancel" form-type="submit" onTap="hidPassword"> 取消 </button>
+      <button class="suspension-password_confirm" form-type="submit" onTap="startTrainOrder"> 确认 </button>
+    </view>
+  </view>
+</form>

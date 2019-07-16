@@ -1,0 +1,317 @@
+<import src="/others/template/weui_mc.axml"/>
+<form onSubmit="setFormId" report-submit="{{true}}" class="container pb30" a:if="{{isok}}">
+  <view class="msg-wrap f14">
+    <!-- 给主人的提示 -->
+    <block a:if="{{userInfo.userId==fosterOrderVo.userId}}">
+      <text a:if="{{fosterOrderVo.fosterStatus==-1}}">订单已关闭            
+      </text>
+      <text a:elif="{{fosterOrderVo.fosterStatus==1}}">订单状态：请在10分钟内进行付款。过期后订单失效。            
+      </text>
+      <text a:elif="{{fosterOrderVo.fosterStatus==2}}">订单状态：您已成功下单，请等待寄养家庭的回复。            
+      </text>
+      <text a:elif="{{fosterOrderVo.fosterStatus==3}}">
+        <text>订单状态：家庭已接单，请与寄养家庭协商宠物接送方式和时间。                
+        </text>
+        <text class="gor">注意：送达后，记得要求寄养家庭确认一下接到宠物                
+        </text>
+      </text>
+      <text a:elif="{{fosterOrderVo.fosterStatus==4}}">
+        <text class="gr" a:if="{{fosterOrderVo.handleAmount>0}}">订单状态：家庭申请了提前结束寄养，并愿意赔付{{fosterOrderVo.handleAmount}}元，确认请点击完成寄养                
+        </text>
+        <text a:else>订单状态：家庭已接到宠物开始寄养，待接回宠物后再点击完成寄养。                
+        </text>
+      </text>
+      <text a:elif="{{fosterOrderVo.fosterStatus==5}}">
+        <text>订单已完成                
+        </text>
+        <text class="gor" a:if="{{!fosterOrderVo.isComment}}">，请对本次服务进行评价                
+        </text>
+      </text>
+    </block>
+    <!-- 给家庭的提示 -->
+    <block a:elif="{{userInfo.userId==fosterOrderVo.fosterUserId}}">
+      <text a:if="{{fosterOrderVo.fosterStatus==-1}}">订单已关闭            
+      </text>
+      <text a:elif="{{fosterOrderVo.fosterStatus==1}}">订单状态：正在等待对方支付            
+      </text>
+      <text a:elif="{{fosterOrderVo.fosterStatus==2}}">订单状态：您收到来新的寄养订单，请尽快回复预订。15分钟订单无应答将自动取消。            
+      </text>
+      <text a:elif="{{fosterOrderVo.fosterStatus==3}}">
+        <text>订单状态：已成功接单，请与宠物主人协商宠物接送方式和时间。                
+        </text>
+        <text class="gor">注意：接到宠物时，记得点击已接到宠物按钮并上传宠物的现场照片。                
+        </text>
+      </text>
+      <text a:elif="{{fosterOrderVo.fosterStatus==4}}">
+        <text>订单状态：寄养中，待寄养结束时请提醒主人接走宠物，并                
+        </text>
+        <text class="gor">要求宠物主人点击完成寄养。                
+        </text>
+      </text>
+      <text a:elif="{{fosterOrderVo.fosterStatus==5}}">订单已完成            
+      </text>
+    </block>
+  </view>
+  <!-- 寄养信息 -->
+  <view class="bgwh">
+    <view class="wrap_hd">寄养信息        
+    </view>
+    <view class="fsc p10-15 user-nav">
+      <image src="{{fosterOrderVo.usersVo.avatar}}" mode="aspectFill" class="user-avatar" />
+      <view class="master-info-wrap fsc" a:if="{{userInfo.userId==fosterOrderVo.fosterUserId}}">
+        <view class="master-info_left">
+          <view class="fsc">
+            <view class="art1">{{fosterOrderVo.usersVo.nickName}}                        
+            </view>
+            <view class="identity-icon">主人                        
+            </view>
+          </view>
+          <view class="g8 f12">
+            <text>{{fosterOrderVo.usersVo.pointCity}}                        
+            </text>
+            <text class="ml15">{{fosterOrderVo.usersVo.occupation}}                        
+            </text>
+          </view>
+        </view>
+        <image src="/images/fosterage_chat.png" mode="aspectFill" class="chat-icon ml10" onTap="leaveWord" />
+        <image src="/images/fosterage_phone.png" mode="aspectFill" class="phone-icon ml15" onTap="dialing" />
+      </view>
+      <view class="family-info-wrap" a:else>
+        <view class="fsc">
+          <view class="f15 b art1">{{fosterOrderVo.usersVo.nickName}}                    
+          </view>
+          <image class="real-icon" mode="aspectFill" src="/images/identity_real_icon.png"/>
+          <image class="zhima-icon" mode="aspectFill" src="/images/adopter_zhima_icon.png"/>
+        </view>
+        <view class="f12 g8">{{fosterOrderVo.usersVo.address}}                
+        </view>
+      </view>
+    </view>
+    <view class="mc-cell f13">
+      <view>
+        <text class="g8">寄养时间：                
+        </text>
+        <text>{{fosterOrderVo.startTime}} — {{fosterOrderVo.endTime}}                
+        </text>
+      </view>
+      <view class="mt5">
+        <text class="g8">寄养留言：                
+        </text>
+        <text>{{fosterOrderVo.remark || '无'}}                
+        </text>
+      </view>
+    </view>
+  </view>
+  <!-- 寄养费用 -->
+  <view class="bgwh mt10 f12">
+    <view class="wrap_hd">寄养费用        
+    </view>
+    <view class="pet-list-wrap fbc">
+      <view class="pet-info-wrap">
+        <view class="g8">宠物                
+        </view>
+        <view class="pet-info-item fsc" onTap="toPet" data-id="{{item.petId}}" a:for="{{fosterOrderVo.petsList}}" a:key="petId">
+          <image src="{{item.petAvatar}}" mode="aspectFill" class="pet-avatar" />
+          <view class="pet-name g8 art1">{{item.petName}}                    
+          </view>
+          <image src="/images/gender{{item.gender}}.png" mode="aspectFill" class="pet-gender" />
+        </view>
+      </view>
+      <view class="pet-type-wrap">
+        <view class="g8">类型                
+        </view>
+        <view class="pet-type-item" a:for="{{fosterOrderVo.petsList}}" a:key="petId">{{item.petTypeName}}                
+        </view>
+      </view>
+      <view class="pet-day-wrap">
+        <view class="g8">天数                
+        </view>
+        <view class="pet-day-item" a:for="{{fosterOrderVo.petsList}}" a:key="petId">{{fosterOrderVo.fosterNum}}                
+        </view>
+      </view>
+      <view class="pet-day-wrap">
+        <view class="g8">费用/晚                
+        </view>
+        <view class="pet-day-item" a:for="{{fosterOrderVo.petsList}}" a:key="petId">￥{{item.fosterAmount}}                
+        </view>
+      </view>
+    </view>
+    <view class="mc-cell">
+      <view class="fbc">
+        <text>订单金额                
+        </text>
+        <text>￥{{fosterOrderVo.orderAmount}}                
+        </text>
+      </view>
+      <view class="fbc mt10">
+        <text>优惠金额                
+        </text>
+        <text class="g8">-￥{{fosterOrderVo.discountAmount || '0.00'}}                
+        </text>
+      </view>
+      <view class="fbc mt10">
+        <text>实付金额                
+        </text>
+        <text class="gor">￥{{fosterOrderVo.payableAmount}}                
+        </text>
+      </view>
+    </view>
+  </view>
+  <!-- 家庭违约赔付 -->
+  <view class="bgwh mt10 f12" a:if="{{fosterOrderVo.handleAmount>0}}">
+    <view class="wrap_hd">违约赔付        
+    </view>
+    <view class="p10-15">
+      <view class="fbc">
+        <text>订单完成时间                
+        </text>
+        <text class="g8">{{fosterOrderVo.advanceFinishTime}}                
+        </text>
+      </view>
+      <view class="fbc mt10">
+        <text>赔付金额                
+        </text>
+        <text class="gor">￥{{fosterOrderVo.handleAmount}}                
+        </text>
+      </view>
+    </view>
+  </view>
+  <!-- 主人违约退款 -->
+  <view class="bgwh mt10 f12" a:if="{{fosterOrderVo.refundAmount>=0}}">
+    <view class="wrap_hd">违约退款        
+    </view>
+    <view class="p10-15">
+      <view class="fbc">
+        <text>订单完成时间                
+        </text>
+        <text class="g8">{{fosterOrderVo.advanceFinishTime}}                
+        </text>
+      </view>
+      <view class="fbc mt10">
+        <text>退款金额                
+        </text>
+        <text class="gor">￥{{fosterOrderVo.refundAmount}}                
+        </text>
+      </view>
+    </view>
+  </view>
+  <!-- 订单信息 -->
+  <view class="bgwh mt10">
+    <view class="wrap_hd">订单信息        
+    </view>
+    <view class="fbc p10-15">
+      <view>
+        <view>订单编号：{{fosterOrderVo.orderNumber}}                
+        </view>
+        <view>订单时间：{{fosterOrderVo.orderTime}}                
+        </view>
+      </view>
+      <button class="f12" form-type="submit" size="mini" onTap="cancelOrder" a:if="{{infoIsCanCancel}}">                取消寄养                                                                                                      
+      </button>
+      <button class="f12" form-type="submit" size="mini" onTap="advanceFinish" a:elif="{{infoIsAdvanceFinish}}">提前完成                                                                  
+      </button>
+    </view>
+  </view>
+  <!-- 底部按钮 -->
+  <!-- 寄养家庭按钮组 -->
+  <view class="foot-box fec" a:if="{{userInfo.userId==fosterOrderVo.fosterUserId}}">
+    <button class="mc-btn" form-type="submit" size="mini" onTap="toCommentDisplay" a:if="{{fosterOrderVo.isComment}}"> 查看评价                         
+    </button>
+    <block a:elif="{{fosterOrderVo.fosterStatus==2}}">
+      <view class="reject-btn fcc" onTap="cancelOrder">
+        <icon type="cancel" size="18" color="#E51C23" />
+        <view>拒绝预定                                
+        </view>
+      </view>
+      <view class="receive-btn fcc" onTap="confirmOrder">
+        <icon type="success" size="18" color="#01C172" />
+        <view>接受预定                                
+        </view>
+      </view>
+    </block>
+    <button class="mc-btn2 gor" form-type="submit" size="mini" onTap="showPhoto" a:elif="{{fosterOrderVo.fosterStatus==3}}"> 已接到宠物                         
+    </button>
+    <button class="formId-btn mc-btn" form-type="submit" a:elif="{{fosterOrderVo.fosterStatus==4}}"> 口令：{{fosterOrderVo.finishPwd}}                         
+    </button>
+  </view>
+  <!-- 狗主人按钮组 -->
+  <view class="foot-box fbc" a:elif="{{userInfo.userId==fosterOrderVo.userId}}">
+    <view class="foot_left fsc">
+      <view class="ft-chat-btn fcc" onTap="leaveWord">
+        <image src="/images/fosterage_chat.png" mode="aspectFill" class="chat-icon" />
+        <view>联系Ta                                
+        </view>
+      </view>
+      <view class="ft-phone-btn fcc" onTap="dialing" a:if="{{fosterOrderVo.fosterStatus >= 2}}">
+        <image src="/images/fosterage_phone.png" mode="aspectFill" class="phone-icon" />
+        <view>拨打电话                                
+        </view>
+      </view>
+    </view>
+    <view class="foot_right">
+      <button class="mc-btn" form-type="submit" size="mini" onTap="toCommentDisplay" a:if="{{fosterOrderVo.isComment}}"> 查看评价                             
+      </button>
+      <button class="mc-btn2 gor" form-type="submit" size="mini" onTap="pay" a:elif="{{fosterOrderVo.fosterStatus==1}}"> 付款                             
+      </button>
+      <block a:elif="{{fosterOrderVo.fosterStatus==4}}">
+        <button class="mc-btn2 gor" form-type="submit" size="mini" onTap="showPassword" a:if="{{expireDay<=0 || fosterOrderVo.handleAmount>0}}"> 完成寄养                                           
+        </button>
+        <button size="mini" form-type="submit" onTap="masterAdvanceFinishMsg" a:else> 提前完成                                 
+        </button>
+      </block>
+      <button class="mc-btn2 gor" form-type="submit" size="mini" onTap="toCommentFound" a:elif="{{fosterOrderVo.fosterStatus==5}}"> 评价                             
+      </button>
+    </view>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>
+<!-- 照片上传悬浮框 -->
+<form onSubmit="setFormId" report-submit="{{true}}" class="suspension-wrap" a:if="{{showPhoto}}">
+  <view class="suspension-shadow-cover">
+  </view>
+  <view class="suspension-photo-frame">
+    <view class="suspension-photo_hd b f16 tc">宠物到家情况                            
+    </view>
+    <view class="suspension-photo_bd tc" onTap="choosePetPhoto">
+      <view class="suspension-photo_upload-input-wrap" a:if="{{!receivePetPicture || receivePetPicture.length==0}}">
+        <view class="suspension-photo_upload-input g8 f12">点击拍照                                    
+        </view>
+        <view class="f12 g8 mt15">请拍摄宠物到家时的照片                                    
+        </view>
+      </view>
+      <image src="{{receivePetPicture[0]}}" mode="aspectFill" a:else />
+    </view>
+    <view class="suspension-photo_ft fbc">
+      <button class="suspension-photo_cancel" form-type="submit" onTap="hidPhoto"> 取消                                 
+      </button>
+      <button class="suspension-photo_confirm" form-type="submit" onTap="receivedPet"> 确认并上传                                 
+      </button>
+    </view>
+  </view>
+</form>
+<!-- 口令输入悬浮框 -->
+<form onSubmit="setFormId" report-submit="{{true}}" class="suspension-wrap" a:if="{{showPassword}}">
+  <view class="suspension-shadow-cover">
+  </view>
+  <view class="suspension-password-frame">
+    <view class="suspension-password_hd b f16 tc">输入数字口令                            
+    </view>
+    <view class="f12 tc gor" a:if="{{expireDay>0 && (refundAmount || fosterOrderVo.handleAmount)}}">退还金额:{{refundAmount || fosterOrderVo.handleAmount}}元                            
+    </view>
+    <view class="suspension-password_bd tc">
+      <input type="number" value="{{finishPwd}}" onInput="inputPassword" auto-focus="{{true}}" />
+      <view class="f12 g8 mt15">数字口令由寄养家庭给出                                
+      </view>
+    </view>
+    <view class="suspension-password_ft fbc">
+      <button class="suspension-password_cancel" form-type="submit" onTap="hidPassword"> 取消                                 
+      </button>
+      <button class="suspension-password_confirm" form-type="submit" onTap="finishOrder" a:if="{{expireDay<=0 || fosterOrderVo.handleAmount>0}}"> 确认                                         
+      </button>
+      <button class="suspension-password_confirm" form-type="submit" onTap="masterAdvanceFinish" a:else> 确认                                 
+      </button>
+    </view>
+  </view>
+</form>

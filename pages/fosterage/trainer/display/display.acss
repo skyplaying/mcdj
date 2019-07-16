@@ -1,0 +1,221 @@
+
+
+.container{
+    padding-bottom: 200rpx;
+    font-size: 24rpx;
+}
+
+.wrap_hd{ 
+    padding: 0 30rpx;
+    line-height: 60rpx;
+    font-size: 24rpx;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.msg-wrap{
+    background-color: #FFFBBA;
+    padding: 20rpx;
+    font-size: 24rpx;
+}
+
+/* 服务详情 */
+.server-img{
+    width: 130rpx;
+    height: 130rpx;
+    margin-right: 30rpx;
+    flex: none;
+}
+
+.server-info .weui-select::after{
+    display: none;
+}
+
+.pet-item image{
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 80rpx;
+}
+
+/* 用户信息导航 */
+.user-avatar{
+    flex: none;
+    width: 90rpx;
+    height: 90rpx;
+    border-radius: 90rpx;
+    margin-right: 20rpx;
+}
+.identity-icon{
+    flex: none;
+    width: 60rpx; 
+    height: 30rpx;
+    line-height: 30rpx;
+    text-align: center;
+    color: white;
+    font-size: 16rpx;
+    background-color: #FA9D26;
+    margin-left: 20rpx;
+    border-radius: 4rpx;
+}
+.real-icon{
+    flex: none;
+    width: 30rpx;
+    height: 30rpx;
+    margin-left: 20rpx;
+}
+.zhima-icon{
+    flex: none;
+    width: 30rpx;
+    height: 30rpx;
+    margin-left: 10rpx;
+}
+.master-info-wrap,.master-info_left{
+    flex: auto;
+}
+.chat-icon,.phone-icon{
+    flex: none;
+    width: 36rpx;
+    height: 36rpx;
+}
+
+/* 地址导航 */
+.address-nav-icon{
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 20rpx;
+    flex: none;
+}
+
+/* 宠物列表 */
+.pet-list-wrap{
+    padding: 0 30rpx;
+    line-height: 80rpx;
+    text-align: center;
+}
+.pet-avatar{
+    width: 70rpx;
+    height: 70rpx;
+    border-radius: 70rpx;
+}
+.pet-name{
+    max-width: 150rpx;
+    margin-left: 10rpx;
+}
+.pet-gender{
+    width: 24rpx;
+    height: 24rpx;
+    margin-left: 10rpx;
+}
+
+/* 底部按钮组 */
+.foot-box{
+    padding: 0 30rpx;
+}
+.reject-btn,.receive-btn{
+    flex: 1;
+}
+.ft-chat-btn,.ft-phone-btn{
+    width: 214rpx;
+}
+.reject-btn view,.receive-btn view,.ft-chat-btn view,.ft-phone-btn view{
+    line-height: 90rpx;
+    margin-left: 20rpx;
+}
+.mc-btn2,.mc-btn{
+    margin: 20rpx 0;
+}
+.foot_left{
+    flex: auto;
+}
+.foot_right{
+    flex: none;
+}
+
+/* 照片上传悬浮框 */
+.suspension-photo-frame{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 600rpx;
+    height: 720rpx;
+    margin: -360rpx -300rpx;
+    z-index: 100;
+    background-color: white;
+    border-radius: 10rpx;
+    overflow: hidden;
+}
+.suspension-photo_hd{
+    line-height: 140rpx;
+}
+.suspension-photo_bd image,.suspension-photo_upload-input-wrap{
+    margin: 0 auto;
+    width: 440rpx;
+    height: 440rpx;
+}
+.suspension-photo_upload-input{
+    margin: 0 auto;
+    width: 360rpx;
+    height: 360rpx;
+    line-height: 360rpx;
+    border:1px double #e5e5e5;
+}
+.suspension-photo_ft{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.suspension-photo_ft button{
+    flex: 1;
+    border: none;
+    font-size: 32rpx;
+}
+.suspension-photo_cancel{
+    background-color: #E5E5E5;
+}
+.suspension-photo_confirm{
+    color: white;
+    background-color: #17C4FB;
+}
+
+
+/* 口令输入悬浮框 */
+.suspension-password-frame{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 600rpx;
+    height: 450rpx;
+    margin: -225rpx -300rpx;
+    z-index: 100;
+    background-color: white;
+    border-radius: 10rpx;
+    overflow: hidden;
+}
+.suspension-password_hd{
+    line-height: 140rpx;
+}
+.suspension-password_bd{
+    padding: 0 80rpx 40rpx;
+}
+.suspension-password_bd input{
+    padding: 20rpx 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+.suspension-password_ft{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.suspension-password_ft button{
+    flex: 1;
+    border: none;
+    font-size: 32rpx;
+}
+.suspension-password_cancel{
+    background-color: #E5E5E5;
+}
+.suspension-password_confirm{
+    color: white;
+    background-color: #17C4FB;
+}

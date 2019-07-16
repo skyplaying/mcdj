@@ -1,0 +1,41 @@
+
+
+<view class="container">
+  <!-- 搜索条-开始 -->
+  <view class="navbar">
+    <view class="navbar-search">
+      <view class="navbar-search-input">
+        <input placeholder="搜索宠物/地区/关键词等" onInput="inputTyping" value="{{petVarietyName}}" onConfirm="searchconfirm"/>
+        <view class="weui-icon-clear" a:if="{{petVarietyName.length > 0}}" onTap="clearInput">
+          <icon type="cancel" size="14"></icon>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 搜索条-结束 -->
+  <view class="bgwh" a:if="{{petVarietyName.length > 0}}">
+    <block a:for="{{varietyList}}" a:key="petCategoryId">
+      <view class="weui-select" onTap="selectVariety" data-index="{{index}}">
+          <view>{{item.petVarietyName}}</view>
+      </view>
+    </block>
+  </view>
+  <view class="fss" a:else>
+    <view class="left-box">
+      <block a:for="{{categoryList}}" a:key="petCategoryId">
+        <view class="p10-15 bgwh" onTap="selectCategory" data-id="{{item.petCategoryId}}">
+            <view class="{{petCategoryId == item.petCategoryId?'gor':''}}">{{item.categoryName}}</view>
+        </view>
+      </block>
+    </view>
+    <view class="right-box">
+      <block a:for="{{varietyList}}" a:key="petCategoryId">
+        <view class="weui-select bgwh" onTap="selectVariety" data-index="{{index}}">
+            <view>{{item.petVarietyName}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+
+

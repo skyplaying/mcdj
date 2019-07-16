@@ -1,0 +1,44 @@
+
+page,textarea{
+    font-size: 28rpx;
+}
+
+textarea{ 
+  padding: 10rpx;
+  min-height: 8em;
+  line-height: 2em;
+}
+
+.fraction{
+    padding: 10rpx 30rpx;
+}
+
+.stars-wrap{
+    line-height: 1;
+}
+
+.stars-item{
+    margin: 10rpx;
+    width: 44rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+}
+
+.laber-wrap{
+    background-color: white;
+    padding-bottom: 20rpx;
+}
+
+.laber-item{
+    display: inline-block;
+    font-size: 24rpx;
+    line-height: 56rpx;
+    padding: 0 30rpx;
+    border:1px solid #e5e5e5;
+    margin: 20rpx 30rpx;
+}
+
+.laber-active{
+    border:1px solid #FA9D26;
+    color: #FA9D26;    
+}

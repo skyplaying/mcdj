@@ -1,0 +1,12 @@
+
+<view class="container">
+  <view class="hd">
+    您取消的原因？
+  </view>
+  <view class="bd">
+    <view class="cancel-reason-foster">
+      <view class="mc-cell {{cancelIndex==index?'gor':''}}" a:for="{{reasonArr}}" data-index="{{index}}" onTap="selectCancel" >{{item.cancelReason}}</view>
+    </view>
+  </view>
+  <button onTap="cancalAdopt" hover-class="none" class="mc-btn2 {{true?'gor':'g8'}}"> 提交 </button>
+</view>

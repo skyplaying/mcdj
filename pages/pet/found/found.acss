@@ -1,0 +1,100 @@
+
+
+.container,input,textarea {
+  font-size: 28rpx;
+}
+
+.weui-uploader-box{
+    background-color: white;
+    padding: 30rpx 30rpx 20rpx;
+}
+
+
+
+.weui-uploader__file,.uploader__input-img{
+    width: 158rpx;
+    height: 158rpx;
+}
+.uploader__input-img{
+    float: left;
+    margin-right: 18rpx;
+    margin-bottom: 18rpx;
+}
+
+.weui-uploader__img{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.weui-uploader-avatar{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    line-height: 40rpx;
+    background-color: #FA9D26;
+    font-size: 24rpx;
+    color: white;
+    opacity: 0.8;
+}
+
+.weui-uploader-move{
+    opacity: 0.8;
+    z-index: 10;
+}
+
+.weui-sex__radio {
+    position: absolute;
+    left: -9999px;
+}
+
+.weui-sex__radio-icon{
+    display: inline-block;
+    width: 24rpx;
+    height: 24rpx;
+    border: 1px solid #d1d1d1;
+    border-radius: 24rpx;
+    vertical-align: middle;
+    position: relative;
+}
+
+.weui-sex__radio-icon-check{
+    border-radius:18rpx;
+    width: 18rpx;
+    height: 18rpx;
+    background-color: #1478E3;
+    margin: -9rpx;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+.sex-icon{
+    width: 40rpx;
+    height: 38rpx;
+    vertical-align: middle;
+    margin-left: 10rpx;
+}
+
+.radio-group{
+    text-align: right;
+    line-height: 2.58823529em;
+}
+
+
+/* ------------------------------------------------------- */
+
+/* 底部按钮 */
+.ft{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 50rpx;
+}
+.delete-btn{
+  width: 100%;
+  text-align: center;
+  line-height: 90rpx;
+}
+

@@ -1,0 +1,68 @@
+<!-- 18年五一活动 -->
+<form onSubmit="setFormId" report-submit="{{true}}" class="container" a:if="{{isok}}">
+  <view class="main">
+    <view class="main_hd">中秋国庆专享优惠券</view>
+    <view class="main_bd">
+      <view class="voucher-item {{isReceive?'voucher-item_active':''}}" a:for="{{list}}" a:key="fosterCouponId">
+        <view class="voucher-item_main fbc">
+          <view class="voucher-item_main_left">
+            <view class="voucher-item_title">{{item.couponTitle}}</view>
+            <view class="voucher-item_condition">满{{item.fullSubtractionAmount}}元可用</view>
+          </view>
+          <view class="voucher-item_main_right">
+            <text class="voucher-item_price_label">￥</text>
+            <text>{{item.couponAmount}}</text>
+          </view>
+        </view>
+        <view class="voucher-item_time">{{item.startTime}}~{{item.endTime}}</view>
+      </view>
+    </view>
+    <button class="main-ft formId-btn mc-btn2" form-type="submit" onTap="receiveCoupon" hover-class="btn_hover" a:if="{{!isReceive}}"> 立即领取 </button>
+    <button class="main-ft formId-btn mc-btn2" form-type="submit" onTap="toIndex" hover-class="btn_hover" a:else > 立即使用 </button>
+  </view>
+  <view class="rule-wrap gf f12">
+    <view class="rule_hd b p15 f16 tc">活动规则</view>
+    <view>1、点击“立即领取”萌即可领取节日寄养优惠券，节日优惠券仅在活动期间内有效。</view>
+    <view>2、用户可在“我的-优惠券”中查看优惠。</view>
+    <view>3、活动期间，用户如出现有违规、作弊行为，萌宠到家将取消用户的活动资格，必要时萌宠到家将追究违规用户的法律责任。</view>
+  </view>
+</form>
+<form onSubmit="setFormId" report-submit="{{true}}" a:elif="{{isNoAuth}}" class="container-refresh bgwh">
+  <view class="refresh">
+    <image src="/images/refresh_bg.png" mode="widthFix" class="pct100"/>
+    <view class="f14">点击刷新后登录</view>
+    <button type="default" onTap="refresh" hover-class="none" class="refresh-btn formId-btn" form-type="submit" size="mini"> 刷新 </button>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>
+<!-- 兑换虚拟码成功悬浮框 -->
+<view class='suspension-wrap' hidden="{{!showReceive}}">
+  <view class="suspension-shadow-cover" onTap='showReceive'></view>
+  <view class='suspension-frame-coupon'>
+    <view class='suspension-coupon-hd tc'>
+      <view>恭喜您</view>
+      <view class="f14">获得{{list.length}}张寄养优惠券</view>
+    </view>
+    <view class='suspension-coupon-bd'>
+      <view class="voucher-item {{isReceive?'voucher-item_active':''}}" a:for="{{list}}" a:key="fosterCouponId">
+        <view class="voucher-item_main fbc">
+          <view class="voucher-item_main_left">
+            <view class="voucher-item_title">{{item.couponTitle}}</view>
+            <view class="voucher-item_condition">满{{item.fullSubtractionAmount}}元可用</view>
+          </view>
+          <view class="voucher-item_main_right">
+            <text class="voucher-item_price_label">￥</text>
+            <text>{{item.couponAmount}}</text>
+          </view>
+        </view>
+        <view class="voucher-item_time">{{item.startTime}}~{{item.endTime}}</view>
+      </view>
+    </view>
+    <view class="cancel" onTap='showReceive'>
+      <icon type='cancel' color='#fff' size='22'></icon>
+    </view>
+    <view class='suspension-coupon-btn formId-btn mc-btn2' hover-class="btn_hover" onTap='toIndex'>立即使用</view>
+  </view>
+</view>

@@ -1,0 +1,69 @@
+
+<import src="/others/template/weui_mc.axml"/>
+<form bindsubmit="setFormId" report-submit="{{true}}" class="container" a:if="{{isok}}">
+  <view class="rel">
+    <!-- 头部图片 -->
+    <swiper indicator-dots="{{true}}" autoplay="{{true}}">
+      <block a:for="{{swiperPetPhotosList}}" a:key="*this">
+        <swiper-item>
+          <image src="{{item}}" mode="aspectFill" class="swiper-img" onTap="previewImage" data-index="{{index}}" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view> 
+  <view class="pet-info-wrap">
+    <view class="pet-info_top fbc">
+      <view class="pet-info_top_left">
+        <view class="fsc">
+          <view class="pet-name">{{petInfoVo.petName}}</view>
+          <image src="/images/gender{{petInfoVo.gender}}.png" class="pet-gender" />
+        </view>
+        <view class="f14 g8 mt5">
+          <text>{{petInfoVo.age}}</text>
+          <text class="pl15">{{petInfoVo.petVarietyVo.petVarietyName}}</text>
+          <text class="pl15">{{['小型','中型','大型','小型'][petInfoVo.petVarietyVo.varietyType]}}</text>
+        </view>
+      </view>
+      <view class="pet-info_top_right g8">
+        <button class="formId-btn" onTap="edit" a:if="{{userInfo.userId==petInfoVo.userId}}">编辑</button>
+        <button class="formId-btn" onTap="report" a:else>举报</button>
+      </view>
+    </view>
+    <view class="pt15 f14" a:if="{{petInfoVo.petSynopsis}}">
+      <text class='b'>介绍：</text>
+      <text>{{petInfoVo.petSynopsis}}</text>
+    </view>
+  </view>
+  <view class='pet-about-wrap' hidden='{{!petInfoVo.isRabiesVaccine && !petInfoVo.isMixedVaccine && !petInfoVo.insect && !petInfoVo.sterilization }}'>
+    <view class='pet-about_hd b'>宠物状态</view>
+    <view class='pet-about_bd f12'>
+      <view class='pet-about_deworming' a:if="{{petInfoVo.insect}}">驱虫</view>
+      <view class='pet-about_sterilization' a:if="{{petInfoVo.sterilization}}">绝育</view>
+      <view class='pet-about_mixedVaccine' a:if="{{petInfoVo.isMixedVaccine}}">
+        <view>联苗</view>
+        <view class='f10 gb2'>{{petInfoVo.mixedVaccinePath?'审核中':'未认证'}}</view>
+      </view>
+      <view class='pet-about_rabiesVaccine' a:if="{{petInfoVo.isRabiesVaccine}}">
+        <view>狂犬疫苗</view>
+        <view class='f10 gb2'>{{petInfoVo.rabiesVaccinePath?'审核中':'未认证'}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="mt10 bgwh">
+    <view class="weui-select" hover-class="none" onTap="seeMaster">
+      <view class="fsc ptb10">
+        <image src="{{petInfoVo.usersVo.avatar}}" class="user-avatar flex-n" mode="aspectFill" />
+        <view>
+          <view class="fsc">
+            <view class="user-name art1">{{petInfoVo.usersVo.nickName}}</view>
+            <image src="/images/pet-user-sex{{petInfoVo.usersVo.gender}}.png" class="user-sex" />
+          </view>
+          <view class="g8 f13 pt5">{{petInfoVo.pointCity}}·{{petInfoVo.distanceStr}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

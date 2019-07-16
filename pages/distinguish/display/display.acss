@@ -1,0 +1,46 @@
+
+
+.container{
+    background-color: white;
+    padding-bottom: 200rpx;
+    font-size: 28rpx;
+}
+
+/* 头部图片 */
+.swiper-wrap{
+    position: relative;
+    width: 100%;
+    height: 620rpx;
+}
+.swiper{
+    height: 100%;
+}
+.swiper-img{
+    display: block;
+    width: 100%;
+    height: 620rpx;
+}
+.swiper-no-data{
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    margin-top: -50rpx;
+    text-align: center;
+    color: #888;
+}
+
+
+.mc-btn2{
+    position: fixed;
+    left: 50%;
+    bottom: 30rpx;
+    margin-left: -115rpx;
+    width: 230rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    color: #F97CB4;
+    border-radius: 1000px;
+    font-size: 28rpx;
+}

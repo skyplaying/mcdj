@@ -1,0 +1,45 @@
+
+<import src="/others/template/weui_mc.axml"/>
+<form class="container" report-submit="{{true}}" onSubmit="setFormId" a:if="{{isok}}">
+  <template is="family-apply-step" data="{{step:2}}" a:if="{{userVo.userCertifiedStatus!=1}}"></template>
+  <view class="main">
+    <!-- 上传视频 -->
+    <view class="uploading-video-wrap">
+      <view class="uploading-video_bd">
+        <view class="uploading-video_input f14 g8" onTap="chooseVideo" a:if="{{!video}}">点击上传</view>
+        <view class="uploading-video" a:else>
+          <!-- <image src="/images/video_play_icon.png" class="video_play_icon" /> -->
+          <video src="{{video}}"></video>
+          <view class="clear" catchTap="clearVideo" a:if="{{userInfo.userCertifiedStatus!=1}}">
+            <icon type="clear" size="17" color="black" />
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="p10-15 g8 f12">
+    <view class="fbc mb10">
+      <text class="g0 b">视频要求：</text>
+      <text class="examples-btn" onTap="showVideo">查看示例</text>
+    </view>
+    <view>1、上传1-3段您训练宠物小视频，完成坐、卧、立、叫、拒食、大小便训练等3项以上训练展示，方便用户了解您的训练。</view>
+    <view>2、视频中画面清晰，时间不要超过2分钟。</view>
+    <view>3、安卓手机上传时间较长，请耐心等待。</view>
+  </view>
+  <button form-type="submit" onTap="next" type="primary" disabled="{{!video}}" class="w345 auto mc-btn2 gor mt10 mb50" hover-class="none">{{userVo.userCertifiedStatus!=1?'确定':'下一步'}}</button>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>
+<!-- 悬浮视频框 -->
+<view class='suspension-wrap' a:if="{{showVideo}}">
+  <view class="suspension-shadow-cover"></view>
+  <view class='suspension-frame-video'>
+    <view class="suspension-video bgwh">
+      <video src="http://image.qipinke.com/family/videos/20181002/mp4/A3FDE142-F9AC-4A8E-B253-AC59DF567C0C.mp4"></video>
+    </view>
+    <view class="suspension-video-clear mt20" onTap="showVideo">
+      <icon type="cancel" size="34" color="white" />
+    </view>
+  </view>
+</view>

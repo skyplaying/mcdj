@@ -1,0 +1,27 @@
+
+.container,input {
+  font-size: 28rpx;
+}
+.weui-uploader__input-box{
+  margin: 0;
+}
+.avatar{
+  width: 154rpx;
+  height: 154rpx;
+}
+
+/* 底部按钮 */
+.ft{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.gblue{
+  color: #108ee9;
+}
+
+.ft button{
+  border-radius: 0;
+}

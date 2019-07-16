@@ -1,0 +1,18 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<form bindsubmit="setFormId" report-submit="{{true}}" class='container' a:if="{{isok}}">
+  <view class="hd-msg">已成功邀请{{total}}位好友，获得{{invAmount}}元奖励</view>
+  <view class="user-list-wrap mt10">
+    <view class="user-item fsc f14 p10-15 bgwh" a:for="{{list}}" a:key="userId">
+      <image src="{{item.avatar}}" mode="aspectFill" />
+      <view class="user-name">{{item.nickName}}</view>
+      <view class="gor flex-n" a:if="{{item.rewStatus==5}}" >50元</view>
+      <view class="g8" a:else >{{item.rewStatus==3?'待接单':'待审核'}}</view>
+    </view>
+    <template is="list-loading" data="{{loading,list,nomore}}"></template>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

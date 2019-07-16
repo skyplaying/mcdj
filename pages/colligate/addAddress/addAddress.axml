@@ -1,0 +1,34 @@
+
+
+<form onSubmit="submit" onReset="reset" class="container">
+  <view class="bgwh mt10">
+    <view class="textarea-box">
+      <view a:if="{{addressName}}">{{addressName}}</view>
+      <view class="gb2" a:else>请点击‘重选’按钮</view>
+    </view>
+    <view class="textarea-box">
+      <view a:if="{{address}}">{{address}}</view>
+      <view class="gb2" a:else>请点击‘重选’按钮</view>
+    </view>
+    <view class="mc-cell">
+      <input type="text" placeholder="可填写具体的门牌号" class="pct100" onInput="inputHouseNumber" />
+    </view>
+  </view>
+  <view class="pt5 bgwh mt10">
+    <checkbox-group onChange="changeDefault">
+      <label class="weui-agree" for="weuiAgree">
+        <view class="weui-agree__text">
+          <checkbox checked="{{isDefault}}" class="weui-agree__checkbox" id="weuiAgree" value="agree" />
+          <view class="weui-agree__checkbox-icon mr5">
+            <icon a:if="{{isDefault}}" class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" color=""></icon>
+          </view>
+          <text>设置为默认地址</text>
+        </view>
+      </label>
+    </checkbox-group>
+  </view>
+  <view class="p30 fac">
+    <button type="default" form-type="reset">重选</button>
+    <button type="primary" form-type="submit">确定</button>
+  </view>
+</form>

@@ -1,0 +1,43 @@
+
+
+.container{
+    padding-bottom: 200rpx;
+    font-size: 24rpx;
+}
+
+.f30{
+    font-size: 60rpx;
+}
+
+.stars-wrap{
+    line-height: 1;
+}
+.stars-item{
+    margin: 2rpx;
+    width: 30rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+}
+
+.comment-list{
+    padding-bottom: 30rpx;
+}
+.comment-list .comment-item{
+    padding: 30rpx 40rpx;
+    border-top: 1px solid #e5e5e5;
+}
+.comment-avatar{
+    flex: none;
+    width: 70rpx;
+    height: 70rpx;
+    border-radius: 70rpx;
+    margin-right: 20rpx;
+}
+.comment-list .formId-btn{
+    color: #FF9800;
+    font-size: 24rpx;
+    line-height: 60rpx;
+    width: 190rpx;
+    text-align: center;
+    margin: 20rpx auto 0;
+}

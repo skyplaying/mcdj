@@ -1,0 +1,9 @@
+
+
+.container{
+    padding: 30rpx;
+}
+
+.textarea{
+    padding: 30rpx;
+}

@@ -1,0 +1,101 @@
+
+
+<form onSubmit="setFormId" report-submit="true" class="container" a:if="{{isok}}">
+  <!-- 已有提交时间并且状态为未提交说明是重新提交审核 -->
+  <view class="container1" a:if="{{(noDisabled1 || noDisabled2 || isShowPlow) && trainerVo.reviewStatus!=0}}">
+    <view class="p15">
+      <view class="f12 g8 mb15">
+        <text a:if="{{trainerVo.reviewStatus==undefined}}">完成以下三个步骤，点击同意协议，即可提交审核</text>
+        <text a:if="{{trainerVo.reviewStatus==1}}">亲爱的训宠师，如需完善资格等级信息，请记得修改后再次提交审核哟</text>
+        <text a:elif="{{trainerVo.reviewStatus==2}}">
+          <text>您的审核被拒，原因是：</text>
+          <text class="gr">{{trainerVo.reasonsReason}}</text>
+          <text>，请修改完善再提交审核</text>
+        </text>
+      </view>
+      <navigator url="../base/base" class="weui-select" hover-class="none">
+        <view class="fsc">
+          <image src="/images/adopter_authentication3.png" class="icon" />
+          <view>
+            <view>资格认证</view>
+            <view class="perfect-state {{noDisabled1?'perfect':''}}">{{noDisabled1?'已完成':'待完善'}}</view>
+          </view> 
+        </view>
+      </navigator>
+      <navigator url="../video/video" class="weui-select" hover-class="none">
+        <view class="fsc">
+          <image src="/images/adopter_authentication2.png" class="icon" />
+          <view>
+            <view>上传视频</view>
+            <view class="perfect-state {{noDisabled2?'perfect':''}}">{{noDisabled2?'已完成':'待完善'}}</view>
+          </view>
+        </view>
+      </navigator>
+      <view class="weui-select" onTap="toAuthentication">
+        <view class="fsc">
+          <image src="/images/adopter_authentication4.png" class="icon" />
+          <view>
+            <view>实名认证</view>
+            <view class="perfect-state {{userInfo.isFaceRec?'perfect':''}}">{{userInfo.isFaceRec?'已完成':'待完善'}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="foot-box" a:if="{{trainerVo.reviewStatus!=1}}">
+      <!-- 阅读并同意 -->
+      <label class="weui-agree">
+        <view class="weui-agree__text" catchTap="changeAgree">
+          <view class="weui-agree__checkbox-icon mr5">
+            <icon a:if="{{isAgree}}" class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" color=""></icon>
+          </view>
+          <button class="formId-btn" hover-class="none" form-type="submit"> 阅读并同意 </button>
+          <view class="weui-agree__link gr" catchTap="toGuarantee">《平台保障协议》</view>
+        </view>
+      </label>
+      <button onTap="complete" formType="submit" hover-class="none" class="mc-btn2" disabled="{{!noDisabled}}"> 提交审核 </button>
+    </view>
+  </view>
+  <view class="container2 bgwh" a:elif="{{trainerVo.reviewStatus==0}}">
+    <view class="p10-15">
+      <view class="tc">
+        <icon type="success" size="60" color="#09bb07" class="success-icon" />
+      </view>
+      <view class="tc b f18">已提交，等待审核</view>
+      <view class="f14 g8 ptb20">
+        <view>您的申请资料已经提交，系统将在3个工作日内审核完成。审核期间会有专员联系您核对信息，请注意接听。</view>
+        <view class="mt10">
+          <text>PS:如需快速审核，请加审核员手机</text>
+          <text class="gor ml5" onTap="handleCopy">13410633367</text>
+        </view>
+      </view>
+      <!-- <view class="f14"><view class="f12">完成下列任务可提高通过率：</view><view class="fbc knowledge-icon p10-15 mt10" onTap="toAdopterKnowledge"><text class="b">养宠知识答题认证</text><text class="{{userInfo.isExamResult==1?'g8':'activate'}}">{{userInfo.isExamResult==1?'已通过':'去认证'}}</text></view></view> -->
+      <button type="default" class="w345 auto mt30" onTap="toIndex"> 返回首页 </button>
+    </view>
+  </view>
+  <view class="container3" a:elif="{{!trainerVo.reviewStatus}}">
+    <image src="/images/trainer_flow_banner.png" class="content3-banner" />
+    <view class="require-wrap f14">
+      <view class="wrap_hd">基本要求</view>
+      <view>1、有半年以上的训犬经验；</view>
+      <view>2、拥有训犬资格证书；</view>
+      <view>3、有爱心、耐心，不虐待宠物；</view>
+    </view>
+    <view class="process-wrap">
+      <view class="wrap_hd">申请流程</view>
+      <image src="/images/family_flow_process.png" class="process-img" />
+    </view>
+    <view class="require-wrap f14">
+      <view class="wrap_hd">收费说明</view>
+      <view class="g8">1、用户入驻萌宠到家，不收取任何费用。</view>
+      <view class="g8">2、成交订单时，萌宠到家会收的每笔订单10%的平台服务费。</view>
+    </view>
+    <view class="foot-box">
+      <view class="p10-15">
+        <button class="mc-btn2 gor" onTap="intoFlow"> 申请 </button>
+      </view>
+    </view>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

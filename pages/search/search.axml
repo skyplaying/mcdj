@@ -1,0 +1,51 @@
+
+<view class="container">
+  <!-- 搜索条-开始 -->
+  <view class="navbar">
+    <view class="navbar-search">
+      <view class="navbar-search-input">
+        <input placeholder="搜索宠物/地区/关键词等" onInput="inputTyping" value="{{inputval}}" onConfirm="searchconfirm" />
+        <view class="weui-icon-clear" a:if="{{inputval.length > 0}}" onTap="clearInput">
+          <icon type="cancel" size="14"></icon>
+        </view>
+      </view>
+    </view>
+    <view class="navbar-search-btn" onTap="searchconfirm" a:if="{{inputval.length > 0}}">搜索</view>
+    <view class="navbar-search-btn" onTap="cancelSearch" a:else>取消</view>
+  </view>
+  <!-- 搜索条-结束 -->
+  <!-- 热门搜索-开始 -->
+  <view class="search_box">
+    <view class="search_box_hd">
+      <image class="hot_search_icon" src="/images/hotSearch.png" />
+      热门搜索
+    </view>
+    <view class="search_box_bd">
+      <block a:for="{{hotList}}" a:key="*this">
+        <navigator url="/pages/list/search/search?keyword={{item}}" class="search-keyWord" open-type="redirect">
+          {{item}}
+        </navigator>
+      </block>
+    </view>
+  </view>
+  <!-- 热门搜索-结束 -->
+
+  <!-- 历史搜索-开始 -->
+  <view class="search_box">
+    <view class="search_box_hd clearfix">
+      <image class="history_search_icon" src="/images/historySearch.png" />
+      历史搜索
+      <image src="/images/remove.png" class="search_icon r" onTap="removeHistory" />
+    </view>
+    <view class="search_box_bd" a:if="{{historyList.length > 0}}"> 
+      <block a:for="{{historyList}}" a:key="*this">
+        <navigator url='/pages/list/search/search?keyword={{item}}' class="search-keyWord" open-type="redirect">
+          {{item}}
+        </navigator>
+      </block>
+    </view>
+  </view>
+  <!-- 历史搜索-结束 -->
+
+
+</view>

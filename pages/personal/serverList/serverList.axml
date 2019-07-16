@@ -1,0 +1,31 @@
+<import src="/others/template/weui_mc.axml"/>
+<form bindsubmit="setFormId" report-submit="{{true}}" class='container' a:if="{{isok}}">
+  <navigator url="/pages/trainer/addServer/addServer" class="p10-15 bgwh tc add-btn mb10" a:if="{{userInfo.trainReviewStatus==1}}">添加训宠项目</navigator>
+  <view class="fbc p10-15 bgwh">
+    <view>提供接送</view>
+    <view class="accept-price" a:if="{{runAboutAmount || runAboutAmount==0}}">
+      <input type="digit" value="{{runAboutAmount}}" onBlur="inputRunAboutAmount" />
+      <text>元/公里</text>
+    </view>
+    <switch onChange="changeRunAboutAmount" checked="{{runAboutAmount || runAboutAmount==0?true:false}}" controlled="{{true}}" />
+  </view> 
+  <view class="list-wrap">
+    <view class="list-item p10-15 bgwh fsc bte5" a:for="{{list}}" a:key="trainServiceId">
+      <image src="{{item.servicePath}}" mode="aspectFill" />
+      <view class="list-item_mid f16">
+        <view>{{item.itemName}}</view>
+        <view class="gor f14 mt10" a:if="{{item.serviceType==1}}">{{item.trainType}}</view>
+        <view class="gr mt10" a:elif="{{item.serviceType==2}}">￥{{item.trainAmount}}</view>
+      </view>
+      <view class="list-item_right f12">
+        <switch checked="{{item.trainStatus?true:false}}" controlled="{{true}}" onChange="changeServer" data-index="{{index}}" />
+        <view class="gor mt10" a:if="{{item.trainStatus}}">已上架</view>
+        <view class="g8 mt10" a:else>已下架</view>
+      </view>
+    </view>
+    <template is="list-loading" data="{{loading,list,nomore}}"></template>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

@@ -1,0 +1,5 @@
+
+
+.weui-select input{
+    text-align: left;
+}

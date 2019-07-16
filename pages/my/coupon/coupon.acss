@@ -1,0 +1,41 @@
+
+
+
+/* 劵的模板-开始 */
+.voucher-item{
+    width: 690rpx;
+    height: 204rpx;
+    background: url('http://image.qipinke.com/icon/my_coupon_bg.png') no-repeat center;
+    background-size: 100%;
+    border-radius: 8rpx;
+    margin: 0 auto 20rpx;
+}
+.voucher-item_main{
+    padding: 16rpx 40rpx;
+    height: 148rpx;
+    box-sizing: border-box;
+}
+.voucher-item_title{
+    font-size: 30rpx;
+    font-weight: bold;
+}
+.voucher-item_amount{
+    font-size: 60rpx;
+    color: #FF9800;
+}
+.voucher-item_amount_label{
+    font-size: 28rpx;
+    vertical-align: middle;
+}
+.voucher-item_condition{
+    margin-top: -4rpx;
+    font-size: 20rpx;
+    color: #888;
+}
+.voucher-item_time{
+    position: relative;
+    padding: 10rpx 40rpx;
+    font-size: 24rpx;
+    color: #b2b2b2;
+}
+/* 劵的模板-结束 */

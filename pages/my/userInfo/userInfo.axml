@@ -1,0 +1,99 @@
+
+
+
+
+
+<form onSubmit="setFormId" report-submit="{{true}}" class='container' a:if="{{isok}}">
+  <view class='found-cells mt10'>
+    <view class="found-cell">
+      <view class='found-cell_hd'>头像</view>
+      <view class='found-cell_bd fec'>
+        <view class="weui-uploader__input-box" a:if="{{!avatar}}">
+          <view class="weui-uploader__input" onTap="chooseAvatar"></view>
+        </view>
+        <image class="avatar" src="{{avatar}}" mode="aspectFill" onTap="chooseAvatar" a:else />
+      </view>
+    </view>
+    <!-- 昵称 -->
+    <view class='found-cell'>
+      <view class='found-cell_hd'>昵称</view>
+      <view class='found-cell_bd'>
+        <input placeholder="点击填写" onInput="inputNickName" value="{{nickName}}" disabled="{{!noDisabled}}" />
+      </view>
+    </view>
+    <!-- 性别 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>性别</view>
+      <view class='found-cell_bd'>
+        <picker onChange="changeGender" value="{{gender}}" range="{{['女','男']}}" disabled="{{!noDisabled}}">
+          <view class='g8 tr' a:if="{{!gender && gender!=0}}">请选择性别</view>
+          <view class='tr' a:else>{{['女','男'][gender]}}</view>
+        </picker>
+      </view>
+    </label>
+    <!-- 职业 -->
+    <view class='found-cell'>
+      <view class='found-cell_hd'>职业</view>
+      <view class='found-cell_bd'>
+        <input placeholder='请输入您的职业' onInput="inputOccupation" value="{{occupation}}" disabled="{{!noDisabled}}" />
+      </view>
+    </view>
+    <!-- 年龄 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>年龄</view>
+      <view class='found-cell_bd'>
+        <picker onChange="changeAge" value="{{ageIndex}}" range="{{ageArr}}" disabled="{{!noDisabled}}">
+          <view class='g8 tr' a:if="{{!ageIndex}}">请选择年龄</view>
+          <view class='tr' a:else>{{ageArr[ageIndex]}}</view>
+        </picker>
+      </view>
+    </label>
+    <!-- 常居城市 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>常居城市</view>
+      <view class='found-cell_bd tr' onTap="chooseCity">
+        <view class='g8' a:if="{{!city}}">点击选择</view>
+        <view a:else>{{city}}</view>
+      </view>
+    </label>
+    <!-- 个人简介 -->
+    <view class='found-cell'>
+      <view class='found-cell_hd'>个人简介</view>
+      <view class='found-cell_bd'>
+        <input placeholder="点击填写" onInput="inputProfile" value="{{profile}}" maxlength="30" disabled="{{!noDisabled}}" />
+      </view>
+    </view>
+  </view>
+  <view class='found-cells mt10'>
+    <!-- 家庭地址 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>家庭地址</view>
+      <navigator url="/pages/colligate/selectAddress/selectAddress" class='found-cell_bd tr'>
+        <view class='gb2' a:if="{{!addressName}}">点击选择</view>
+        <view a:else>{{addressName}}</view>
+      </navigator>
+    </label>
+    <!-- 宠物信息 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>宠物信息</view>
+      <navigator url="/pages/family/experience/experience" hover-class="none" class='found-cell_bd tr'>
+        <text class="gb2" a:if="{{!isExperience}}">待完善</text>
+        <text class="gor" a:else>已完善</text>
+      </navigator>
+    </label>
+    <!-- 手机号码 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>手机号码</view>
+      <view class='found-cell_bd tr g8'>
+        <button class='formId-btn' hover-class="none" form-type="submit" onTap="bindPhone">{{phoneNumber || (!userInfo.isBindPhone?'点击绑定':'已绑定')}}</button>
+      </view>
+    </label>
+  </view>
+  <view class='ft'>
+    <button form-type="submit" class="mc-btn2 gor" onTap='edit' a:if="{{!noDisabled}}">点击编辑</button>
+    <button form-type="submit" class="mc-btn2 gblue" onTap='submit' a:else>完成</button>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

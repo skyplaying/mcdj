@@ -1,0 +1,90 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<form class="container" report-submit="{{true}}" onSubmit="setFormId" a:if="{{isok}}">
+  <view class="found-cells mt10">
+    <!-- 训练类型 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>训练类型</view>
+      <view class='found-cell_bd'>
+        <picker onChange="changeTrainType" value="{{trainTypeIndex}}" range="{{trainTypeArr}}">
+          <view class='gb2 tr' a:if="{{!trainTypeIndex && trainTypeIndex!=0}}">点击选择</view>
+          <view class='tr' a:else>{{trainTypeArr[trainTypeIndex]}}</view>
+        </picker>
+      </view>
+    </label>
+    <!-- 项目名称 -->
+    <view class='found-cell'>
+      <view class='found-cell_hd'>项目名称</view>
+      <view class='found-cell_bd'>
+        <input placeholder="点击填写" onInput="inputItemName" value="{{itemName}}" />
+      </view>
+    </view>
+    <!-- 价格 -->
+    <view class='found-cell'>
+      <view class='found-cell_hd'>价格</view>
+      <view class='found-cell_bd'>
+        <input type="number" placeholder="请输入训练价格（元）" onInput="inputTrainAmount" value="{{trainAmount}}" />
+      </view>
+    </view>
+    <!-- 训练时长 -->
+    <view class='found-cell'>
+      <view class='found-cell_hd'>训练时长</view>
+      <view class='found-cell_bd'>
+        <input type="number" placeholder="请输入训练时长（天）" onInput="inputDayNum" value="{{dayNum}}" />
+      </view>
+    </view>
+    <!-- 训练详情 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>训练详情</view>
+      <navigator url="../trainerDetail/trainerDetail?trainerDetail={{trainerDetail || ''}}" hover-class="none" class='found-cell_bd tr'>
+        <text class="gb2" a:if="{{!trainerDetail}}">待完善</text>
+        <text class="gor" a:else>已完善</text>
+      </navigator>
+    </label>
+    <!-- 备注说明 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>备注说明</view>
+      <navigator url="../remark/remark?isReserve={{isReserve || ''}}&advanceNum={{advanceNum || ''}}&remark={{remark || ''}}" hover-class="none" class='found-cell_bd tr'>
+        <text class="gb2" a:if="{{!advanceNum && !remark}}">待完善（非必选）</text>
+        <text class="gor" a:else>已完善</text>
+      </navigator>
+    </label>
+    <!-- 是否上架 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>是否上架</view>
+      <view class='found-cell_bd tr'>
+        <switch checked="{{trainStatus}}" onChange="changeTrainStatus" />
+      </view>
+    </label>
+  </view>
+  <!-- 上传图片 -->
+  <view class="uploading-image-wrap mt10">
+    <view class="uploading-image_hd fbc">
+      <text class="f14 b">添加图片</text>
+      <text class="examples-btn" onTap="imgExamples">查看示例</text>
+    </view>
+    <view class="uploading-image_bd weui-uploader__bd fbc">
+      <view class="weui-uploader__input-box" a:if="{{petPhoto.length!=12}}">
+        <view class="weui-uploader__input" onTap="choosePhoto"></view>
+      </view>
+      <scroll-view class="weui-uploader__files" id="uploaderFiles" scroll-x>
+        <block a:for="{{petPhoto}}" a:key="*this">
+          <view class="weui-uploader__file rel" id="{{item}}">
+            <view class="weui-icon-clear" onTap="deletePhoto" data-index="{{index}}">
+              <icon type="cancel" size="14" class="bgwh"></icon>
+            </view>
+            <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" onTap="previewPhoto" data-index="{{index}}" />
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <view class="uploading-video_ft g8 f10">
+      <view>请上传相关项目的训练照片，详细请查看示例</view>
+    </view>
+  </view>
+  <button form-type="submit" onTap="submit" type="primary" class="w345 mc-btn2 gor auto mt20 mb50" hover-class="none" disabled="{{!noDisabled}}">保存</button>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

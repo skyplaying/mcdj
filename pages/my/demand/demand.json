@@ -1,0 +1,7 @@
+{
+    "defaultTitle": "我的需求",
+    "pullRefresh": true, 
+    "usingComponents": {
+        "demand-publish-view": "/component/demand-publish-view/demand-publish-view"
+    }
+}

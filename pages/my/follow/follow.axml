@@ -1,0 +1,36 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<form bindsubmit="setFormId" report-submit="{{true}}" class='container' a:if="{{isok}}">
+  <view class="family-list-wrap mt10">
+    <navigator url="/pages/family/display/display?userId={{list[index].userId}}" class="family-item p10-15 bgwh" a:for="{{list}}" a:key="userId">
+      <view class="family-item_top fsc">
+        <image src="{{item.avatar}}" mode="aspectFill" class="family-avatar" />
+        <view class="family-item_top_mid">
+          <view class="rel fsc">
+            <view class="art1 b">{{item.nickName}}</view>
+            <image class="real-icon" mode="aspectFill" src="/images/identity_real_icon.png"/>
+            <view class="credit-score-icon" a:if="{{item.creditScore}}">{{item.creditScore}}</view>
+          </view>
+          <view class="fsc mt2">
+            <view class="user-info-stars-wrap fsc" a:if="{{item.score}}">
+              <block a:for="{{[1,2,3,4,5]}}" a:key="*this" a:for-index="sIndex" a:for-item="sItem">
+                <view class="user-info-stars-item" a:if="{{sIndex+1 <= item.score}}">
+                  <image src="/images/stars1.png" />
+                </view>
+              </block>
+            </view>
+            <view class="f10 gor ml5">{{item.score}}分</view>
+          </view>
+          <view class="f10 g8 mt2">
+            <text>{{item.grades}}  |  距我{{item.distanceStr}}</text>
+          </view>
+        </view>
+      </view>
+    </navigator>
+    <template is="list-loading" data="{{loading,list,nomore}}"></template>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

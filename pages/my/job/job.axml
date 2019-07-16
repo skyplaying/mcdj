@@ -1,0 +1,56 @@
+<form onSubmit="setFormId" report-submit="true" class="container" a:if="{{isok}}">
+  <!-- 个人入驻 -->
+  <view class="container1" a:if="{{(userInfo.userCertifiedStatus!=undefined || userInfo.trainReviewStatus!=undefined) || isShowPersonalJob}}">
+    <image src="/images/job_authentication_banner.png" class="banner" />
+    <view class="certified-job-wrap bgwh mb10">
+      <navigator url="/pages/family/flow/flow" class="job-item fbc bte5">
+        <image src="/images/job_authentication_family.png" />
+        <view class="job-item_mid flex-a">
+          <view class="f16 b">宠物寄养师</view>
+          <view class="f12 g8">提供家庭寄养服务</view>
+        </view>
+        <view class="flex-n f12" a:if="{{userInfo.userCertifiedStatus!=undefined}}">
+          <text class="gor" a:if="{{userInfo.userCertifiedStatus==1}}">已认证</text>
+          <text class="gb" a:elif="{{userInfo.userCertifiedStatus==0}}">审核中</text>
+          <text class="gr" a:elif="{{userInfo.userCertifiedStatus==2}}">审核被拒</text>
+        </view>
+      </navigator>
+      <navigator url="/pages/trainer/flow/flow" class="job-item fsc bte5">
+        <image src="/images/job_authentication_trainer.png" />
+        <view class="job-item_mid flex-a">
+          <view class="f16 b">宠物训导师</view>
+          <view class="f12 g8">提供宠物训练、行为矫正服务</view>
+        </view>
+        <view class="flex-n f12" a:if="{{userInfo.trainReviewStatus!=undefined}}">
+          <text class="gor" a:if="{{userInfo.trainReviewStatus==1}}">已认证</text>
+          <text class="gb" a:elif="{{userInfo.trainReviewStatus==0}}">审核中</text>
+          <text class="gr" a:elif="{{userInfo.trainReviewStatus==2}}">审核被拒</text>
+        </view>
+      </navigator>
+    </view>
+    <view class="f12 g8 p10-15">
+      <view>点击您能提供的服务，即可进入服务申请流程</view>
+      <view class="mt2">
+        <text>如有问题，请</text>
+        <text class="gbl ml2" onTap="customerService">联系客服</text>
+      </view>
+    </view>
+  </view>
+  <!-- 商家入驻 -->
+  <view class="container2" a:elif="{{false}}"></view>
+  <view class="container3" a:else>
+    <view class="entry-personal" onTap="intoPersonalJob">
+      <image src="/images/job_authentication_personal.png" />
+      <view class="f16 b ptb10">个人入驻开店</view>
+      <view class="f12 g8">只要你是宠物爱好者，并想利用闲余时间帮忙照顾宠物赚取收入就可以加入我们。</view>
+    </view>
+    <view class="entry-business" onTap="intoBusiness">
+      <image src="/images/job_authentication_store.png" />
+      <view class="f16 b ptb10">宠物商家入驻</view>
+      <view class="f12 g8">宠物店、宠物医院等宠物服务商家免费入驻，共享支付宝用户，线上接单、提高收入。</view>
+    </view>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

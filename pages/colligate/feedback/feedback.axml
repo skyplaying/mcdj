@@ -1,0 +1,35 @@
+
+<!--建议反馈-->
+<form class="container bte5" onSubmit="formSubmit">
+
+  <view class="content">
+    <view class="p10-15">
+      <view>反馈问题类型</view>
+      <view class="fbc">
+        <view class="label-type {{index==feedbackIndex?'bgor gf':'bdd9'}}" a:for="{{feedbackArray}}" data-index="{{index}}" catchTap="selectFeedbackType">{{item}}</view>
+      </view>
+      <textarea class="textarea" placeholder="请留下您的宝贵意见和建议，我们将不断为您改进" onInput="inputFeedback" />
+      <view class="weui-uploader">
+        <view class="weui-uploader__bd pt15">
+          <view class="weui-uploader__files" id="uploaderFiles">
+            <block a:for="{{feedbackImagePath}}" a:key="*this">
+              <view class="weui-uploader__file rel" id="{{item}}" style="margin-top:0;">
+                <view class="weui-icon-clear" onTap="deleteFeedbackImage" data-index="{{index}}">
+                  <icon type="cancel" size="14" class="bgwh"></icon>
+                </view>
+                <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" onTap="previewFeedbackImage" data-index="{{index}}" />
+              </view>
+            </block>
+          </view>
+          <view class="weui-uploader__input-box" a:if="{{feedbackImagePath.length!=4}}">
+            <view class="weui-uploader__input" onTap="chooseFeedbackImage"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view onTap="formSubmit" type="primary" class="w345 auto button mc-btn2 gor mt20 mb50" hover-class="none">提交反馈</view>
+  <view class="tc gblue f14 customer" onTap="customerService">联系客服</view>
+
+</form>

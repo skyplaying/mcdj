@@ -1,0 +1,65 @@
+<form class="container" onSubmit="setFormId" report-submit="{{true}}" a:if="{{isok}}">
+  <view class="wallet-wrap">
+    <view class="fbc">
+      <view>{{month}}月收入（元）</view>
+      <button class="withdrawals-btn formId-btn" form-type="submit" onTap="toWallet"> 钱包 </button>
+    </view>
+    <view class="amount b gor pt5">{{obj.income || '0.00'}}</view>
+    <navigator url="/pages/family/incomeRecord/incomeRecord" hover-class="none" class="detailed-btn">收入记录</navigator>
+  </view>
+  <view class="month-num-wrap fbc">
+    <view class="month-num-item flex1">
+      <view>近30天浏览量</view>
+      <view class="f20 b">{{obj.browseCount}}</view>
+    </view>
+    <view class="month-num-item flex1 right-ble5">
+      <view>{{month}}月订单量</view>
+      <view class="f20 b">{{obj.orderCount}}</view>
+    </view>
+  </view>
+  <view class="family-evaluate-wrap">
+    <view class="p10-15 b">综合评分</view>
+    <view class="mc-cell fbc p15">
+      <view class="family-evaluate-left flex1">
+        <view class="evaluate-comprehensive-wrap">
+          <view>寄养评价</view> 
+          <view class="f24 b gor">{{obj.keepPetVo && obj.keepPetVo.compositeScore || '0.0'}}分</view>
+          <view class="f10 g8">{{obj.commentCount || 0}}条评价</view>
+        </view>
+      </view>
+      <view class="family-evaluate-left flex1  right-ble5">
+        <view class="evaluate-comprehensive-wrap">
+          <view>训宠评价</view> 
+          <view class="f24 b gor">{{obj.keepPetVo && obj.keepPetVo.trainCompositeScore || '0.0'}}分</view>
+          <view class="f10 g8">{{obj.trainCommentCount || 0}}条评价</view>
+        </view>
+      </view>
+      <!-- <view class="family-evaluate-right flex1 right-ble5">
+        <view class="evaluate-various-wrap">
+          <view class="fsc">
+            <text class="f12">服务态度</text>
+            <text class="f16 gor ml10">{{obj.keepPetVo && obj.keepPetVo.petAbility|| '0.0'}}</text>
+          </view>
+          <view class="fsc">
+            <text class="f12">家庭环境</text>
+            <text class="f16 gor ml10">{{obj.keepPetVo && obj.keepPetVo.petEnvironment|| '0.0'}}</text>
+          </view>
+          <view class="fsc">
+            <text class="f12">沟通交流</text>
+            <text class="f16 gor ml10">{{obj.keepPetVo && obj.keepPetVo.communicators|| '0.0'}}</text>
+          </view>
+        </view>
+      </view> -->
+    </view>
+  </view>
+  <!-- <view class="family-star-level-wrap">
+    <view class="p10-15 b">星级家庭</view>
+    <view class="mc-cell p15">
+      <view class="family-ordinary-wrap" onTap="showToast">
+        <view class="f16">普通家庭</view>
+        <view class="f12 g8">升级星级家庭可提高曝光，并获得平台保障</view>
+        <view class="family-ordinary_upgrade">▲ 升级</view>
+      </view>
+    </view>
+  </view> -->
+</form>

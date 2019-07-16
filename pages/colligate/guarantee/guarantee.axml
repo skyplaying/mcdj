@@ -1,0 +1,109 @@
+
+
+<view class="container">
+  <image src="/images/guarantee_hd_bg.jpg" mode="widthFix" class="pct100"/>
+  <!-- 信用保障 -->
+  <view class="bgwh">
+    <view class="weui-select {{selectIndex==0?'weui-select-check':''}}" onTap="showContent" data-index="{{0}}">
+      <view>信用保障</view>
+    </view>
+    <view class="mc-cell f14" hidden="{{selectIndex!=0}}">
+        萌宠到家是领先的宠物信用寄养平台，通过接入蚂蚁金服的芝麻信用评分体系，萌宠到家实现了P2P个人对个人，尤其是陌生人之间的宠物交寄，通过芝麻信用能够快捷的帮助寄养双方筛选判断对方的信用分值，杜绝一些潜在的危险用户，同时能够完成诸如免押金领养、信用借养等高阶场景。
+    </view>
+  <!-- 宠物保险 -->
+    <view class="weui-select {{selectIndex==1?'weui-select-check':''}}" onTap="showContent" data-index="{{1}}">
+      <view>宠物保险</view>
+    </view>
+    <view class="mc-cell f14" hidden="{{selectIndex!=1}}">
+      萌宠到家平台默认为每一笔交寄业务都购买了宠物犬主责任险，被保险人合法饲养的犬只造成第三者人身伤害，依据法律应该由被保险人承担经济赔偿责任的，保险公司将在约定限额内予以赔偿您的损失。凡被保险人饲养的宠物造成第三者受伤，必须接受治疗的，对于医疗费用，保险公司将按约定赔偿您的损失。
+    </view>
+  <!-- 平台保障 -->
+    <view class="weui-select {{selectIndex==2?'weui-select-check':''}}" onTap="showContent" data-index="{{2}}">
+      <view>平台保障</view>
+    </view>
+    <view class="mc-cell f14" hidden="{{selectIndex!=2}}">
+      <template is="platform-guarantee" data=""></template>
+    </view>
+  <!-- 协议保障 -->
+    <view class="weui-select {{selectIndex==3?'weui-select-check':''}}" onTap="showContent" data-index="{{3}}">
+      <view>协议保障</view>
+    </view>
+    <view class="mc-cell f14" hidden="{{selectIndex!=3}}">
+      <template is="agreement-guarantee" data=""></template>
+    </view>
+  <!-- 押金抵押 -->
+    <view class="weui-select {{selectIndex==4?'weui-select-check':''}}" onTap="showContent" data-index="{{4}}">
+      <view>押金抵押</view>
+    </view> 
+    <view class="mc-cell f14" hidden="{{selectIndex!=4}}">
+      <template is="deposit-mortgage" data=""></template>
+    </view>
+  </view>
+</view>
+
+
+<!-- 平台保障 -->
+<template name="platform-guarantee">
+  <view class="platform-guarantee">
+    <image src="http://image.qipinke.com/icon/platform_support.png" mode="widthFix" class="pct100"/>
+  </view>
+</template>
+
+<!-- 协议保障 -->
+<template name="agreement-guarantee">
+  <view class="agreement-guarantee">
+    <view>
+      <view class="tc f17 b pb10">宠物寄养协议</view>
+      <view class="fsc"><view class="pr20">甲方（寄养方）：</view>         <view class="pr20">住址：</view>                        <view class="pr20">联系电话：</view></view>
+      <view class="fsc"><view class="pr20">乙方（收寄方）：</view>         <view class="pr20">地址：</view> </view>
+      <view>寄养宠物情况：</view>
+      <view>名字：       年龄：    性别：  品种：          身体状况：</view>
+      <view>是否发情期：</view>
+      <view>防疫情况：</view>
+      <view>一、甲乙双方经友好协商，就宠物临时寄养事宜达成以下协议：</view>
+      <view>乙方为甲方提供临时宠物寄养服务，甲方将委托寄养宠物交由乙方临时饲养，寄养时间为      年   月   日至     年   月   日。</view>
+      <view>二、甲方的权利义务：</view>
+      <view>1、甲方委托寄养的宠物应在乙方得到合理的饮食，住所，日常养护及健康保障。</view>
+      <view>2、甲方应向乙方提供委托寄养宠物的性格、爱好、生活习惯等信息，以协助乙方熟悉并更好的照顾和安排宠物寄养期间的生活。</view>
+      <view>3、甲方应向乙方在寄养宠物期间提供其他必要的咨询和协助。</view>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+      <view>5、甲方如有特殊要求应提前提出，与乙方协商。</view>
+      <view>三、乙方的权利义务：</view>
+      <view>1、乙方应为甲方委托寄养的宠物提供合理的饮食，住所及日常养护，排除可能危害寄养宠物健康的安全隐患。</view>
+      <view>（1）食物   为寄养宠物提供均衡营养，以其习惯日常食物为主，辅以洁净饮水。</view>
+      <view>（2）居住   为寄养的宠物提供阳光充足、通风良好的居住环境，并保证有适当的活动空间及充足的运动量。</view>
+      <view>（3）卫生清洁   为寄养的宠物定期洗澡，皮毛梳理，修剪指甲，清理耳朵和眼睛等，保证体表卫生。</view>
+      <view>（4）信息反馈   定期向甲方提供寄养宠物信息。</view>
+      <view>（5）在必要时为寄养宠物提供必要的医疗措施，医疗费用由乙方承担。但如遇结石、产科、泌尿科、心血管、神经、烈性传染病（例如犬瘟、细小病毒）等重大疾病，乙方不承担医疗费用。</view>
+      <view>2、乙方在签定委托寄养协议前，有权要求甲方提供关于委托寄养动物包括健康状况、性格、爱好、生活习惯等在内真实的情况，甲方提供不实的宠物身体健康状况或其他不可抗力原因造成甲方损失的，乙方不负有责任。
+      <view>3、如寄养期间宠物出现丢失或意外死亡，责任由乙方承担。</view>
+      <view>四、收费标准及结算方法：</view>
+      <view>1、寄养期间甲方提供寄养报酬    元，甲方需先交全部寄养报酬交由平台托管，归还宠物并无异议后支付给乙方。</view>
+      <view>2、乙方根据甲方要求支付押金    元交由平台托管，归还宠物并无异议后全额退还。</view>
+      <view>3、寄养期满甲方未能领回宠物，乙方将宽限5日。宽限期满，甲方未能将宠物领回，乙方将自行处理。甲方无权干涉，同时协议失效。（如有特殊情况，甲方需提前与乙方联系。）</view>
+      <view>五、本协议自甲方将委托寄养宠物交至乙方寄养之日起生效。自生效之日起，任何一方有违约行为，另一方可单独解除本协议。</view>
+      <view>六、本协议一式两份，具有同等效力，分别由甲乙双方保管。本协议未尽事宜，由双方另行约定。双方如有争议，应协商解决，如协商不成，双方均有权向所在辖区法院提起诉讼。</view>
+      <view>七、本协议至寄养宠物被甲方领回之日自行失效。</view>
+
+      <view class="fac pt20">
+        <view>
+          <view>甲方（签字）：</view>
+          <view>年   月   日 </view>
+        </view>
+        <view>
+          <view>乙方（签字）：</view>
+          <view>年   月   日 </view>
+        </view>
+      </view>                                         
+    </view>
+  </view>
+</template>
+
+<!-- 押金抵押 -->
+<template name="deposit-mortgage">
+  <view class="deposit-mortgage">
+      萌宠到家有别于其他寄养平台，萌宠到家是国内首个主打P2P即个人对个人的宠物寄养平台，因此萌宠到家为了保障宠物主的利益，在发布寄养的时候，
+    增加了对收养人的押金收取权益，这个权益由寄养人在发布寄养的时候根据自己的意愿去行使，也可以在芝麻信用分的介入下选择信用免押功能。
+    萌宠到家的意愿是通过芝麻信用的介入，更加鼓励陌生人之间在以信用为主导的社会实现传统宠物交寄养的交互，
+    这也符合蚂蚁金服所推崇的“因为信用、所以简单”的理念。
+  </view>
+</template>

@@ -1,0 +1,96 @@
+
+page{
+  border-top: none;
+}
+
+.navbar-search-btn{
+  color: #FA9D26;
+  font-size: 30rpx;
+}
+
+.navbar-search-input-onblur{
+  border: 1px solid #ddd;
+}
+
+.list-pet-laber-wrap{
+  background-color: white;
+  padding: 20rpx 30rpx;
+  margin-bottom: 10rpx;
+  font-size: 30rpx;
+}
+
+.list-pet-laber{
+  padding: 0 20rpx;
+  color: #999;
+  flex: none;
+}
+
+.list-pet-laber-wrap .row{
+  border: 1px solid #FA9D26;
+  color: #FA9D26;
+  width: 200rpx;
+  line-height: 50rpx;
+  border-radius: 200rpx;
+  text-align: center;
+}
+
+.row-extra:after{
+    content: " ";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    border-top: solid 18rpx currentColor;
+    border-left: solid 12rpx transparent;
+    border-right: solid 12rpx transparent;
+    vertical-align: 1px;
+    margin-left: 10px;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.laber-active{
+  color: #FA9D26;
+}
+
+/* 悬浮按钮 */
+.float-btn-wrap{
+  position: fixed;
+  right: 20rpx;
+  bottom: 100rpx;
+  z-index: 99;
+  padding: 10rpx 0;
+}
+
+.float-btn-wrap::before{
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: ' ';
+  width: 100%;
+  height: 100%;
+  border-radius: 70rpx;
+  background-color: black;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.float-btn-item{
+    width: auto;
+    position: relative;
+    z-index: 9;
+    margin-bottom: 4rpx;
+    padding: 4rpx 10rpx;
+    border-radius: 14rpx;
+    color: white;
+}
+  
+.float-btn-item image{
+  display: block;
+  width: 50rpx;
+  height: 50rpx;
+  margin: 0 auto;
+}
+
+@import "/pages/pet/petModule/petModule.acss";

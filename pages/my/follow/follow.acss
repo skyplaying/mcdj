@@ -1,0 +1,81 @@
+
+
+
+/* ---------------家庭列表开始-------------------- */
+.family-item{
+	position: relative;
+}
+.family-item::before{
+	content: ' ';
+	position: absolute;
+	top: 0;
+	border-top: 1px solid #e5e5e5;
+	left: 30rpx;
+	right: 0;
+}
+.family-item:first-child::before{
+	display: none;
+}
+.family-avatar{
+    flex: none;
+    width: 110rpx;
+    height: 110rpx;
+    border-radius: 110rpx;
+}
+.family-item_top_mid{
+    flex: auto;
+    margin-left: 20rpx;
+}
+.real-icon{
+    flex: none;
+    width: 30rpx;
+    height: 30rpx;
+    margin-left: 10rpx;
+}
+.credit-score-icon{
+    flex: none;
+    width: 40rpx;
+    padding-left: 24rpx;
+    line-height: 24rpx;
+    font-size: 16rpx;
+    background: url("/images/home_credit_score_bg.png") no-repeat left top;
+    background-size: 100%;
+    text-align: center;
+    color: #05D0A9;
+    margin-left: 10rpx;
+}
+
+.user-info-stars-wrap{
+    height: 30rpx;
+    line-height: 30rpx;
+}
+.user-info-stars-item{
+    margin: 2rpx;
+    width: 30rpx;
+    height: 30rpx;
+}
+.user-info-stars-item image{
+    width: 100%;
+    height: 100%;
+}
+
+.family-item_top_right{
+	flex: none;
+}
+.f22{
+	font-size: 44rpx;
+}
+.follow-item-state{
+    width: 90rpx;
+    font-size: 20rpx;
+    text-align: center;
+    border: 1px solid currentColor;
+    border-radius: 1000rpx;
+    margin-left: auto;
+    margin-top: 10rpx;
+    color: #BBBBBB;
+}
+.follow-item-state1{
+    color: #01C172;
+}
+/* ---------------家庭列表结束-------------------- */

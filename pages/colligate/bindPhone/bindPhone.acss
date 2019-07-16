@@ -1,0 +1,12 @@
+page,input{
+    font-size: 28rpx;
+}
+.found-cell{
+    line-height: 60rpx;
+}
+.found-cell_bd input{
+    text-align: left;
+}
+input.w150{
+    width: 300rpx;
+}

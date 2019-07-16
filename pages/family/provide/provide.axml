@@ -1,0 +1,30 @@
+<import src="/others/template/weui_mc.axml"/>
+<form class="container" report-submit="{{true}}" onSubmit="setFormId" a:if="{{isok}}">
+  <view class="hd-msg">请选择寄养时您提供的物品，宠物主人可不携带。</view>
+  <view class="main">
+    <!-- 狗狗 -->
+    <view class="bgwh">
+      <view class="p10-15">
+        <text class="f14">狗狗</text>
+        <text class="f12 g8">（多选）</text>
+      </view>
+      <view class="plr15 pb10">
+        <view class="goods-item {{dogGoodsArr[index]?'goods-item_active':''}}" onTap="changeDogGoods" data-index="{{index}}" a:for="{{goodsDogArr}}" a:key="*this">{{item}}</view>
+      </view>
+    </view>
+    <!-- 猫咪 -->
+    <view class="mt10 bgwh">
+      <view class="p10-15">
+        <text class="f14">猫咪</text>
+        <text class="f12 g8">（多选）</text>
+      </view>
+      <view class="plr15 pb10">
+        <view class="goods-item {{catGoodsArr[index]?'goods-item_active':''}}" onTap="changeCatGoods" data-index="{{index}}" a:for="{{goodsCatArr}}" a:key="*this">{{item}}</view>
+      </view>
+    </view>
+  </view>
+  <button form-type="submit" onTap="save" type="primary" class="w345 mc-btn2 gor auto mt20 mb50" hover-class="none">保存</button>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

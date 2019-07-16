@@ -1,0 +1,109 @@
+
+page,input,textarea{
+    font-size: 28rpx;
+  }
+  
+  .found-cell-laber{
+    padding: 0 30rpx;
+  }
+  .found-cell-laber .found-cell_bd{
+    line-height: 90rpx;
+  }
+
+.main{
+    padding: 30rpx;
+}
+.weui-uploader{
+    padding-bottom: 20rpx;
+}
+.weui-uploader__hd{
+    line-height: 80rpx;
+}
+  
+  /* 最多可寄养 */
+.max-pet-laber:last-child{
+  margin-left: 20rpx;
+}
+/* 悬浮最多可寄养选择框 */
+.suspension-frame-max-pet{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 860rpx;
+  background-color: white;
+  box-sizing: border-box;
+  font-size: 32rpx;
+  line-height: 100rpx;
+}
+.suspension-max-pet_hd{
+  padding: 20rpx 30rpx;
+  font-size: 28rpx;
+  line-height: 46rpx;
+}
+.suspension-max-pet_hd button{
+  color: #17C4FB;
+}
+.suspension-max-pet_bd{
+  padding: 100rpx 0;
+}
+.suspension-max-pet-item .picker{
+  margin-right: 20rpx;
+}
+
+/* 价格 */
+.dayCare-price-laber{
+  display: inline-block;
+  padding: 10rpx;
+  line-height: 40rpx;
+  border: 1px solid #e5e5e5;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+}
+/* 悬浮价格填写框 */
+.suspension-frame-price{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 860rpx;
+  background-color: white;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  line-height: 100rpx;
+}
+.suspension-price_hd,.suspension-price-item{
+  padding: 0 30rpx;
+}
+.suspension-price-item_left{
+  flex: 1;
+}
+.suspension-price-item_right{
+  flex: 1;
+  border-left: 1px solid #e5e5e5;
+  text-align: center;
+}
+.suspension-price-icon-wrap{
+  line-height: 1;
+  width: 17px;
+  height: 17px;
+  border-radius: 17px;
+  border:1px solid #e5e5e5;
+  box-sizing: border-box;
+  margin-right:30rpx; 
+}
+.suspension-price-icon-wrap_activate{
+  border:none; 
+}
+.suspension-price-rmb{
+  padding-left: 70rpx;
+  width: 40rpx;
+  color: #888;
+}
+.suspension-price_ft button{
+  flex: 1;
+  border-radius: 0;
+}
+.suspension-price_ft button::after{
+  display: none;
+}

@@ -1,0 +1,93 @@
+<import src="/others/template/weui_mc.axml"/>
+<form onSubmit="setFormId" report-submit="{{true}}" class="container bte5" a:if="{{isok}}">
+  <view class="explain-wrap f14">
+    <view class="f12 p10-15">保障信息</view>
+    <view class="p15 bgwh explain-bd">
+      <view class="fsc">
+        <view class="flex1">
+          <view>保险期限：1年</view>
+          <view>生效日期：即时生效</view>
+        </view>
+        <view class="flex1">
+          <view>报销比例：40%</view>
+          <view>保额总金额：8000元</view>
+        </view>
+      </view>
+      <view>报销病种：所有疾病都可报销</view>
+    </view>
+  </view>
+  <view class="user-wrap">
+    <view class="p10-15 f12 g8">投保人信息</view>
+    <view class="user-bd bgwh">
+      <!-- 姓名 -->
+      <view class='found-cell'>
+        <view class='found-cell_hd'>姓名</view>
+        <view class='found-cell_bd'>
+          <input placeholder="点击填写" onInput="inputUserName" value="{{userName}}" />
+        </view>
+      </view>
+      <!-- 身份证 -->
+      <view class='found-cell'>
+        <view class='found-cell_hd'>身份证</view>
+        <view class='found-cell_bd'>
+          <input placeholder="点击填写" onInput="inputIdCard" type="digit" value="{{idCard}}" />
+        </view>
+      </view>
+      <!-- 手机号 -->
+      <view class='found-cell'>
+        <view class='found-cell_hd'>手机号</view>
+        <view class='found-cell_bd'>
+          <input placeholder="点击填写" onInput="inputPhoneNumber" type="number" value="{{phoneNumber}}" />
+        </view>
+      </view>
+      <!-- 地址 -->
+      <label class='found-cell'>
+        <view class='found-cell_hd'>地址</view>
+        <navigator url="/pages/colligate/selectAddress/selectAddress" class='found-cell_bd tr'>
+          <view class='gb2' a:if="{{!addressName}}">点击选择</view>
+          <view a:else>{{addressName}}</view>
+        </navigator>
+      </label>
+    </view>
+  </view> 
+  <view class="pet-wrap">
+    <view class="p10-15 f12 g8">宠物信息</view>
+    <view class="p10-15 fsc bgwh mb10">
+      <image src="{{petInfo.petAvatar}}" mode="aspectFill" class="pet-avatar flex-n" />
+      <view class="ml20 flex-a">
+        <view class="art1 b f16">{{petInfo.petName}}</view>
+        <view class="f12 g8 mt5">
+          <text>{{petInfo.petVarietyName}}</text>
+          <text class="ml10">{{petInfo.age}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="foot-box">
+    <!-- 阅读并同意 -->
+    <label class="weui-agree">
+      <view class="weui-agree__text" catchTap="changeAgree">
+        <view class="weui-agree__checkbox-icon mr5">
+          <icon a:if="{{isAgree}}" class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" color=""></icon>
+        </view>
+        <button class="formId-btn" hover-class="none" form-type="submit"> 我已同意并阅读 </button>
+        <view class="weui-agree__link gr" catchTap="toPurchaseInstructions">《购买须知》</view>
+        <text>与</text>
+        <view class="weui-agree__link gr" catchTap="toDisclaimer">《免责声明》</view>
+      </view>
+    </label>
+    <view class="bgwh fbc p10-15"> 
+      <view class="fsc">
+        <view class="gor">
+          <text class="f16">￥</text>
+          <text class="f24 b">365</text>
+        </view>
+        <!-- <view class="f12 g8 ml10 tdt">￥365</view> -->
+      </view>
+      <button type="primary" class="submit-btn" onTap="formSubmit" form-type="submit"> 立即投保 </button>
+    </view>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

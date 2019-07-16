@@ -1,0 +1,29 @@
+
+<view class="page-wrap"> 
+    <scroll-view class="chat-container" scroll-y="true" scroll-into-view="{{lastMessageId}}" 
+        onScrollToUpper="loadOldData">
+        <view class="load-more-btn" onTap="loadOldData">{{shownomoreMessage?'':'点击加载历史消息'}}</view>
+        <view a:for="{{messages}}" a:for-item="message" a:key="id" id="{{message.id}}" class="message {{message.type}}">
+            <view a:if="{{message.type == 'speak'}}" class="user-message {{message.isMe ? 'me' : 'other'}}">
+              <view class="time" hidden="{{(message.timeStamp - 6000) <= messages[index-1].timeStamp}}">
+                  {{message.currTime}}
+              </view>
+              <view class='user-message-info-wrap'>
+                <image class="avatar" src="{{message.user.avatar}}" mode="aspectFill" onTap="toUserHome" data-id="{{message.user.userId}}" data-isme="{{message.isMe}}" />
+                <view class="text">
+                    <!-- <view class="nickname">henry{{message.user.nickName}}</view> -->
+                    <view class="content">{{message.content}}</view>
+                </view>
+              </view>
+            </view>
+            <view a:if="{{message.type == 'system'}}" class="system-message">
+                {{message.content}}
+            </view>
+        </view>
+    </scroll-view>
+    <view class="input-panel">
+        <button class="pic-icon"></button>
+        <input type="text" confirm-type="send" value="{{inputContent}}" onInput="changeInputContent" onConfirm="sendMessage" class="send-input" onConfirm="sendMessage"></input>
+        <button onTap="sendMessage" class="send-btn" hover-class="none">发送</button>
+    </view>
+</view>

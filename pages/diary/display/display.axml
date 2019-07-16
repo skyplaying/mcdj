@@ -1,0 +1,61 @@
+
+<import src="/others/template/weui_mc.axml"/>
+
+
+<view class="container" a:if="{{isOk}}">
+  <view class="pet-info">
+    <swiper indicator-dots="{{true}}" autoplay="{{true}}" style="height:230rpx;">
+      <block a:for="{{fosterPetVo.petInfoVos}}" a:key="petId">
+        <swiper-item>
+          <view class="rel">
+            <image src="{{item.petAvatar}}" mode="aspectFill" class="pet-avatar" />
+            <image src="/images/pet_gender{{item.gender}}.png" class="gender" />
+          </view>
+          <view class="pet-name">
+            <view class="gf dib">
+              {{item.petName}}
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="gf f12">{{fosterPetVo.startTime}}~{{fosterPetVo.endTime}}</view>
+    <view class="foster-info-btn" onTap="toFosterProcess">收养详情</view>
+  </view>
+  <view class="bgwh">
+    <view class="p10-15" a:if="{{userInfo.userId!=fosterPetVo.usersVo.userId}}">
+      <view class="fsc">
+        <image src="{{fosterPetVo.usersVo.avatar}}" mode="aspectFill" class="user-avatar flex-n" />
+        <text class="f14">{{fosterPetVo.usersVo.nickName}}</text>
+        <view class="identity flex-n">主人</view>
+      </view>
+    </view>
+    <view class="p10-15" a:if="{{userInfo.userId!=fosterPetVo.adoptUserVo.userId}}">
+      <view class="fsc">
+        <image src="{{fosterPetVo.adoptUserVo.avatar}}" mode="aspectFill" class="user-avatar flex-n" />
+        <text class="f14">{{fosterPetVo.adoptUserVo.nickName}}</text>
+        <view class="identity flex-n">收养人</view>
+      </view>
+    </view>
+  </view>
+  <!-- 日记列表 -->
+  <view class="log-list f14">
+    <block a:for="{{logList}}" a:key="adoptPetLogId">
+      <view class="bgwh p10-15 mt10">
+        <view class="pl10">
+          {{item.logContent}}
+        </view>
+        <view class="pl5 pt5">
+          <block a:for="{{item.picturesPathList}}" a:key="*this" a:for-index="idx">
+            <image src="{{item}}" mode="aspectFill" class="log-img" onTap="previewImage" data-index="{{index}}" data-imgindex="{{idx}}" />
+          </block>
+        </view>
+        <view class="f12 g8 pl20">{{item.createTime}}</view>
+      </view>
+    </block>
+    <template is="list-loading" data="{{showloading,shownomore:shownomoreLog,shownoData:!(logList && logList.length>0),noDataContent:'暂无日记'}}"></template>
+  </view>
+
+  <image src="/images/publish_diary.png" class="publish" onTap="publish" a:if="{{userInfo.userId==fosterPetVo.adoptUserVo.userId}}" />
+
+</view>

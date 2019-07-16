@@ -1,0 +1,36 @@
+<import src="/others/template/weui_mc.axml"/>
+<form onSubmit="setFormId" report-submit="{{true}}" class="container pb30" a:if="{{isok}}">
+  <view class="hd fsc">
+    <image src="{{usersVo.avatar}}" mode="aspectFill" class="user-avatar" />
+    <view class="flex-a">
+      <view class="b f18">{{usersVo.nickName}}</view>
+      <view class="f14 mt5">{{usersVo.city}}{{usersVo.occupation?(' ▪ '+usersVo.occupation):''}}</view>
+      <view class="gblue f14 flex-n mt10" onTap="toUserHome" a:if="{{usersVo.userCertifiedStatus==1 || usersVo.trainReviewStatus==1}}">查看Ta的服务</view>
+    </view>
+  </view>
+  <view class="user-info-wrap ptb10 bte5">
+    <view class="wrap_hd">个人介绍</view>
+    <view class="mt10 f14">
+      <text a:if="{{usersVo.profile}}">{{usersVo.profile}}</text>
+      <text class="g8" a:else>这个人有点懒，未填写介绍</text>
+    </view>
+  </view>
+  <view class="pet-list-wrap ptb10 bte5 mt10">
+    <view class="wrap_hd">Ta的宠物</view>
+    <view class="pet-list mt10">
+      <navigator url="/pages/pet/display/display?petId={{item.petId}}" class="pet-item fsc" a:for="{{myPetList}}" a:key="petId">
+        <image src="{{item.petAvatar}}" mode="aspectFill" class="pet-avatar" />
+        <view>
+          <view class="b f16 fsc">
+            <view>{{item.petName}}</view>
+            <image src="/images/gender{{item.gender}}.png" class="pet-gender" />
+          </view>
+          <view class="f12 g8 mt5">{{item.petVarietyName}} {{item.age}}</view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

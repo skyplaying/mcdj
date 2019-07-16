@@ -1,0 +1,22 @@
+<import src="/others/template/weui_mc.axml"/>
+<form class="container" report-submit="{{true}}" onSubmit="setFormId">
+  <image src="/images/distinguish_found_bg.png" class="hd-img" />
+  <view class="f18 mt30">拍一拍，了解宠物品种</view>
+  <view class="f14 mt10">地球上的纯种狗狗猫咪都认得，快拍张试试吧</view>
+  <button class="mc-btn2" onTap="chooseImage" data-index="0" hover-class="btn_hover" form-type="submit"> AR识宠 </button>
+  <button type="default" class="formId-btn" onTap="chooseImage" data-index="1" form-type="submit"> 从相册中选择 ></button>
+</form>
+<!-- 悬浮最多可寄养选择框 -->
+<view class='suspension-wrap' a:if="{{showPetInfo && petInfo}}">
+  <view class="suspension-shadow-cover"></view> 
+  <view class='suspension-frame-pet'>
+    <view class="clear-icon" onTap="showPetInfo">
+      <icon type="clear" size="17" color="#F97CB4" />
+    </view>
+    <view class="p10-15 f14 b">- 识别结果 -</view>
+    <image src="{{images[0]}}" class="pet-img" mode="aspectFill" />
+    <view class="mt10">{{petInfo.msg}}</view>
+    <view class="mt5 gblue f14">相似度：{{petInfo.accuracy}}</view>
+    <button class="mc-btn2" onTap="toDisplay" form-type="submit"> 查看详情 </button>
+  </view>
+</view>

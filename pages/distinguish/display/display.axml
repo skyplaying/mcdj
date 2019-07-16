@@ -1,0 +1,26 @@
+<import src="/others/template/weui_mc.axml"/>
+<form onSubmit="setFormId" report-submit="{{true}}" class="container pb30" a:if="{{isok}}" >
+  <!-- 轮播图 -->
+  <view class="swiper-wrap">
+    <!-- 头部图片 -->
+    <swiper indicator-dots="{{false}}" autoplay="{{true}}" a:if="{{baike.pictures && baike.pictures.length>0}}">
+      <block a:for="{{baike.pictures}}" a:key="*this">
+        <swiper-item>
+          <image src="{{item}}" mode="aspectFill" class="swiper-img" onTap="previewImage" data-index="{{index}}" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="swiper-no-data" a:else>暂无图片</view>
+  </view>
+  <view class="p15">
+    <view class="f20 b">{{baike.petName}}</view>
+    <view class="mt10">
+      <text>{{baike.introduce}}</text>
+    </view>
+  </view>
+  <!-- 底部按钮 -->
+  <button class="mc-btn2" open-type="share" hover-class="btn_hover" form-type="submit"> 分享给好友 </button>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

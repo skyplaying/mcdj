@@ -1,0 +1,52 @@
+
+page,input,textarea{
+    font-size: 28rpx;
+}
+
+.hd-msg{
+  font-size: 24rpx;
+  color: #888;
+  padding: 30rpx 30rpx 0;
+}
+
+.main{
+  padding: 30rpx;
+}
+
+.region-item{
+  position: relative;
+  padding-left: 60rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.region-item::before{
+  content: ' ';
+  position: absolute;
+  left: 0;
+  top: 25rpx;
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 30rpx;
+  border: 3rpx solid #e5e5e5;
+  box-sizing: border-box;
+}
+.region-item_active::before{
+  border-color: #2597EB;
+  background-color: #2597EB;
+}
+
+.laber-item{
+  display: inline-block;
+  line-height: 56rpx;
+  font-size: 24rpx;
+  color: #888;
+  border: 1px solid #e5e5e5;
+  border-radius: 6rpx;
+  padding: 0 26rpx;
+  margin: 20rpx 20rpx 0 0;
+}
+.laber-item_active{
+  color: white;
+  border: 1px solid #FF9800;
+  background-color: #FF9800;
+}

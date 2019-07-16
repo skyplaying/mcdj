@@ -1,0 +1,75 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<form bindsubmit="setFormId" report-submit="{{true}}" class='container' a:if="{{isok}}">
+  <view class="hd fbc">
+    <button class="demand-g8-btn formId-btn" onTap="toMyDemand">我的需求</button>
+    <view class="condition-picker-wrap fsc">
+      <view class="condition-picker">
+        <picker onChange="changeSort" value="{{sortIndex}}" range="{{sortList}}">
+          <view>
+            <text class="{{!sortIndex?'':'gor'}}">{{sortIndex?sortList[sortIndex]:'默认排序'}}</text>
+            <text class="ml5 f10">▼</text>
+          </view>
+        </picker>
+      </view>
+      <view class="condition-picker">
+        <picker onChange="changePetType" value="{{petTypeIndex}}" range="{{petTypeList}}">
+          <view>
+            <text class="{{!petTypeIndex?'':'gor'}}">{{petTypeIndex?petTypeList[petTypeIndex]:'宠物类型'}}</text>
+            <text class="ml5 f10">▼</text>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <button class="demand-gor-btn formId-btn" onTap="toDemandDisplay" a:if="{{userInfo.fosterDemandId}}">应答情况</button>
+    <button class="demand-gor-btn formId-btn" onTap="toDemandFound" a:else >发布需求</button>
+  </view>
+  <view class="demand-list-wrap">
+    <navigator url="/pages/demand/display/display?fosterDemandId={{item.fosterDemandId}}" class="demand-item bgwh" a:for="{{list}}" a:key="userId">
+      <view class="demand-item_hd p10-15 bbe5 fsc">
+        <image src="{{item.usersVo.avatar}}" mode="aspectFill" class="demand-avatar" />
+        <view class="demand-item_hd_mid">
+          <view class="rel fsc">
+            <view class="art1 b f14">{{item.usersVo.nickName}}</view>
+            <view class="flex-n f10 ml10 g8">{{item.usersVo.occupation}}</view>
+          </view>
+          <view class="f10 g8 mt2">{{item.publishTime}}发布</view>
+        </view>
+        <view class="demand-item_hd_right flex-n f10 tr">
+          <view class="g8">距我{{item.distance}}</view>
+          <view class="gor mt5">{{item.demandCount || '无'}}人应答</view>
+        </view>
+      </view>
+      <view class="demand-item_bd p10-15 fbc">
+        <view class="demand-item_bd_left">
+          <view class="fsc f12">
+            <image src="/images/demand_pet_icon.png" />
+            <view>{{item.fosterPetTypes}}</view>
+          </view>
+          <view class="fsc f12">
+            <image src="/images/demand_time_icon.png" />
+            <text>{{item.startTime}}至{{item.endTime}}</text>
+            <text class="ml10">共{{item.fosterNum}}天</text>
+          </view>
+          <view class="fsc f12">
+            <image src="/images/demand_address_icon.png" />
+            <view>{{item.demandAddress}}</view>
+          </view>
+        </view>
+        <view class="demand-item_bd_right">
+          <block a:for="{{item.petAvatarList}}" a:key="*this">
+            <image src="{{item}}" mode="aspectFill" a:if="{{index
+                                                        
+              <=2}}" />
+            </block>
+          </view>
+        </view>
+      </navigator>
+      <template is="list-loading" data="{{loading,list,nomore}}"></template>
+    </view>
+  </form>
+  <view class='container-loading' a:else>
+    <image src="/images/loading.gif" />
+  </view>
+

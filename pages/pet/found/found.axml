@@ -1,0 +1,121 @@
+
+
+
+<form bindsubmit="setFormId" report-submit="{{true}}" class='container' a:if="{{isok}}">
+  <view class="weui-uploader-box">
+    <view class="weui-uploader">
+      <view class="weui-uploader__bd">
+        <view class="weui-uploader__files" id="uploaderFiles">
+          <block a:for="{{petPhotos}}" a:key="*this">
+            <view class="weui-uploader__file rel" id="{{item}}" data-index="{{index}}" onLongTap="longTapImage" onTouchMove="moveImage" onTouchStart="startImage" onTouchEnd="endImage">
+              <image class="weui-uploader__img {{moveIndex==index?'weui-uploader-move':''}}" src="{{item}}" mode="aspectFill" onTap="previewFosterageImg" data-index="{{index}}" style="top:{{moveIndex==index?movey:0}}px;left:{{moveIndex==index?movex:0}}px;" />
+              <view class="weui-uploader-avatar" a:if="{{index==0 && !moveIndex && moveIndex!=0}}">头像</view>
+              <view class="weui-icon-clear" onTap="deleteFosterageImg" data-index="{{index}}" hidden="{{moveIndex||moveIndex==0}}">
+                <icon type="cancel" size="14" class="bgwh"></icon>
+              </view>
+            </view>
+          </block>
+        </view>
+        <image src="/images/pet_add_img_icon.png" onTap="chooseFosterageImg" class="uploader__input-img" a:if="{{petPhotos.length!=4}}"/>
+      </view>
+    </view>
+  </view>
+  <view class='found-cells mt10'>
+    <!-- 宠物名字 -->
+    <view class='found-cell'>
+      <view class='found-cell_hd'>昵称</view>
+      <view class='found-cell_bd'>
+        <input placeholder='点击填写' onInput='inputPetName' value='{{petName}}' />
+      </view>
+    </view>
+    <!-- 品种 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>品种</view>
+      <view class='found-cell_bd tr' catchTap='selectVarieties'>
+        <view class='gb' a:if="{{!varieties}}">请选择宠物品种</view>
+        <view a:else>{{varieties.petVarietyName}}</view>
+      </view>
+    </label>
+    <!-- 宠物体型 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>宠物体型</view>
+      <view class='found-cell_bd'>
+        <picker onChange="changeVarietyType" value="{{varietyIndex}}" range="{{varietyTypeArray}}">
+          <view class='gb2 tr' a:if="{{!varietyIndex && varietyIndex!=0}}">优先挑选品种</view>
+          <view class='tr' a:else>{{varietyTypeArray[varietyIndex]}}</view>
+        </picker> 
+      </view>
+    </label>
+    <!--性别-->
+    <label class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">性别</view>
+      </view>
+      <view class="weui-cell__bd">
+        <view class="radio-group">
+          <view class="radio dib ml30" a:for="{{['女','男']}}" onTap="changeSex" data-value="{{index}}">
+            <!-- <radio class="weui-sex__radio" value="{{index}}" checked="{{index==gender}}"/> -->
+            <view class="weui-sex__radio-icon">
+              <view a:if="{{index==gender}}" class="weui-sex__radio-icon-check"></view>
+            </view>
+            <image class="sex-icon" mode="aspectFill" src="/images/gender{{index}}.png"/>
+          </view>
+        </view>
+      </view>
+    </label>
+    <!-- 出生日期 -->
+    <label class='found-cell'>
+      <view class='found-cell_hd'>出生日期</view>
+      <view class='found-cell_bd tr' onTap="selectBirthday">
+        <view class='gb' a:if="{{!birthday}}">请选择日期</view>
+        <view a:else>{{birthday}}</view>
+      </view>
+    </label>
+  </view>
+  <view class='found-cells mt10'>
+    <!-- 特别说明 -->
+    <label class='found-cell'>
+      <view class='found-cell_bd'>
+        <textarea placeholder="关于你的狗饮食，侵略性等级，负面触发器，喜欢等的重要注意事项" onInput='inputExplain' value='{{petSynopsis}}' />
+      </view>
+    </label>
+  </view>
+  <!-- 健康情况 -->
+  <view class='found-cells mt10'>
+    <!-- 是否绝育 -->
+    <label class='found-cell found-cell_switch'>
+      <view class='found-cell_hd'>是否绝育</view>
+      <view class='found-cell_bd tr'>
+        <switch checked="{{sterilization}}" onChange="sterilizationChange" />
+      </view>
+    </label>
+    <!-- 是否驱虫 -->
+    <label class='found-cell found-cell_switch'>
+      <view class='found-cell_hd'>是否驱虫</view>
+      <view class='found-cell_bd tr'>
+        <switch checked="{{insect}}" onChange="anthelminticChange" />
+      </view>
+    </label>
+    <!-- 是否注射联苗 -->
+    <label class='found-cell found-cell_switch'>
+      <view class='found-cell_hd'>是否注射联苗</view>
+      <view class='found-cell_bd tr'>
+        <switch checked="{{isMixedVaccine}}" onChange="mixedVaccineChange" />
+      </view>
+    </label>
+    <!-- 是否注射狂犬疫苗 -->
+    <label class='found-cell found-cell_switch'>
+      <view class='found-cell_hd'>是否注射狂犬疫苗</view>
+      <view class='found-cell_bd tr'>
+        <switch checked="{{isRabiesVaccine}}" onChange="rabiesVaccineChange" />
+      </view>
+    </label>
+  </view>
+  <view class='ft'>
+    <button type='primary' disabled='{{!noDisabled}}' form-type="submit" catchTap='submit'>保存</button>
+    <button class='formId-btn delete-btn' form-type="submit" catchTap='deletePet' a:if="{{petId}}">删除宠物</button>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

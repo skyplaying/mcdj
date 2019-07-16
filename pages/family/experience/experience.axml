@@ -1,0 +1,55 @@
+
+<import src="/others/template/weui_mc.axml"/>
+<form class="container" report-submit="{{true}}" onSubmit="setFormId" a:if="{{isok}}">
+  <view class="main">
+    <view class="add-pet-wrap fbc bgwh mt10">
+      <view>现在养的宠物</view>
+      <view class="fsc">
+        <scroll-view scroll-x>
+          <block a:for="{{petList}}" a:key="petId">
+            <image data-id="{{item.petId}}" class="pet-avatar" mode="aspectFill" src="{{item.petAvatar}}"/>
+          </block>
+        </scroll-view>
+        <view class="weui-uploader__input-box" onTap="toFoundPet">
+          <view class="weui-uploader__input"></view>
+        </view>
+      </view>
+    </view>
+    <view class="bgwh mt10">
+      <!--养过的宠物-->
+      <view class="kept_box">
+        <view class="kept_box_hd p10-15 fbc">
+          <text>养过的宠物</text>
+          <navigator class="weui-uploader__input-box" url="/pages/pet/selectVarieties/selectVarieties?key={{varietiesKey}}">
+            <view class="weui-uploader__input"></view>
+          </navigator>
+        </view>
+        <view class="kept_box_bd bte5" a:if="{{varietiesList.length>0}}">
+          <block a:for="{{varietiesList}}" a:key="*this">
+            <view class="kept_box-item p10-15 fbc">
+              <view class="sex-wrap fbc">
+                <image src="/images/pet_sex0_{{!item.sex?1:0}}.png" onTap="changeSex" data-index="{{index}}" data-sex="0" />
+                <image src="/images/pet_sex1_{{item.sex?1:0}}.png" onTap="changeSex" data-index="{{index}}" data-sex="1" />
+              </view>
+              <view class="kept_box-item_name">{{item.varietyName}}</view>
+              <picker onChange="changeExperience" data-index="{{index}}" value="{{item.experienceIndex}}" range="{{experienceArr}}">
+                <view class='picker gb2 tr' a:if="{{!item.experienceIndex && item.experienceIndex!=0}}">点击选择</view>
+                <view class='picker tr' a:else>
+                  <text>{{experienceArr[item.experienceIndex]}}</text>
+                  <text class="f10 ml5 vm">▼</text>
+                </view>
+              </picker>
+              <view class="icon-clear" onTap="deleteVarieties" data-index="{{index}}">
+                <icon type="cancel" size="12" color="black"></icon>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button form-type="submit" onTap="saveExperience" type="primary" class="w345 auto mc-btn2 gor mt20 mb50" hover-class="none">保存</button>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

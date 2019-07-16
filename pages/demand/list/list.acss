@@ -1,0 +1,59 @@
+.hd{
+	padding: 0 30rpx;
+	background-color: white;
+	line-height: 80rpx;
+}
+.condition-picker{
+	width: 200rpx;
+	font-size: 24rpx;
+	text-align: center;
+}
+.demand-gor-btn{
+	color: #FF9800;
+	font-size: 24rpx;
+}
+.demand-g8-btn{
+	color: #888;
+	font-size: 24rpx;
+}
+
+
+/* 需求列表模块 */
+.demand-item{
+	margin-top: 16rpx;
+}
+.demand-avatar{
+    flex: none;
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 80rpx;
+}
+.demand-item_hd_mid{
+    flex: auto;
+    margin-left: 20rpx;
+}
+.demand-item_bd{
+    line-height: 50rpx;
+}
+.demand-item_bd_left image{
+	width: 30rpx;
+	height: 30rpx;
+	margin-right: 20rpx;
+	flex: none;
+}
+.demand-item_bd_right{
+	margin-left: 20rpx;
+	flex: none;
+}
+.demand-item_bd_right image{
+	float: right;
+	width: 90rpx;
+	height: 90rpx;
+	border-radius: 90rpx;
+	box-sizing: border-box;
+	border: 1px solid #FF9800;
+	margin-right: -50rpx;
+}
+.demand-item_bd_right image:first-child{
+	margin-right: 0;
+}

@@ -1,0 +1,39 @@
+
+.wallet-wrap{
+    padding: 0 30rpx;
+    background-color: white;
+    font-size: 28rpx;
+}
+
+.wallet-balance-wrap{
+    padding: 40rpx 0; 
+}
+
+.detailed-btn{
+    color: #2a95f7;
+}
+
+.amount{
+    font-size: 56rpx;
+}
+
+.today-reward{
+    padding: 30rpx 0;
+    line-height: 60rpx;
+}
+
+.withdrawals-wrap{
+    padding: 30rpx 0;
+}
+
+.withdrawals-btn{
+    width: 150rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    text-align: center;
+    border-radius: 6rpx;
+    background-color: #FA9D26;
+    color: white;
+    margin-left: 30rpx;
+    flex: none;
+}

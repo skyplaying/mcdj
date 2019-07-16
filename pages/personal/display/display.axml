@@ -1,0 +1,166 @@
+
+<import src="/others/template/weui_mc.axml"/>
+<form onSubmit="setFormId" report-submit="{{true}}" class="container pb30" a:if="{{isok}}">
+  <!-- 用户信息 -->
+  <view class="bgwh">
+    <view class="user-info-wrap fbs">
+      <view class="user-avatar-wrap">
+        <image src="{{usersVo.avatar}}" mode="aspectFill" class="user-avatar" onTap="previewAvatar" data-url="{{usersVo.avatar}}" />
+        <image class="sex-icon" mode="aspectFill" src="/images/sex{{usersVo.gender}}.png"/>
+      </view>
+      <view class="user-info_mid">
+        <view class="rel fsc">
+          <view class="art1 b">{{usersVo.adoptionVo.familyName ||  usersVo.nickName}}</view>
+          <image class="real-icon" mode="aspectFill" src="/images/identity_real_icon.png"/>
+          <view class="credit-score-icon" a:if="{{usersVo.creditScore}}">{{usersVo.creditScore}}</view>
+        </view>
+        <view class="fsc mt2">
+          <view class="user-info-stars-wrap fsc" a:if="{{usersVo.score}}">
+            <block a:for="{{[1,2,3,4,5]}}" a:key="*this">
+              <view class="user-info-stars-item" a:if="{{index+1 <= usersVo.score}}">
+                <image src="/images/stars1.png" />
+              </view>
+            </block>
+            <text class="ml5 gor f12">{{usersVo.score}}分</text>
+          </view>
+          <text class="f12 g8" a:else>暂无评分</text>
+        </view>
+        <view class="f12 g8 mt2">
+          <text >{{usersVo.grades}}</text>
+        </view>
+      </view>
+      <view class="user-info_right" a:if="{{userInfo.userId==usersVo.userId}}">
+        <button type="primary" size="mini" onTap="editUserInfo"> 编辑 </button>
+      </view>
+      <view class="user-info_right fsc" a:else>
+        <view class="follow-btn mr10" onTap="userFollow">
+          <image src="/images/personal_follow{{usersVo.isFollow?'1':'0'}}.png" />
+        </view>
+        <button class="formId-btn share-btn" open-type="share">
+          <image src="/images/personal_share.png" />
+        </button>
+      </view>
+    </view>
+    <view class="plr15 pb10 f12" a:if="{{usersVo.profile}}">
+      <view>{{usersVo.profile}}</view>
+    </view>
+    <view class="weui-select fsc" onTap="openLocation" a:if="{{usersVo.address}}">
+      <image src="/images/address_icon.png" class="address-nav-icon" />
+      <view class="art1 w300">{{usersVo.address}}</view>
+    </view>
+  </view>
+  <!-- tab块 -->
+  <view class='tabs mt10 bgwh'>
+    <view class="top-navbar">
+      <block a:for="{{tabs}}" a:key="text">
+        <view id="{{index}}" class="top-navbar__item {{activeIndex == index ? 'top-bar__item_on' : ''}}" onTap="tabClick">
+          {{item.text}}
+        </view>
+      </block>
+      <view class="top-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);width:{{sliderWidth}}rpx;"></view>
+    </view>
+  </view>
+  <!-- 服务列表 -->
+  <view class="server-list bgwh" a:if="{{activeIndex==0}}">
+    <view class="server-item ptb15 weui-select fbc" onTap="toServerDisplay" data-index="{{index}}" a:for="{{listServer}}" a:key="trainServiceId">
+      <image src="{{item.servicePath}}" mode="aspectFill" class="server-img" />
+      <view class="server-item_mid flex-a">
+        <view class="f16">{{item.itemName}}</view>
+        <view class="g8 f12">{{item.trainType}}</view>
+      </view>
+      <view class="flex-n f14 mlr10"> 
+        <view class="gblue" catchTap="editServer" data-index="{{index}}" a:if="{{userInfo.userId==usersVo.userId}}">编辑</view>
+      </view>
+    </view>
+    <view class="foot-box">
+      <button class="mc-btn2 gor" hover-class="btn-hover" onTap="toServerList" a:if="{{userInfo.userId==usersVo.userId}}"> 服务管理 </button>
+    </view>
+  </view>
+  <!-- 评价列表 -->
+  <view class="comment-list-wrap" a:elif="{{activeIndex==1}}">
+    <view class="comment-list-tabs bgwh p10-15">
+      <view class="comment-list-tab {{index==commentIndex?'comment-list-tab_active':''}}" onTap="commentTabClick" data-index="{{index}}" a:for="{{['全部','好评','差评']}}" a:key="*this">
+        <text>{{item}}</text>
+        <text class="ml5" a:if="{{index==commentIndex}}">({{totalComment}})</text>
+      </view>
+    </view>
+    <view class="comment-list">
+      <view class="comment-item bgwh fbs" a:for="{{listComment}}" a:key="commentId">
+        <image src="{{item.usersVo.avatar}}" mode="aspectFill" class="comment-avatar" />
+        <view class="flex-a">
+          <view class="fbc">
+            <view class="art1 b f14">{{item.usersVo.nickName}}</view>
+            <view class="g8 f10 ml10 flex-n">{{item.commentTime}}</view>
+          </view>
+          <view class="stars-wrap fsc">
+            <block a:for="{{[1,2,3,4,5]}}" a:key="*this" a:for-item="sitem" a:for-index="sindex">
+              <block a:if="{{sindex+1<= item.trainCompositeScore}}">
+                <image src="/images/stars1.png" class="stars-item" />
+              </block>
+              <block a:elif="{{sindex+0.5 <= item.trainCompositeScore}}">
+                <image src="/images/stars2.png" class="stars-item" />
+              </block>
+              <block a:else>
+                <image src="/images/stars0.png" class="stars-item" />
+              </block>
+            </block>
+            <text class="ml15 gor f12">{{item.trainCompositeScore}}分</text>
+          </view>
+          <view class="f10 g8 ptb5">服务类型：{{item.commentType==1?'寄养':''}}{{item.commentType==2?'训宠':''}}</view>
+          <view class="f10 g8 ptb5" a:if="{{item.itemName}}">
+            <text>服务项目：{{item.itemName}}</text>
+            <text a:if="{{item.dayNum}}">（{{item.dayNum}}天）</text>
+          </view>
+          <view class="f12 mt5" a:if="{{item.commentContent}}">{{item.commentContent}}</view>
+          <view class="f12 mt5 g8" a:else>暂无评论</view>
+          <button class="mt10" size="mini" type="default" onTap="delOrderComment" data-index="{{index}}" a:if="{{userInfo.isAdmin}}" >删除</button>
+        </view>
+      </view>
+      <template is="list-loading" data="{{loading,nomore:nomoreComment,list:listComment}}"></template>
+    </view>
+  </view>
+  <!-- 个人资料 -->
+  <view class="userInfo-wrap bgwh" a:elif="{{activeIndex==2}}">
+    <view class="f14 p10-15">
+      <view class="b">个人资料</view>
+      <view class="mt10">
+        <view>年龄：{{usersVo.ageGroup}}</view>
+        <view>职业：{{usersVo.occupation}}</view>
+        <view>常居城市：{{usersVo.city}}</view>
+        <!-- <view>爱好：{{usersVo.hobby}}</view> -->
+        <!-- <view>保证金：{{usersVo.spoilLong}}</view> -->
+      </view>
+    </view>
+    <view class="f14 p10-15 bte5-ml15" a:if="{{usersVo.keptPetList && usersVo.keptPetList.length>0}}">
+      <view class="b">养宠经验</view>
+      <view a:for="{{usersVo.keptPetList}}" a:key="keptPetId">
+        <text>{{item.spoilLong}}</text>
+        <text>{{item.petType}}</text>
+        <image src="/images/pet_sex{{item.petSex}}_1.png" class="pet-sex" />
+      </view>
+    </view>
+    <view class="f14 p10-15 bte5-ml15" a:if="{{myPetList && myPetList.length>0}}">
+      <view class="b">Ta的宠物</view>
+      <view class="fsc ptb10" a:for="{{myPetList}}" a:key="petId">
+        <image src="{{item.petAvatar}}" mode="aspectFill" class="pet-avatar" />
+        <view class="flex-a ml10">
+          <view class="f16 b">
+            <text>{{item.petName}}</text>
+            <image src="/images/pet_sex{{item.gender}}_1.png" class="pet-sex" />
+          </view>
+          <view class="f12 g8">{{item.petVarietyName}} {{item.age}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</form>
+<form onSubmit="setFormId" report-submit="{{true}}" a:elif="{{isNoAuth}}" class="container bgwh">
+  <view class="refresh">
+    <image src="/images/refresh_bg.png" mode="widthFix" class="pct100"/>
+    <view class="f14">点击刷新后登录</view>
+    <button type="default" onTap="refresh" hover-class="none" class="refresh-btn formId-btn" form-type="submit" size="mini"> 刷新 </button>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

@@ -1,0 +1,30 @@
+page{
+  background-color: white;
+}
+image{
+  display: block;
+  width: 100%;
+}
+
+.content-hd.weui-select{
+  line-height: 1.58823529em; 
+  padding-top: 20rpx;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 20rpx;
+}
+.content-hd.weui-select:before{
+  border-color: rgb(87, 101, 149);
+}
+.content-hd image{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 120rpx;
+  margin-right: 30rpx;
+}
+
+
+.content3-bd{
+  height: 500rpx;
+  padding: 20rpx 30rpx 20rpx;
+}

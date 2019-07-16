@@ -1,0 +1,95 @@
+
+.wallet-wrap{
+    padding: 30rpx; 
+    background-color: white;
+    font-size: 28rpx;
+}
+
+.detailed-btn{
+    color: #2a95f7;
+}
+
+.amount{
+    font-size: 80rpx;
+}
+
+/* 钱包账单 */
+.withdrawals-wrap{
+    padding: 30rpx 0;
+}
+.withdrawals-btn{
+    width: 120rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    text-align: center;
+    border-radius: 6rpx;
+    background-color: #FA9D26;
+    color: white;
+    margin-left: 30rpx;
+    flex: none;
+}
+
+/* 右部 */
+.right-ble5{
+    position: relative;
+}
+.right-ble5::before{
+    content: ' ';
+    position: absolute;
+    left: 0;
+    top: 10rpx;
+    bottom: 10rpx;
+    border-left: 1px solid #e5e5e5;
+}
+
+/* 月数据 */
+.month-num-wrap{
+    background-color: white;
+    padding: 20rpx 0;
+    border-top: 1px solid #e5e5e5;
+}
+.month-num-item{
+    padding: 0 30rpx;
+}
+
+/* 家庭评分 */
+.family-evaluate-wrap{
+    margin-top: 20rpx;
+    background-color: white;
+    font-size: 28rpx;
+}
+.evaluate-comprehensive-wrap{
+    width: 216rpx;
+    height: 216rpx;
+    padding: 38rpx 42rpx;
+    border: 4rpx solid #FF9800;
+    border-radius: 1000rpx;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 auto;
+}
+.evaluate-various-wrap{
+    padding-left: 64rpx;
+    line-height: 60rpx;
+    box-sizing: border-box;
+}
+
+/* 家庭星级 */
+.family-star-level-wrap{
+    margin-top: 20rpx;
+    background-color: white;
+    font-size: 28rpx;
+}
+.family-ordinary-wrap{
+    position: relative;
+    padding: 30rpx;
+    margin-top: 20rpx;
+    box-shadow: 0 2rpx 4rpx #888888;
+}
+.family-ordinary_upgrade{
+    position: absolute;
+    top: 20rpx;
+    right: 30rpx;
+    color: #F45333;
+    font-size: 20rpx;
+}

@@ -1,0 +1,96 @@
+
+
+<import src="/others/template/weui_mc.axml"/>
+<form bindsubmit="setFormId" report-submit="{{true}}" class='container' a:if="{{isok}}">
+  <!-- 条件选择导航 -->
+  <view class="family-list-nav-wrap {{showNavIndex || isChangeNavbar?'family-list-nav-wrap_f':''}}">
+    <view class="suspension-shadow-cover" onTap="showNav" data-index="0" hidden="{{!showNavIndex}}"></view>
+    <view class="family-list-nav_hd fsc">
+      <view class="family-list-nav_hd-item {{!distanceIndex?'':'gor'}}" onTap="showNav" data-index="1">
+        <text>{{distanceIndex?distanceList[distanceIndex]:'附近'}}</text>
+        <text class="ml5 f10">▼</text>
+      </view>
+      <view class="family-list-nav_hd-item {{!sortIndex?'':'gor'}}" onTap="showNav" data-index="2">
+        <text>{{sortIndex?sortList[sortIndex]:'排序'}}</text>
+        <text class="ml5 f10">▼</text>
+      </view>
+      <view class="family-list-nav_hd-item fcc {{!isScreen?'':'gor'}}" onTap="showNav" data-index="3">
+        <text>筛选</text>
+        <image src="/images/index_list_nav_screen.png" class="family-list-nav-screen-icon ml5" />
+      </view>
+      <!-- <view class="family-list-nav-switch" onTap="switchList"><image src="/images/index_list_switch_icon{{isHidListPhoto?2:1}}.png" /></view> -->
+    </view>
+    <view class="family-list-nav_bd">
+      <view class="family-list-nav-distance-list tc" hidden="{{showNavIndex!=1}}">
+        <button class="family-list-nav-distance-item {{distanceIndex==index?'gor':''}} formId-btn" form-type="submit" onTap="distanceChange" data-index="{{index}}" a:for="{{distanceList}}" a:key="*this">{{item}}</button>
+      </view>
+      <view class="family-list-nav-sort-list tc" hidden="{{showNavIndex!=2}}">
+        <button class="family-list-nav-sort-item {{sortIndex==index?'gor':''}} formId-btn" form-type="submit" onTap="sortChange" data-index="{{index}}" a:for="{{sortList}}" a:key="*this">{{item}}</button>
+      </view>
+      <view class="family-list-nav-screen-wrap" hidden="{{showNavIndex!=3}}">
+        <view class="family-list-nav-pet_type-wrap">
+          <view class="plr15">宠物类型（多选）</view>
+          <view class="family-list-nav-pet_type">
+            <button class="family-list-nav-pet_type-item {{petTypeState[index]?'family-list-nav-pet_type-item_active':''}} formId-btn" form-type="submit" onTap="petTypeChange" data-index="{{index}}" a:for="{{petTypeList}}" a:key="*this">{{item}}</button>
+          </view>
+        </view>
+        <view class="family-list-nav-grades-wrap">
+          <view class="plr15">服务类型（多选）</view>
+          <view class="family-list-nav-grades">
+            <button class="family-list-nav-grades-item {{gradesState[index]?'family-list-nav-grades-item_active':''}} formId-btn" form-type="submit" onTap="gradesChange" data-index="{{index}}" a:for="{{gradesList}}" a:key="*this">{{item}}</button>
+          </view>
+        </view>
+        <view class="family-list-nav-screen_ft-wrap fac p10-15 bte5">
+          <button size="mini" onTap="resetScreen" form-type="submit"> 重置 </button>
+          <button class="gor" size="mini" onTap="completeScreen" form-type="submit"> 完成 </button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="family-list-wrap">
+    <view class="family-item {{true || isHidListPhoto?'family-item_hid_photo':''}} bgwh" onTap="loginAfterNav" data-url="{{'/pages/personal/display/display?userId='+adopterList[index].userId}}" a:for="{{adopterList}}" a:key="userId">
+      <view class="family-item_top p10-15 fsc">
+        <view class="family-avatar">
+          <image src="{{item.avatar}}" mode="aspectFill" />
+          <!-- <view class="family-avatar-cover" a:if="{{item.userCertifiedStatus!=1}}"></view> -->
+        </view>
+        <view class="family-item_top_mid">
+          <view class="rel fsc">
+            <view class="art1 b">{{item.nickName}}</view>
+            <image class="real-icon" src="/images/identity_real_icon.png"/>
+            <view class="credit-score-icon" a:if="{{item.creditScore}}">{{item.creditScore}}</view>
+          </view>
+          <view class="fsc mt2">
+            <view class="user-info-stars-wrap fsc" a:if="{{item.score}}">
+              <block a:for="{{[1,2,3,4,5]}}" a:key="*this" a:for-index="sIndex" a:for-item="sItem">
+                <view class="user-info-stars-item" a:if="{{sIndex+1 <= item.score}}">
+                  <image src="/images/stars1.png" />
+                </view>
+              </block>
+            </view>
+            <view class="f10 gor ml5" a:if="{{item.score}}">{{item.score}}分</view>
+          </view>
+          <view class="f10 g8 mt2">
+            <text>{{item.grades}}  |  距我{{item.distanceStr}}</text>
+          </view>
+        </view>
+        <!-- <view class="family-item_top_right"><view class="f10 {{item.userCertifiedStatus==1?'gor':'g8'}}"><text>￥</text><text class="f22 b mr2">{{item.fosterAmount}}</text><text>起</text></view><view class="family-state-label bg8" a:if="{{item.userCertifiedStatus!=1}}">待激活</view><view class="family-state-label bg8" a:elif="{{item.adoptionVo.isOrderTaking!=1}}">休息中</view></view> -->
+      </view>
+      <!-- <scroll-view class="family-item_bottom" scroll-x="{{true}}" a:if="{{!isHidListPhoto}}"><block a:for="{{item.adoptionVo.photoList}}" a:key="*this" a:for-item="imgItem"><image src="{{item.show?imgItem:defImg}}" mode="aspectFill" class="family-photo" a:if="{{index<=2}}"></image></block></scroll-view> -->
+      <view class="family-item_server-list">
+        <view></view>
+        <block a:for="{{item.serviceList}}" a:key="serviceId" a:for-item="sItem" a:for-index="sIndex">
+          <view class="weui-select fsc" catchTap="toServer" data-id="{{sItem.serviceId}}" data-type="{{sItem.type}}" a:if="{{sIndex<=1}}">
+            <view class="gr f16 server-amount">￥{{sItem.itemAmount}}</view>
+            <view class="f14">{{sItem.itemName}}</view>
+          </view>
+        </block>
+      </view>
+      <view class="weui-select gblue tc f14" a:if="{{item.serviceList.length>=3}}">查看更多服务</view>
+    </view>
+    <template is="list-loading" data="{{loading:showloading,nomore:nomoreAdopter,list:adopterList}}"></template>
+  </view>
+</form>
+<view class='container-loading' a:else>
+  <image src="/images/loading.gif" />
+</view>

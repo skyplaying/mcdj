@@ -1,0 +1,30 @@
+
+.container{
+    padding-bottom: 120rpx;
+}
+
+.hd-img{
+    width: 100%;
+    display: block;
+}
+.receive-btn{
+    position: absolute;
+    top: 600rpx;
+    left: 0;
+}
+
+.bd{
+    padding: 40rpx 180rpx;
+}
+.bd button{
+    border-radius: 1000rpx;
+}
+
+.ft-img{
+    position: fixed;
+    bottom: 20rpx;
+    left: 50%;
+    margin-left: -160rpx;
+    width: 320rpx;
+    height: 73rpx;
+}
